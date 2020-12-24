@@ -1,0 +1,91 @@
+body {
+	background: #F4F5F9;
+}
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+}
+.SideBar {
+	width: 343px;
+	background: #fff;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	padding-top: 73px;
+}
+.BarLabels {
+	margin-top: 23px;
+}
+.BarLabels a {
+	text-decoration: none;
+}
+.label {
+	font-family: 'Helvetica Neue';
+	font-style: none;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 61px;
+	color: #989898;
+	border-right: 10px solid transparent;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	-webkit-transition: all .25s linear;
+}
+.label:hover {
+	cursor: pointer;
+	background: #F8F8F8;
+	border-right: 10px solid #989898;
+}
+.label .icon {
+	color: #989898;
+	height: 14px; 
+	width: 18px;
+	margin-right: 25px;
+	margin-left: 75px;
+}
+.labelActive {
+	font-family: 'Helvetica Neue';
+	font-style: none;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 61px;
+	color: #989898;
+	border-right: 10px solid #7268AE;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background: #7165E3;
+	color: #FFFFFF;
+	-webkit-transition: all .25s ease;
+}
+.labelActive .icon {
+	height: 14px; 
+	width: 18px;
+	margin-right: 25px;
+	margin-left: 75px;
+}
+.content {
+	height: 100%;
+}
+.avatar {
+	margin: 0px auto;
+	height: 73px;
+	width: 73px;
+	border: 1px solid #eee;
+	border-radius: 10px;
+	background: #ccc;
+}
+.fullname {
+	font-size: 35px;
+	font-family: 'Helvetica Neue';
+	font-weight: medium;
+	margin-top: 20px;
+}
+.accountlevel {
+	font-family: 'Helvetica Neue';
+	font-size: 12px;
+	color: #989898;
+	font-weight: normal;
+	margin-top: 10px;
+}
