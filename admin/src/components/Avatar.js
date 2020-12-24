@@ -1,4 +1,5 @@
 import style from '../styles.module.css';
+import { gql, useQuery } from "@apollo/client";
 
 export default function Avatar() {
 	

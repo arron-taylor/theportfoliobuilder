@@ -7,7 +7,7 @@ import { ApolloClient , ApolloProvider, InMemoryCache} from "@apollo/client";
 
 const client = new ApolloClient({
 	  cache: new InMemoryCache(),
- 		uri: "https://graphqlzero.almansi.me/api"
+ 		uri: "http://localhost:4000"
 });
 
 ReactDOM.render(

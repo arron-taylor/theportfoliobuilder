@@ -14,7 +14,6 @@ export default function BarLabels(props) {
 		<div className={style.BarLabels}>
 				<div>
 					{ barOptions.map( ( label ) => {
-						console.log(label.name, current)
 						return( 
 							label.name == current? 
 							<div className={ style.labelActive }> <FontAwesomeIcon className={ style.icon } icon={ label.icon } /> { label.name }  </div> :
