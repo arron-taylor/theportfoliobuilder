@@ -55,7 +55,7 @@ function Login() {
     // fetch('http://localhost:3001/users').then(response => response.json()).then(data => console.log(data));
     let data = user;
     axios.post('http://localhost:3001/login', data).then( (response) => { 
-      localStorage.setItem("token", response.data.jwt);console.log(response.data.jwt); if(response.status == 200) { window.location = 'http://localhost:3000/' } }).catch((error) => { 
+      localStorage.setItem("token", response.data.jwt);console.log(response.data.jwt); if(response.status == 200) { window.location = 'http://localhost:3000/dashboard' } }).catch((error) => { 
         console.log(error.response) 
       });
   }
