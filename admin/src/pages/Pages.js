@@ -2,8 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom"; 
 
 const CURRENT_USER = gql`
-	  query {
-		  user(id:2) {
+	  query Pages($id: ID) {
+		  user(id:$id) {
 		    name
 		    email
 		    avatar
@@ -15,10 +15,10 @@ const CURRENT_USER = gql`
 		}`;
 
 
-export default function Pages() {
-
+export default function Pages(props) {
+	console.log(props.user)
 	const {loading, error, data} = useQuery(CURRENT_USER, {
-		variables: { id: 1 }
+		variables: { id: props.user.id }
 	});
 	if (loading) return <> loading... Please wait. </>;
 	if (error) return <p> error... </p>;

@@ -11,9 +11,9 @@ import style from './styles.module.css';
 import Sidebar from './components/Sidebar'
 import Content from './components/Content'
 
-function Admin() { 
+function Admin(props) { 
 
-  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
+  const [user, setUser] = useState(props.user);
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
 
   return (
@@ -26,7 +26,7 @@ function Admin() {
             <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
             <Route path="/dashboard" component={ Dashboard } /> 
             <Route path="/analytics" component={ Analytics } /> 
-            <Route path="/pages" component={ Pages } /> 
+            <Route path="/pages"> <Pages user={props.user} /> </Route> 
             <Route path="/inquiries" component={ Inquiries } /> 
             <Route path="/settings" component={ Settings } /> 
           </Switch>

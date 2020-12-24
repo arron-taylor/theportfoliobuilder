@@ -8,11 +8,11 @@ import Signup from './Signup'
 import Login from './Login'
 
 function App() {  
-  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
+  const [user, setUser] = useState({id: '', name: '', email: '', isLoggedIn: false});
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    console.log(token)
+  //  console.log(token)
     if(token) {
       axios.get('http://localhost:3001/auto_login', {
         headers: {
@@ -20,8 +20,12 @@ function App() {
         }
       })
       .then((response)=> { 
-        setUser(response.data)
+       console.log(response.data)
+        setUser(prevState => ({ ...prevState,['id']: response.data.id}));
+
+       // console.log(user);
         setUser(prevState => ({ ...prevState,['isLoggedIn']: true}));
+        console.log(user)
        })
     }
   }, []);
@@ -33,7 +37,7 @@ function App() {
       <Route path='/login' component={Login} />
       <Route path='/signup' component={Signup} />
     <Route path="/">
-      { user.isLoggedIn? <> <Admin /> </> : <Login />  }
+      { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
     </Route> 
     </Switch>
    </Router>
