@@ -4,6 +4,8 @@ import { Dashboard, Settings } from './pages'
 import axios from 'axios'
 import Sidebar from './components/Sidebar'
 import Admin from './Admin'
+import Signup from './Signup'
+import Login from './Login'
 
 function App() {  
   const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
@@ -28,8 +30,10 @@ function App() {
     <>
    <Router>
     <Switch>
+      <Route path='/login' component={Login} />
+      <Route path='/signup' component={Signup} />
     <Route path="/">
-      { !user.isLoggedIn? <> <Admin /> </> : '<Signup /> ' }
+      { user.isLoggedIn? <> <Admin /> </> : <Login />  }
     </Route> 
     </Switch>
    </Router>

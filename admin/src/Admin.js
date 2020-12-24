@@ -23,6 +23,7 @@ function Admin() {
       <Content tab={ currentTab }>
         
           <Switch>
+            <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
             <Route path="/dashboard" component={ Dashboard } /> 
             <Route path="/analytics" component={ Analytics } /> 
             <Route path="/pages" component={ Pages } /> 
