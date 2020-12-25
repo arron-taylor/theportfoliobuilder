@@ -65,7 +65,6 @@ function Login() {
       <div className={signup.left}>
           <h2> Login to access your </h2>
           <h1> Account </h1>
-          <form >
             <table>
               <tr>
                 <td className={signup.label} id="email">
@@ -94,11 +93,15 @@ function Login() {
                 </td>
               </tr>
             </table>
-            <button onClick={HandleSubmit}> Login </button> 
-          </form>
+            <button onClick={HandleSubmit}> Continue </button> 
+            <h3> Not yet registered? <Link to ="/signup" > Sign up </Link> </h3>
       </div>
       <div className={signup.right}>
-        right
+        <h1> Create. Build. Edit. </h1>
+        <img src='./computer.png' />'
+        <h2> ALL-IN-ONE </h2>
+        <h3> Composable Cloud Portfolio </h3>
+        <h4> An online portfolio manager with a drag and drop page builder that gives you the freedom to easily manage your online portfolio to grow your as your experience does. </h4>
       </div>
     </div>
   );

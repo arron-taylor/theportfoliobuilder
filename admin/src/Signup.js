@@ -20,8 +20,11 @@ function Signup() {
   return (
     <div className={style.wrapper}>
       <div className={signup.left}>
-          <h2> Login to access your </h2>
-          <h1> Account </h1>
+          <h2> Create an account to continue </h2>
+          <h1> Getting Started </h1>
+
+          <h3> Already registered? <Link to ="/login" > Login </Link> </h3>
+
       </div>
       <div className={signup.right}>
         right
