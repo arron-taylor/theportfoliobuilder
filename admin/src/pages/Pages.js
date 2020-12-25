@@ -41,14 +41,18 @@ export default function Pages(props) {
       }).then(response => { window.location='http://localhost:3000/pages' }).catch(error => { console.log(error.response) });
     }
    const deleteprompt = (e) => {
-
-   	console.log(e.target.id);
+   	window.scrollTo(0, 0);
+   	console.log(e.target.id, )
    	let page_id = e.target.id;
+   	let pagename = e.target.getAttribute('name');
     setPage(prevState => ({ ...prevState, ['id']:page_id }));
+    setPage(prevState => ({ ...prevState, ['name']:pagename }));
    	const alert = document.getElementById('alertbox');
    	alert.style.display = 'block';
+   	console.log(page);
    }
    const closealert = (e) => {
+   	console.log(page);
    	const alert_type = e.target.name;
    	alert = document.getElementById(alert_type);
    	alert.style.display = 'none';
@@ -64,7 +68,7 @@ export default function Pages(props) {
 				{props.user.pages.map((page) => {
 				return <div className={admin.page} key={page.name}> <div className={admin.label}> {page.name} </div> 
 					<div className={admin.pagebuttons}> 
-						<div id={page.id} onClick={deleteprompt} className={admin.trash}> <FontAwesomeIcon id={page.id} className={ admin.icon } icon={ faTrash } /> </div>   
+						<div id={page.id} name={page.name} onClick={deleteprompt} className={admin.trash}> <FontAwesomeIcon id={page.id} className={ admin.icon } icon={ faTrash } /> </div>   
 						<div className={admin.edit}> <FontAwesomeIcon className={ admin.icon } icon={ faPencilAlt } /> </div>  
 						</div>
 					</div>
@@ -74,7 +78,7 @@ export default function Pages(props) {
 			<div id="alertbox" style={{display: 'none'}}>
 				<div className={admin.overlay}>
 					<div className={admin.alertbox}> 
-						<h1> Delete Page? </h1>
+						<h1> Delete {page.name} </h1>
 						<div className={admin.content}> 
 							<p> Are you sure you want to delete this page? Once you press delete there is no way to recover your page.</p>
 						</div>
