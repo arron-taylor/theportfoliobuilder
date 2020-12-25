@@ -39,6 +39,10 @@
 	background: #5D53BE;
 	cursor: pointer;
 }
+.left button:active {
+	background: #453d91;
+	cursor: pointer;
+}
 .left table {
 	text-align: left;
 	margin: 0px auto;

@@ -37,16 +37,144 @@
 	border: 1px solid #DBDBDB;
 	margin-right: 30px;
 	margin-bottom: 15px;
-	-webkit-transition: all .25s ease-in;
+	-webkit-transition: all .15s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .page:hover { 
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 	border: 1px solid #989898;
 }
+.page:hover .pagebuttons {
+	opacity: 1;
+}
 .page .label {
 	margin: 0px auto;
 	text-align: center;
 	padding-top: 30px;
 	font-size: 14px;
+}
+.pagebuttons {
+	align-self: flex-end;
+	padding: 30px;
+	display: flex;
+	justify-content: flex-end;
+	opacity: 0;
+	-webkit-transition: all .15s ease-in-out;
+}
+.pagebuttons .icon {
+	height: 18px; 
+	width: 18px;
+}
+.page .trash {
+	background: #FCC6BF;
+	margin-right: 15px;
+	height: 28px;
+	width: 28px;
+	border-radius: 5px;
+	color: #FF9A91;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.page .edit {
+	background: #80E3F0;
+	height: 28px;
+	width: 28px;
+	border-radius: 5px;
+	color: #2DA4B6;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.trash:hover {
+	background: #FF9A91;
+	color: #FCC6BF;
+}
+.edit:hover {
+	background: #2DA4B6;
+	color: #80E3F0;
+
+}
+
+#alertbox {
+	opacity: 0;
+	overflow: hidden;
+}
+.overlay {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.alertbox {
+	background: #F5F6FA;
+	border-radius: 10px;
+	padding: 30px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+	display: flex;
+	flex-direction: column;
+}
+.alertbox h1 {
+	font-size: 28px;
+	margin-top: -10px;
+	font-family: 'Avenir Next';
+	font-weight: 700;
+	color: #3D3D3F;
+}
+.alertbox .content {
+	min-height: 150px;
+	max-width: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	text-align: center;
+	line-height: 30px;
+}
+.alertbox .actionbuttons {
+	min-height: 50px;
+	min-width: 500px;
+	display: flex;
+	justify-content: space-between;
+}
+.alertbox button {
+	font-size: 22px;
+	font-family: 'Avenir Next';
+	font-weight: 500;
+	-webkit-transition: all .15s ease-in-out;
+}
+.alertbox button:hover {
+	cursor: pointer;
+}
+.alertbox button.solid {
+	height: 51px;
+	width: 234px;
+	background: #7165E3;
+	color: #fff;
+	border-radius: 10px;
+	border: 0px;
+}
+.alertbox button.invert {
+	height: 51px;
+	width: 234px;
+	background: transparent;
+	color: #7165E3;
+	border: 1px solid #7165E3;
+	border-radius: 10px;
+}
+.alertbox button.solid:hover {
+	background: #5D53BE;
+}
+.alertbox button.invert:hover {
+	border: 1px solid #5D53BE;
+	color: #5D53BE;
+	background: #fff;
 }
