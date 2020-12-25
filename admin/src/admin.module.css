@@ -1,0 +1,52 @@
+.container {
+	padding-top: 50px;
+	padding-left: 50px;
+	width: 1200px;
+	overflow: scroll;
+}
+.Toolbar {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+.Toolbar .add {
+	height: 51px;
+	width: 51px;
+	border: 0px;
+	border-radius: 51px;
+	background: #7165E3;
+	color: #fff;
+	font-size: 28px;
+	line-height: 51px;
+}
+.add:hover {
+	background: #5D53BE;
+	cursor: pointer;
+}
+.pageContainer {
+	display: flex;
+	padding-top: 30px;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.page {
+	background: #fff;
+	border-radius: 10px;
+	width: 280px;
+	height: 376px;
+	border: 1px solid #E8E8E9;
+	margin-right: 30px;
+	margin-bottom: 15px;
+	-webkit-transition: all .25s ease-in;
+}
+.page:hover { 
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	border: 1px solid #989898;
+}
+.page .label {
+	margin: 0px auto;
+	text-align: center;
+	padding-top: 30px;
+	font-size: 14px;
+}

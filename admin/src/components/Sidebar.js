@@ -12,7 +12,7 @@ export default function Sidebar(props) {
 	
 	return (
 		<div className={style.SideBar}>
-			<Avatar />
+			<Avatar user={props.user} />
 			<BarLabels tab={ props.tab } />
 			<button onClick={logout}> Logout </button>
 		</div>

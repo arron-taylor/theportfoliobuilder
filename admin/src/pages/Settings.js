@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom"; 
-
+import admin from '../admin.module.css';
 
 const CURRENT_POST = gql`
 	  query Post($id: ID!) {
@@ -13,8 +13,8 @@ const CURRENT_POST = gql`
 
 export default function Settings() {
 	return (
-		<>
-			Here are your settings!
-		</>
+		<div className={admin.container}>
+			Welcome
+		</div>
 	)
 }

@@ -5,28 +5,47 @@ import {
   Route,
   Redirect, Link
 } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
 import axios from 'axios'
 import style from './styles.module.css';
 import Sidebar from './components/Sidebar'
 import Content from './components/Content'
 
+const CURRENT_USER = gql`
+    query User($id: ID) {
+      user(id:$id) {
+        id
+        name
+        email
+        avatar
+        pages {
+          id
+          name
+        }
+      }
+    }`;
+
 function Admin(props) { 
 
   const [user, setUser] = useState(props.user);
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
-
-  return (
+  const {loading, error, data} = useQuery(CURRENT_USER, {
+    variables: { id: props.user.id }
+  });
+  if (loading) return <> loading... Please wait. </>;
+  if (error) return <p> error... </p>;
+  return ( 
+   
     <Router>
     <div className={style.wrapper}>
-      <Sidebar tab={ setCurrentTab } user={user} />
+      <Sidebar tab={ setCurrentTab } user={data.user} />
       <Content tab={ currentTab }>
-        
           <Switch>
             <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
             <Route path="/dashboard" component={ Dashboard } /> 
             <Route path="/analytics" component={ Analytics } /> 
-            <Route path="/pages"> <Pages user={props.user} /> </Route> 
+            <Route path="/pages"> <Pages update={setUser} user={data.user} /> </Route> 
             <Route path="/inquiries" component={ Inquiries } /> 
             <Route path="/settings" component={ Settings } /> 
           </Switch>
