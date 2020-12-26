@@ -1,32 +1,35 @@
 import { Link, useParams } from "react-router-dom"; 
+import { gql, useQuery } from "@apollo/client";
 import admin from '../admin.module.css';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import  Toolbar  from '../components/Toolbar'
+import  Alert  from '../components/Alert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
+const PAGES = gql`
+    query UsersPages($id: ID) {
+      userspages(id:$id) {
+        id
+        name
+      }
+    }`;
+
 export default function Pages(props) {
 	const [page, setPage] = useState({page_type: '', page_kind: '', page_layout: '', name: '', id: ''});
-  const [users, setUsers] = useState([]);
+
+  const {loading, error, data} = useQuery(PAGES, {
+    variables: { id: props.user.id }
+  });
+  if (loading) return <> loading... Please wait. </>;
+  if (error) return <p> error... </p>;
 
 	const handleField = (e) => {
     const { name, value } = e.target;
     setPage(prevState => ({ ...prevState,[name]: value}));
   }
-  const deletepage = () => {
-  	console.log(page);
-    let token = localStorage.getItem("token")
-  	let data = page;
-  	axios.post(
-      'http://localhost:3001/deletepage', 
-      data, 
-      { 
-        headers: { 
-          Authorization: 'Bearer ' + token 
-        }
-      }).then(response => { window.location='http://localhost:3000/pages' }).catch(error => { console.log(error.response) });
-  }
+  
   const createPage = (e) => {
     e.preventDefault();
     let data = page
@@ -40,23 +43,13 @@ export default function Pages(props) {
         }
       }).then(response => { window.location='http://localhost:3000/pages' }).catch(error => { console.log(error.response) });
     }
-   const deleteprompt = (e) => {
-   	window.scrollTo(0, 0);
-   	console.log(e.target.id, )
-   	let page_id = e.target.id;
-   	let pagename = e.target.getAttribute('name');
-    setPage(prevState => ({ ...prevState, ['id']:page_id }));
-    setPage(prevState => ({ ...prevState, ['name']:pagename }));
-   	const alert = document.getElementById('alertbox');
-   	alert.style.display = 'block';
-   	console.log(page);
+
+   const deleteprompt = (item) => {
+   	document.getElementById("alertbox").style.display = 'block';
+		setPage(prevState => ({ ...prevState, ['id']:item.id }));
+		setPage(prevState => ({ ...prevState, ['name']:item.name }));
    }
-   const closealert = (e) => {
-   	console.log(page);
-   	const alert_type = e.target.name;
-   	alert = document.getElementById(alert_type);
-   	alert.style.display = 'none';
-   }
+   
 	return (
 		<div className={admin.container}>
 			<Toolbar />
@@ -65,30 +58,17 @@ export default function Pages(props) {
             <button color='info'> Create New Page </button>
         </form>
 			<div className={admin.pageContainer}>
-				{props.user.pages.map((page) => {
+				{data.userspages.map((page) => {
 				return <div className={admin.page} key={page.name}> <div className={admin.label}> {page.name} </div> 
 					<div className={admin.pagebuttons}> 
-						<div id={page.id} name={page.name} onClick={deleteprompt} className={admin.trash}> <FontAwesomeIcon id={page.id} className={ admin.icon } icon={ faTrash } /> </div>   
+						<div onClick={( () => { deleteprompt(page) } )} className={admin.trash}> <FontAwesomeIcon className={ admin.icon } icon={ faTrash } /> </div>   
 						<div className={admin.edit}> <FontAwesomeIcon className={ admin.icon } icon={ faPencilAlt } /> </div>  
 						</div>
 					</div>
 				})} 
 			</div>
 
-			<div id="alertbox" style={{display: 'none'}}>
-				<div className={admin.overlay}>
-					<div className={admin.alertbox}> 
-						<h1> Delete {page.name} </h1>
-						<div className={admin.content}> 
-							<p> Are you sure you want to delete this page? Once you press delete there is no way to recover your page.</p>
-						</div>
-						<div className={admin.actionbuttons}> 
-							<button name='alertbox' onClick={closealert} className={admin.solid}> Cancel </button>
-							<button onClick={deletepage} className={admin.invert}> Delete </button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<Alert callQuery={props.callQuery} page={page} />
 
 		</div>
 	)

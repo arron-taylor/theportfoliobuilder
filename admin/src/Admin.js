@@ -19,17 +19,15 @@ const CURRENT_USER = gql`
         name
         email
         avatar
-        pages {
-          id
-          name
-        }
       }
     }`;
 
 function Admin(props) { 
-
   const [user, setUser] = useState(props.user);
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
+  const reload = () => {
+    setUser(props.user);
+  }
   const {loading, error, data} = useQuery(CURRENT_USER, {
     variables: { id: props.user.id }
   });
@@ -45,7 +43,7 @@ function Admin(props) {
             <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
             <Route path="/dashboard" component={ Dashboard } /> 
             <Route path="/analytics" component={ Analytics } /> 
-            <Route path="/pages"> <Pages update={setUser} user={data.user} /> </Route> 
+            <Route path="/pages"> <Pages user={data.user} /> </Route> 
             <Route path="/inquiries" component={ Inquiries } /> 
             <Route path="/settings" component={ Settings } /> 
           </Switch>

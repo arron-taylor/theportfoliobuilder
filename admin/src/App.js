@@ -20,12 +20,8 @@ function App() {
         }
       })
       .then((response)=> { 
-       console.log(response.data)
         setUser(prevState => ({ ...prevState,['id']: response.data.id}));
-
-       // console.log(user);
         setUser(prevState => ({ ...prevState,['isLoggedIn']: true}));
-        console.log(user)
        })
     }
   }, []);
