@@ -18,7 +18,7 @@ export default function Alert(props) {
         headers: { 
           Authorization: 'Bearer ' + token 
         }
-      }).then( () => { closeprompt() } ).then( () => { window.location = 'http://localhost:3000/pages' } ).catch(error => { console.log(error.response) });
+      }).then( () => { closeprompt() } ).then( () => { props.refetch() } ).catch(error => { console.log(error.response) });
   }
 	const closeprompt = () => {
    	console.log(props.page);

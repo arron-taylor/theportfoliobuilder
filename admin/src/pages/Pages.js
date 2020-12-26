@@ -19,7 +19,7 @@ const PAGES = gql`
 export default function Pages(props) {
 	const [page, setPage] = useState({page_type: '', page_kind: '', page_layout: '', name: '', id: ''});
 
-  const {loading, error, data} = useQuery(PAGES, {
+  const {loading, error, data, refetch} = useQuery(PAGES, {
     variables: { id: props.user.id }
   });
   if (loading) return <> loading... Please wait. </>;
@@ -41,7 +41,7 @@ export default function Pages(props) {
         headers: { 
           Authorization: 'Bearer ' + token 
         }
-      }).then(response => { window.location='http://localhost:3000/pages' }).catch(error => { console.log(error.response) });
+      }).then(() => { refetch() }).catch(error => { console.log(error.response) });
     }
 
    const deleteprompt = (item) => {
@@ -68,7 +68,7 @@ export default function Pages(props) {
 				})} 
 			</div>
 
-			<Alert callQuery={props.callQuery} page={page} />
+			<Alert refetch={ () => refetch()} page={page} />
 
 		</div>
 	)
