@@ -3,6 +3,8 @@
 	padding-left: 50px;
 	width: 1200px;
 	overflow: scroll;
+	display: flex;
+	flex-direction: column;
 }
 .Toolbar {
 	width: 100%;
@@ -98,6 +100,67 @@
 	color: #80E3F0;
 
 }
+
+.CheckList {
+	border: 1px solid #DBDBDB;
+	border-radius: 5px;
+	background: #fff;
+	padding: 15px;
+	padding-left: 30px;
+	padding-right: 30px;
+	max-width: 485px;
+	margin-top: 50px;
+}
+.CheckList .header {
+	border-bottom: 1px solid #DBDBDB;
+	color: #7165E3;
+	font-weight: 600;
+	font-size: 18px;
+	padding: 15px;
+}
+.CheckList .header .icon {
+	margin-left: -15px;
+	margin-right: 15px;
+}
+.CheckList .CheckListItems {
+	font-size: 14px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.CheckList .CheckListItemCircle {
+	height: 18px;
+	width: 18px;
+	border-radius: 18px;
+	border: 1px solid #3D3D3F;
+}
+.CheckList .CheckListItem {
+	font-size: 14px;
+	padding: 15px;
+	padding-left: 0px;
+	width: 100%;
+}
+.CheckList table {
+	border-collapse:collapse;
+	width: 100%;
+	text-align: left;
+}
+.CheckList td {
+	padding-left: 10px;
+}
+.CheckList td:hover {
+	cursor: pointer;
+}
+.CheckList tr:hover {
+	cursor: pointer;
+	background: #eee !important;
+}
+.CheckList tr:nth-child(even) {
+	background: #F8F8F8;
+}
+.CheckList tr td:nth-child(odd) {
+	max-width: 5px;
+}
+
 
 #alertbox {
 	opacity: 0;

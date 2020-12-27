@@ -26,8 +26,12 @@ function Signup() {
           <h3> Already registered? <Link to ="/login" > Login </Link> </h3>
 
       </div>
-      <div className={signup.right}>
-        right
+     <div className={signup.right}>
+        <h1> Create. Build. Edit. </h1>
+        <img src='./computer.png' />'
+        <h2> ALL-IN-ONE </h2>
+        <h3> Composable Cloud Portfolio </h3>
+        <h4> An online portfolio manager with a drag and drop page builder that gives you the freedom to easily manage your online portfolio to grow your as your experience does. </h4>
       </div>
     </div>
   );

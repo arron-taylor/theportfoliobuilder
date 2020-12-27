@@ -106,3 +106,7 @@ body {
 .accountlevel .icon {
 	margin-right: 10px;
 }
+.greeting {
+	font-size: 40px;
+	color:#3D3D3F;
+}

@@ -41,7 +41,7 @@ function Admin(props) {
       <Content tab={ currentTab }>
           <Switch>
             <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
-            <Route path="/dashboard" component={ Dashboard } /> 
+            <Route path="/dashboard"> <Dashboard user={data.user} /> </Route>
             <Route path="/analytics" component={ Analytics } /> 
             <Route path="/pages"> <Pages user={data.user} /> </Route> 
             <Route path="/inquiries" component={ Inquiries } /> 

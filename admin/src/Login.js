@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
 import axios from 'axios'
-import signup from './signup.module.css';
+import login from './login.module.css';
 import style from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons'
@@ -62,31 +62,31 @@ function Login() {
 
   return (
     <div className={style.wrapper}>
-      <div className={signup.left}>
+      <div className={login.left}>
           <h2> Login to access your </h2>
           <h1> Account </h1>
             <table>
               <tr>
-                <td className={signup.label} id="email">
+                <td className={login.label} id="email">
                   Email
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="email_icon" className={ signup.icon } icon={ faAt } />
+                  <FontAwesomeIcon id="email_icon" className={ login.icon } icon={ faAt } />
                 </td>
                 <td>
                   <input onChange={handleField} value={user.email} onFocus={highLight} onBlur={dehighLight} type="text" name="email" placeholder="email address" /> 
                 </td>
               </tr> 
               <tr>
-                <td className={signup.label} id="password">
+                <td className={login.label} id="password">
                   Password
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="password_icon" className={ signup.icon } icon={ faLock } />
+                  <FontAwesomeIcon id="password_icon" className={ login.icon } icon={ faLock } />
                 </td>
                 <td>
                   <input onChange={handleField} value={user.password} onFocus={highLight} onBlur={dehighLight} type="password" name="password" placeholder="password" /> <br />
@@ -96,7 +96,7 @@ function Login() {
             <button onClick={HandleSubmit}> Continue </button> 
             <h3> Not yet registered? <Link to ="/signup" > Sign up </Link> </h3>
       </div>
-      <div className={signup.right}>
+      <div className={login.right}>
         <h1> Create. Build. Edit. </h1>
         <img src='./computer.png' />'
         <h2> ALL-IN-ONE </h2>
