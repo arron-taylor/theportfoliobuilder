@@ -15,6 +15,17 @@ body {
 	position: fixed;
 	height: 100%;
 }
+.logout {
+	margin-top: 200px;
+	font-size: 14px;
+	border: 0px;
+	background: transparent;
+	color: #7165E3;
+}
+.logout:hover {
+	cursor: pointer;
+	color: #453d91;
+}
 .BarLabels {
 	margin-top: 23px;
 }
