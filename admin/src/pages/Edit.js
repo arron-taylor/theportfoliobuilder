@@ -6,9 +6,9 @@ import { useState, useEffect } from 'react';
 import  Toolbar  from '../components/Toolbar'
 import  Alert  from '../components/Alert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH } from '@fortawesome/free-solid-svg-icons'
 
-const barOptions = [{name: 'Pages', icon:  faThLarge  }, {name: 'Container', icon: faCube}, {name: 'Plugin', icon: faPlug}, {name: 'Media', icon: faFileImage}, {name: 'Themes', icon: faPalette}, {name: 'Templates', icon: faSwatchbook}, {name: 'Settings', icon: faSlidersH}];
+const barOptions = [{name: 'Pages', icon:  faThLarge  }, {name: 'Container', icon: faCube}, {name: 'Plugin', icon: faPlug}, {name: 'Media', icon: faFileImage}, {name: 'Palette', icon: faPalette}, {name: 'Templates', icon: faSwatchbook}, {name: 'Settings', icon: faSlidersH}];
 let pathname = window.location.pathname.substring(1).slice(5);
 let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
 
@@ -40,13 +40,19 @@ const [currentTab, setTab] = useState({current: 'closed'});
   return (
     <div className={edit.container}>
       <div className={edit.toolbar_left} id='toolbar_left'>
+        <div className={edit.toolbar_left_items}>
         { barOptions.map( ( label ) => {
             let link = '/edit/' + label.name.toLowerCase();
             return( 
               label.name == currentTab.current? 
-               <Link to='/edit/' onClick={() => dothing('closed')}> <FontAwesomeIcon className={ edit.toolbar_icon_active } icon={ label.icon } /> </Link> :
-              <Link to={link} onClick={() => dothing(label.name)}> <FontAwesomeIcon className={ edit.toolbar_icon } icon={ label.icon } /></Link> ) 
+               <FontAwesomeIcon onClick={() => dothing('closed')} className={ edit.toolbar_icon_active } icon={ label.icon } /> :
+              <Link onClick={() => dothing(label.name)}> <FontAwesomeIcon className={ edit.toolbar_icon } icon={ label.icon } /></Link> ) 
           }) }
+        </div>
+        <div className={edit.content}> 
+          <h1> { currentTab.current } <FontAwesomeIcon onClick={() => dothing('closed')} className={edit.icon} icon={faChevronLeft} /> </h1>
+          <div className={edit.body} /> 
+        </div>
       </div>
       <div className={edit.toolbar_bottom}>
       </div>

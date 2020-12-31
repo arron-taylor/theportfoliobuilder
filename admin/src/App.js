@@ -33,7 +33,7 @@ function App() {
     <Switch>
       <Route path='/login' component={Login} />
       <Route path='/signup' component={Signup} />
-    <Route path="/edit"> <Edit /> </Route> 
+      <Route user={user} path="/edit"> <Edit /> </Route> 
     <Route path="/">
       { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
     </Route> 
