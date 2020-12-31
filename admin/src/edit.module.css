@@ -48,14 +48,14 @@
 	cursor: pointer;
 }
 .toolbar_left .content .body {
-	height: 200%;
-	margin-top: 10px;
 	display: flex;
+	flex-wrap: wrap;
+	padding: 15px;
 }
 .toolbar_left .content .body .page {
 	background: #F4F5F9;
 	border-radius: 10px;
-	width: 80px;
+	width: 100px;
 	height: 106px;
 	padding: 10px;
 	border: 1px solid #DBDBDB;
