@@ -6,7 +6,7 @@ import {
   Redirect, Link
 } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
+import { Dashboard, Analytics, Pages, Edit, Inquiries, Settings } from './pages'
 import axios from 'axios'
 import style from './styles.module.css';
 import Sidebar from './components/Sidebar'
@@ -36,6 +36,7 @@ function Admin(props) {
   return ( 
    
     <Router>
+    
     <div className={style.wrapper}>
       <Sidebar tab={ setCurrentTab } user={data.user} />
       <Content tab={ currentTab }>

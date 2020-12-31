@@ -1,0 +1,57 @@
+.container {
+	width: 100%;
+	height: 100vh;
+	border: 1px solid red;
+}
+.toolbar_left {
+	width: 73px;
+	background: #fff;
+	border-radius: 10px;
+	border: 1px solid #DBDBDB;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	left: 30px;
+	top: 287px;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 20px;
+	-webkit-transition: all .25s ease-in-out;
+	padding-top: 20px;
+	padding-left: 10px;
+}
+.toolbar_left .toolbar_icon {
+	color: #989898;
+	height: 21px;
+	width: 21px;
+	-webkit-transition: all .25s ease-in-out;
+	padding: 20px;
+	border-radius: 5px;
+}
+.toolbar_left .toolbar_icon:hover {
+	color: #7165E3;
+	cursor: pointer;
+}
+.toolbar_left .toolbar_icon_active {
+	color: #7165E3;
+	height: 21px;
+	width: 21px;
+	-webkit-transition: all .25s ease-in-out;
+	padding: 20px;
+	border-radius: 5px;
+	background: #F5F6FA;
+}
+.toolbar_bottom {
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	border-radius: 10px;
+	border: 1px solid #DBDBDB;
+	padding: 10px;
+	height: 50px;
+	width: 250px;
+}
+.toolbar_top {
+
+}

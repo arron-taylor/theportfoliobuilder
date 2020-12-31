@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import Admin from './Admin'
 import Signup from './Signup'
 import Login from './Login'
+import Edit from './pages/Edit'
 
 function App() {  
   const [user, setUser] = useState({id: '', name: '', email: '', isLoggedIn: false});
@@ -32,6 +33,7 @@ function App() {
     <Switch>
       <Route path='/login' component={Login} />
       <Route path='/signup' component={Signup} />
+    <Route path="/edit"> <Edit /> </Route> 
     <Route path="/">
       { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
     </Route> 
