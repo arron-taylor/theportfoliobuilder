@@ -30,7 +30,7 @@ export default function Pages(props) {
     setPage(prevState => ({ ...prevState,[name]: value}));
   }
   const edit = (e) => {
-    window.location = 'http://localhost:3000/edit';
+    window.location = 'http://localhost:3000/edit/' + e;
   }
   const createPage = (e) => {
     e.preventDefault();
@@ -64,7 +64,7 @@ export default function Pages(props) {
         return <div className={admin.page} key={page.name}> <div className={admin.label}> {page.name} </div> 
           <div className={admin.pagebuttons}> 
             <div onClick={( () => { deleteprompt(page) } )} className={admin.trash}> <FontAwesomeIcon className={ admin.icon } icon={ faTrash } /> </div>   
-            <div onClick={( () => { edit(page) } )} className={admin.edit}> <FontAwesomeIcon className={ admin.icon } icon={ faPencilAlt } /> </div>  
+            <div onClick={( () => { edit(page.id) } )} className={admin.edit}> <FontAwesomeIcon className={ admin.icon } icon={ faPencilAlt } /> </div>  
             </div>
           </div>
         })} 
