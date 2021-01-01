@@ -119,11 +119,15 @@
 	padding: 15px;
 	margin-left: 10px;
 	color: #989898;
-	cursor: pointer;
 	height: 18px;
 	width: 18px;
-
-}.toolbar_bottom .icon_active {
+}
+.toolbar_bottom .icon:hover {
+	color: #7165E3;
+	cursor: pointer;
+	background: #F5F6FA;
+}
+.toolbar_bottom .icon_active {
 	padding: 15px;
 	height: 18px;
 	width: 18px;

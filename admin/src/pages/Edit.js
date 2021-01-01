@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  Alert  from '../components/Alert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
 
 
 const PAGE = gql`
@@ -64,6 +64,7 @@ export default function Edit(props) {
 
       <div className={edit.toolbar_bottom}>
       <FontAwesomeIcon className={ edit.icon_active } icon={ faDesktop } />
+      <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
       <FontAwesomeIcon className={ edit.icon } icon={ faSave } />
       <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
       <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
