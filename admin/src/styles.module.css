@@ -36,7 +36,7 @@ body {
 	font-family: 'Helvetica Neue';
 	font-style: none;
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: 400;
 	line-height: 61px;
 	color: #989898;
 	border-right: 10px solid transparent;
@@ -61,8 +61,8 @@ body {
 	font-family: 'Helvetica Neue';
 	font-style: none;
 	font-size: 16px;
-	font-weight: normal;
 	line-height: 61px;
+	font-weight: 800;
 	color: #989898;
 	border-right: 10px solid #453d91;
 	display: flex;
