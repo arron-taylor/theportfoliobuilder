@@ -32,8 +32,11 @@ const PAGE = gql`
 export default function Edit(props) {
 
   let { page_id } = useParams();
+
   const [currentTab, setTab] = useState({current: 'closed'});
-  
+
+  console.log(props.user)
+
   useEffect( () => {
     if(currentTab.current != 'closed') {
       document.getElementById('toolbar_left').style.width = '450px'
@@ -52,8 +55,8 @@ export default function Edit(props) {
     });
 
   if (loading) return <> <div id="toolbar_left" /> </>;
-  if (error) return <p> error... </p>;
-
+  if (error) return window.location = 'http://localhost:3000/404';
+  if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.container}> 
       <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {

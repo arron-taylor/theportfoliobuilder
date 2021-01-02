@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
+import { React, useState, useEffect } from "react"
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom"
 import { Dashboard, Settings } from './pages'
 import axios from 'axios'
 import Sidebar from './components/Sidebar'
@@ -7,12 +7,14 @@ import Admin from './Admin'
 import Signup from './Signup'
 import Login from './Login'
 import Edit from './pages/Edit'
+import ErrorPage from './pages/ErrorPage'
+import NoAccess from './pages/NoAccess'
 
 function App() {  
   const [user, setUser] = useState({id: '', name: '', email: '', isLoggedIn: false});
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
   //  console.log(token)
     if(token) {
       axios.get('http://localhost:3001/auto_login', {
@@ -22,6 +24,7 @@ function App() {
       })
       .then((response)=> { 
         setUser(prevState => ({ ...prevState,['id']: response.data.id}));
+        setUser(prevState => ({ ...prevState,['name']: response.data.name}));
         setUser(prevState => ({ ...prevState,['isLoggedIn']: true}));
        })
     }
@@ -33,9 +36,13 @@ function App() {
     <Switch>
       <Route path='/login' component={Login} />
       <Route path='/signup' component={Signup} />
-      <Route path="/edit/:page_id"> <Edit user={user} /> </Route> 
+      <Route path='/404' component={ErrorPage} />
+      <Route path='/noaccess' component={NoAccess} />
+      <Route path="/edit/:page_id"> 
+        { user.isLoggedIn? <> <Edit user={user} /> </> : <Login />  }
+       </Route> 
     <Route path="/">
-      { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
+        { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
     </Route> 
     </Switch>
    </Router>
