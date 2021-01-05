@@ -10,6 +10,8 @@ const client = new ApolloClient({
  		uri: "http://localhost:4000"
 });
 
+
+
 ReactDOM.render(
   <React.StrictMode>
   	<ApolloProvider client={client}>

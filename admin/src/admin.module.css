@@ -172,6 +172,16 @@
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
+	-webkit-backdrop-filter: blur(6px);
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
 	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: center;

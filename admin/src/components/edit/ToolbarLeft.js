@@ -4,12 +4,14 @@ import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
+import {Toolbox} from './Toolbox'
 
 const barOptions = [{name: 'Pages', icon:  faThLarge  }, {name: 'Container', icon: faCube}, {name: 'Plugin', icon: faPlug}, {name: 'Media', icon: faFileImage}, {name: 'Palette', icon: faPalette}, {name: 'Templates', icon: faSwatchbook}, {name: 'Settings', icon: faSlidersH}];
 let pathname = window.location.pathname.substring(1).slice(5);
 let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
 
 export default function ToolbarLeft(props) {
+
 	return (
 		<div className={edit.toolbar_left} id='toolbar_left'>
       <div className={edit.toolbar_left_items}>
@@ -34,6 +36,12 @@ export default function ToolbarLeft(props) {
 
       		: console.log('no')
      		 } 
+
+     		 {
+     		 	props.currentTab.current == 'Plugin'? 
+     		 <Toolbox /> : 
+     		 <>no sir</>
+     			}
      		 </div> 
       </div>
     </div>

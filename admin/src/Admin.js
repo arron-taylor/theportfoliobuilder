@@ -24,6 +24,8 @@ const CURRENT_USER = gql`
 
 function Admin(props) { 
   const [user, setUser] = useState(props.user);
+  
+
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
   const reload = () => {
     setUser(props.user);
@@ -36,7 +38,7 @@ function Admin(props) {
   return ( 
    
     <Router>
-    
+
     <div className={style.wrapper}>
       <Sidebar tab={ setCurrentTab } user={data.user} />
       <Content tab={ currentTab }>

@@ -2,11 +2,16 @@ import { Link, useParams } from "react-router-dom";
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../edit.module.css';
 import axios from 'axios'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
-import  Alert  from '../components/Alert'
+import  {Button}  from '../components/edit/Button'
+import  Card  from '../components/edit/Card'
+import  Container  from '../components/edit/Container'
+import  Text  from '../components/edit/Text'
+import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { Editor, Frame, Element } from "@craftjs/core";
 
 
 const PAGE = gql`
@@ -35,8 +40,6 @@ export default function Edit(props) {
 
   const [currentTab, setTab] = useState({current: 'closed'});
 
-  console.log(props.user)
-
   useEffect( () => {
     if(currentTab.current != 'closed') {
       document.getElementById('toolbar_left').style.width = '450px'
@@ -59,19 +62,37 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.container}> 
-      <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {
-        return comp.name + ', '
-      } )}</h1>
 
-      <ToolbarLeft user={data.page.owner} currentTab={currentTab} setTab={dothing} />
+      <Editor resolver={{Card, Button, Text, Container}}> 
 
-      <div className={edit.toolbar_bottom}>
-      <FontAwesomeIcon className={ edit.icon_active } icon={ faDesktop } />
-      <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
-      <FontAwesomeIcon className={ edit.icon } icon={ faSave } />
-      <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
-      <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
-      </div>
+      <Frame>
+        <Element is={Container} background="#eee" canvas>
+        
+        <SettingsPanel />
+          <Card />
+          <Button >Click</Button>
+          <Text size="small" text="Hi world!" />
+          <Container padding={6} background="#999">
+            <Text size="small" text="It's me again!" />
+          </Container>
+        </Element>
+
+      </Frame>
+
+      </Editor> 
+
+        <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {
+          return comp.name + ', '
+        } )}</h1>
+
+        <ToolbarLeft user={data.page.owner} currentTab={currentTab} setTab={dothing} />
+        <div className={edit.toolbar_bottom}>
+        <FontAwesomeIcon className={ edit.icon_active } icon={ faDesktop } />
+        <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
+        <FontAwesomeIcon className={ edit.icon } icon={ faSave } />
+        <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
+        <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
+        </div>
     </div>
   )
 }
