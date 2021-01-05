@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
@@ -12,22 +12,33 @@ let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
 
 export default function ToolbarLeft(props) {
 
+  const [currentTab, setTab] = useState({current: 'closed'});
+  
+	useEffect( () => {
+    if(currentTab.current != 'closed') {
+      document.getElementById('toolbar_left').style.width = '450px'
+    }
+    else {
+      document.getElementById('toolbar_left').style.width = '73px'
+    }
+  });
+
 	return (
 		<div className={edit.toolbar_left} id='toolbar_left'>
       <div className={edit.toolbar_left_items}>
       { barOptions.map( ( label ) => {
           return( 
-            label.name == props.currentTab.current? 
-            <FontAwesomeIcon onClick={() => props.setTab('closed')} className={ edit.toolbar_icon_active } icon={ label.icon } /> :
-            <Link onClick={() => props.setTab(label.name)}> <FontAwesomeIcon className={ edit.toolbar_icon } icon={ label.icon } /></Link> ) 
+            label.name == currentTab.current? 
+            <FontAwesomeIcon onClick={() => setTab({'current':'closed'})} className={ edit.toolbar_icon_active } icon={ label.icon } /> :
+            <Link onClick={() => setTab({'current':label.name})}> <FontAwesomeIcon className={ edit.toolbar_icon } icon={ label.icon } /></Link> ) 
         }) }
       </div>
       <div className={edit.content}> 
       	
-        <h1> { props.currentTab.current } <FontAwesomeIcon onClick={() => props.setTab('closed')} className={edit.icon} icon={faChevronLeft} /> </h1>
+        <h1> { currentTab.current } <FontAwesomeIcon onClick={() => setTab({'current':'closed'})} className={edit.icon} icon={faChevronLeft} /> </h1>
         <div className={edit.body}> 
         {
-      		props.currentTab.current == 'Pages'? <> 
+      		currentTab.current == 'Pages'? <> 
       			{props.user.pages.map((page) => {  
       				let pageLink = "http://localhost:3000/edit/" +page.id;
       				return <div onClick={() => { window.location = pageLink }} className={edit.page}> { page.name } </div> })
@@ -38,7 +49,7 @@ export default function ToolbarLeft(props) {
      		 } 
 
      		 {
-     		 	props.currentTab.current == 'Plugin'? 
+     		 	currentTab.current == 'Plugin'? 
      		 <Toolbox /> : 
      		 <>no sir</>
      			}
