@@ -1,48 +1,14 @@
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+    display: inline-block;
+}
 .container {
-	margin: 0px;
 	text-align: center;
 	font-family: 'Avenir Next';
 	-webkit-transition: all .25s linear;
 	display: flex;
 	justify-content: space-between;
-}
-.left h1 {
-	color: #3D3D3F;
-	font-size: 50px;
-	margin-top: -10px;
-}
-.left h2 {
-	margin-top: 70px;
-	color: #989898;
-	font-size: 18px;
-	font-weight: normal;
-}
-.left h3 {
-	margin-top: 270px;
-	color: #989898;
-	font-size: 18px;
-	font-weight: normal;
-}
-.container button {
-	display: block;
-	background: #7165E3;
-	color: #F4F5F9;
-	border: 0px;
-	width: 362px;
-	height: 73px;
-	margin: 0px auto;
-	font-size: 26px;
-	font-family: 'Avenir Next';
-	margin-top: 90px ;
-	border-radius: 10px;
-}
-.container button:hover {
-	background: #5D53BE;
-	cursor: pointer;
-}
-.container button:active {
-	background: #453d91;
-	cursor: pointer;
 }
 .container table {
 	text-align: left;

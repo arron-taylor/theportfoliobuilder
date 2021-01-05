@@ -10,7 +10,7 @@ import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
-export default function Text({text, fontSize, textAlign}) {
+export default function Text({text, fontSize, textAlign, color, fontFamily}) {
   const { connectors: {connect, drag}, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged
@@ -21,17 +21,16 @@ export default function Text({text, fontSize, textAlign}) {
 
 	return (
     <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
-		  <ContentEditable
-        disabled={!editable}
-        html={text} 
+    { selected? <div className={edit.textBorder}> 
+      <ContentEditable disabled={!editable} html={text} 
         onChange={e => 
           setProp(props => 
             props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")  
           )
         } 
         tagName="p"
-        style={{fontSize: `${fontSize}px`, textAlign}}
-      />
+        style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}/> </div> : <p style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}>{text}</p>
+		}
     </div>
 	)
 }
@@ -43,16 +42,42 @@ export const TextSettings = () => {
   } = useNode((node) => ({
     props: node.data.props,
   }));
-  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
 
-  const [focused, setFocus] = useState({email:false, password:false});
+  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
+  const [focused, setFocus] = useState({});
 
   const handleField = (e) => {
     const { name, value } = e.target;
     setUser(prevState => ({ ...prevState,[name]: value}));
+    setProp(props => { 
+      props[name] = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")  
+    });
   }
+
+   useEffect( () => {
+    Object.keys(focused).map(
+      (i, key) => {
+        if(focused[i] === true) {
+          let element = document.getElementById(i);
+          let element_icon = document.getElementById(i + '_icon');
+          element.style.color = "#7165E3";
+          element.style.fontWeight = 'bold';
+          element_icon.style.color = "#7165E3";
+        }
+        else {
+          let element_icon = document.getElementById(i + '_icon');
+          let element = document.getElementById(i);
+          element.style.color = "#989898";
+          element.style.fontWeight = 'normal';
+          element_icon.style.color = "#DBDBDB";
+        }
+      }
+    )
+
+  });
   const highLight = (e) => {
     const { name, value } = e.target;
+    console.log(name, value)
     setFocus(prevState => ({ ...prevState, [name]:true }));
   }
   const dehighLight = (e) => {
@@ -64,33 +89,33 @@ export const TextSettings = () => {
     <div className={settings.container}>
      <table className={settings.left}>
           <tr>
-            <td className={settings.label} id="email">
+            <td className={settings.label} id="fontFamily">
               Font
             </td>
           </tr>
           <tr>
             <td>
-              <FontAwesomeIcon id="email_icon" className={ settings.icon } icon={ faPenNib } />
+              <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={user.email} onFocus={highLight} onBlur={dehighLight} type="text" name="email" placeholder="Font-Family" /> 
+              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="password">
+            <td className={settings.label} id="color">
               Color
             </td>
           </tr>
           <tr>
             <td>
-              <FontAwesomeIcon id="password_icon" className={ settings.icon } icon={ faFillDrip } />
+              <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={user.password} onFocus={highLight} onBlur={dehighLight} type="password" name="password" placeholder="#FFFFFF" /> <br />
+              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
           <tr>
-            <td className={settings.label} id="email">
+            <td className={settings.label} id="">
               Align
             </td>
           </tr>
@@ -103,7 +128,7 @@ export const TextSettings = () => {
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="email">
+            <td className={settings.label} id="">
               List
             </td>
           </tr>
@@ -118,17 +143,17 @@ export const TextSettings = () => {
 
         <table className={settings.right}>
           <tr>
-            <td className={settings.label} id="email">
+            <td className={settings.label} id="fontSize">
               Size
             </td>
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="email_icon" className={ settings.icon_tiny } icon={ faFont } />
-              <FontAwesomeIcon id="email_icon" className={ settings.icon } icon={ faFont } />
+              <FontAwesomeIcon id="fontSize_icon" className={ settings.icon_tiny } icon={ faFont } />
+              <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={user.email} onFocus={highLight} onBlur={dehighLight} type="text" name="email" placeholder="12px" /> 
+              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
@@ -173,10 +198,10 @@ export const TextSettings = () => {
 
 Text.craft = {
   props: { 
-    size: "small", 
-    variant: "contained",
-    color: "primary",
-    text: "Click me"
+    fontSize: "12",
+    fontFamily: 'comic sans ms',
+    text: "Click me",
+    color: "#333333"
   },
   related: {
     settings: TextSettings
