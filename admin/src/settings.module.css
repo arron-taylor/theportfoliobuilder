@@ -1,0 +1,130 @@
+.container {
+	margin: 0px;
+	text-align: center;
+	font-family: 'Avenir Next';
+	-webkit-transition: all .25s linear;
+	display: flex;
+	justify-content: space-between;
+}
+.left h1 {
+	color: #3D3D3F;
+	font-size: 50px;
+	margin-top: -10px;
+}
+.left h2 {
+	margin-top: 70px;
+	color: #989898;
+	font-size: 18px;
+	font-weight: normal;
+}
+.left h3 {
+	margin-top: 270px;
+	color: #989898;
+	font-size: 18px;
+	font-weight: normal;
+}
+.container button {
+	display: block;
+	background: #7165E3;
+	color: #F4F5F9;
+	border: 0px;
+	width: 362px;
+	height: 73px;
+	margin: 0px auto;
+	font-size: 26px;
+	font-family: 'Avenir Next';
+	margin-top: 90px ;
+	border-radius: 10px;
+}
+.container button:hover {
+	background: #5D53BE;
+	cursor: pointer;
+}
+.container button:active {
+	background: #453d91;
+	cursor: pointer;
+}
+.container table {
+	text-align: left;
+	margin: 0px auto;
+}
+.container table input:focus {
+	outline: none;
+	border-bottom: 1px solid #7660EB;
+}
+.container td.editButtons {
+	height: 51px;
+	padding-left: 100px;
+	margin-left: -100px;
+	margin-right: -50px;
+	display: flex;
+	justify-content: space-between;
+}
+.container td.editButtonsSmall {
+	height: 51px;
+	display: flex;
+	justify-content: space-between;
+}
+.container table .icon {
+	color: #DBDBDB;
+	display: block;
+	-webkit-transition: all .25s ease-in-out;
+	height: 12px;
+}
+.container .iconbutton:hover {
+	color: #7660EB;
+	cursor: pointer;
+}
+.container table .iconbutton {
+	color: #DBDBDB;
+	display: inline-block;
+	-webkit-transition: all .25s ease-in-out;
+	height: 20px;
+	margin-top: 25px;
+}
+.container table .icon_tiny {
+	color: #DBDBDB;
+	display: block;
+	height: 8px;
+	-webkit-transition: all .25s ease-in-out;
+	margin-right: -5px;
+}
+.container table .label {
+	padding-top: 25px;
+	font-size: 16px;
+	color: #989898;
+	display: block;
+	-webkit-transition: all .25s ease-in-out;
+	width: 75px;
+}
+.left {
+	text-align: left;
+	font-family: 'Avenir Next';
+
+}
+.right {
+	text-align: center;
+	font-family: 'Avenir Next';
+}
+.right input {
+	height: 51px;
+	width: 50px;
+	border: 0px;
+	border-bottom: 1px solid #DBDBDB;
+	margin-left: -80px;
+	background: transparent;
+	padding-left: 30px;
+	font-size: 14px;
+	-webkit-transition: all .25s linear;
+}
+.left  input {
+	height: 51px;
+	width: 125px;
+	border: 0px;
+	border-bottom: 1px solid #DBDBDB;
+	margin-left: -80px;
+	background: transparent;
+	padding-left: 30px;
+	font-size: 14px;
+	-webkit-transition: all .25s linear;
+}

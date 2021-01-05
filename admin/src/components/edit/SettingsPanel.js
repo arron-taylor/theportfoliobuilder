@@ -7,6 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Button } from './Button'
 import { ButtonSettings } from './Button'
 import Text  from './Text'
+import { TextSettings }  from './Text'
 import { useEditor } from "@craftjs/core";
 import { Toolbox } from './Toolbox'
 
@@ -22,7 +23,6 @@ export default function SettingsPanel(props) {
         settings: state.nodes[currentNodeId].related && state.nodes[currentNodeId].related.settings
       };
     }
-
     return {
       selected
     }

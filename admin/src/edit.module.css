@@ -167,7 +167,7 @@
 	right: 165px;
 	top: 70px;
 	height: 500px;
-	width: 500px;
+	width: 305px;
 	flex-direction: column;
 }
 .SettingsPanel .header {
@@ -175,16 +175,18 @@
 	padding: 10px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 .SettingsPanel .header .title {
-	padding: 15px;
 	color: #7165E3;
+	background: #F5F6FA;
 	margin: 0px;
 	font-size: 20px;
 	text-align: left;
-	display: inline-block;
 	border-radius: 10px;
 	font-weight: 400;
+	padding: 10px;
+	height: 20px;
 }
 .SettingsPanel .header .x {
 	padding: 15px;
