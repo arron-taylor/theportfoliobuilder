@@ -6,8 +6,10 @@ import { useState, useEffect, useContext } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  {Button}  from '../components/edit/Button'
 import  Card  from '../components/edit/Card'
+import  NavBar  from '../components/edit/NavBar'
 import  Container  from '../components/edit/Container'
 import  Text  from '../components/edit/Text'
+import  NavItem  from '../components/edit/NavItem'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
@@ -48,24 +50,19 @@ export default function Edit(props) {
   return (
     <div className={edit.container}> 
 
-      <Editor resolver={{Card, Button, Text, Container}}> 
-
+      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem}}> 
       <Frame>
-        <Element is={Container} background="#eee" canvas>
-
-        <ToolbarLeft user={data.page.owner} />
-
-        <SettingsPanel />
-
-          <Button >Click</Button>
-          <Text size="small" text="Hi world!" />
-          <Container padding={6} background="#999">
-            <Text size="small" text="It's me again!" />
-          </Container>
-        </Element>
-
+        <Container>
+          <Element id='random' background="blue" canvas>
+          
+          <NavBar />
+            <Button >Click</Button>
+            <Text size="small" text="Hi world!" />
+          </Element>
+          <ToolbarLeft user={data.page.owner} />
+          <SettingsPanel />
+        </Container>
       </Frame>
-
       </Editor> 
 
         <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {

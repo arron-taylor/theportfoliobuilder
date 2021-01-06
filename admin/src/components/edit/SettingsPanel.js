@@ -7,6 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Button } from './Button'
 import { ButtonSettings } from './Button'
 import Text  from './Text'
+import NavBar  from './NavBar'
 import { TextSettings }  from './Text'
 import { useEditor } from "@craftjs/core";
 import { Toolbox } from './Toolbox'
@@ -36,7 +37,17 @@ export default function SettingsPanel(props) {
      <div className={edit.body}> 
      {	selected.settings && React.createElement(selected.settings, {delete: () => { actions.delete(selected.id)}})  }
 	   </div>
-	   
+	   {
+          selected.isDeletable ? (
+            <button
+              onClick={() => {
+                actions.delete(selected.id);
+              }}
+            >
+              Delete
+            </button>
+          ) : null
+        }
     </div>  
 	) : null
 }
