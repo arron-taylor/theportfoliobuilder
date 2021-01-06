@@ -4,23 +4,26 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
-import { useNode } from "@craftjs/core";
+import { useNode, useEditor } from "@craftjs/core";
 import settings from '../../settings.module.css';
 import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
 export default function Text({text, fontSize, textAlign, color, fontFamily}) {
-  const { connectors: {connect, drag}, selected, dragged, actions: {setProp} } = useNode((state) => ({
-    selected: state.events.selected,
-    dragged: state.events.dragged
-  }));
 
+   
+  const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
+    selected: state.events.selected,
+    dragged: state.events.dragged,
+    hovered: state.events.hovered
+  }));
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
     <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+    
     { selected? <div className={edit.textBorder}> 
       <ContentEditable disabled={!editable} html={text} 
         onChange={e => 
@@ -29,8 +32,11 @@ export default function Text({text, fontSize, textAlign, color, fontFamily}) {
           )
         } 
         tagName="p"
-        style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}/> </div> : <p style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}>{text}</p>
+        style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}/>
+
+         </div> : <p style={{fontSize: `${fontSize}px`, textAlign, color, fontFamily}}>{text}</p>
 		}
+    
     </div>
 	)
 }
@@ -162,11 +168,10 @@ export const TextSettings = () => {
             </td>
           </tr>
           <tr>
-            <td>
-              <FontAwesomeIcon id="password_icon" className={ settings.icon } icon={ faLock } />
+            <td> <br /><br />
             </td>
             <td>
-              <input onChange={handleField} value={user.password} onFocus={highLight} onBlur={dehighLight} type="password" name="password" placeholder="password" /> <br />
+            <br />
             </td>
           </tr>
           <tr>

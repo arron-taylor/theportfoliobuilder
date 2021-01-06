@@ -57,7 +57,6 @@ export default function Edit(props) {
 
         <SettingsPanel />
 
-          <Card />
           <Button >Click</Button>
           <Text size="small" text="Hi world!" />
           <Container padding={6} background="#999">

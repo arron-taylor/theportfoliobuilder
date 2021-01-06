@@ -13,14 +13,15 @@ import { Toolbox } from './Toolbox'
 
 export default function SettingsPanel(props) {
 
-  const { selected } = useEditor((state) => {
+  const { actions, selected } = useEditor((state, query) => {
     const currentNodeId = state.events.selected;
     let selected;
     if ( currentNodeId ) {
       selected = {
         id: currentNodeId,
         name: state.nodes[currentNodeId].data.name,
-        settings: state.nodes[currentNodeId].related && state.nodes[currentNodeId].related.settings
+        settings: state.nodes[currentNodeId].related && state.nodes[currentNodeId].related.settings, 
+         isDeletable: query.node(currentNodeId).isDeletable()
       };
     }
     return {
@@ -33,7 +34,7 @@ export default function SettingsPanel(props) {
      	<h1 className={edit.title}> { selected.name } </h1> <FontAwesomeIcon className={edit.x} icon={faTimes} />
      </div>
      <div className={edit.body}> 
-     {	selected.settings && React.createElement(selected.settings)  }
+     {	selected.settings && React.createElement(selected.settings, {delete: () => { actions.delete(selected.id)}})  }
 	   </div>
 	   
     </div>  

@@ -5,13 +5,15 @@ import edit from '../../edit.module.css';
 import { useEditor } from "@craftjs/core";
 import { Button } from './Button'
 import  Text  from './Text'
+import  Card  from './Card'
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
 	return (
 		<div className={edit.Toolbox}>
-     	<button ref={(ref) => connectors.create(ref, <Button> Button Component </Button>)}> Button Component </button>
-     	<button ref={(ref) => connectors.create(ref, <Text text='text component' />)}> Text Component </button>
+     	<div ref={(ref) => connectors.create(ref, <Button> Button Component </Button>)}> Button Component </div>
+     	<div ref={(ref) => connectors.create(ref, <Text text='text component' />)}> Text Component </div>
+     	<div ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
     </div>
 	)
 }
