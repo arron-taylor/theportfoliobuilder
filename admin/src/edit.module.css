@@ -289,9 +289,56 @@
 	width: 100vw;
 	position: fixed;
 	margin-bottom: 100px;
+	flex-direction: row;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+	background: red;
+}
+.NavCanvas {
+	width: 100%;
+}
+.NavBar .end {
+	margin-left: auto;
+	border-radius: 10px;
+	margin-right: 15px;
+}
+.NavBar .middle {
+	margin-left: 50px;
+}
+.NavBar .start {
+	margin-left: 15px;
+}
+.start, .middle, .end {
+	padding: 5px;
+	border: 1px solid transparent;
+}
+.start_active, .middle_active, .end_active {
+	padding: 5px;
+	-webkit-backdrop-filter: blur(6px);
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background: rgba(250, 250, 250, 0.75);
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	border: 1px dashed #fff;
+}
+.start_active {
+	margin-left: 15px;
+}
+.middle_active {
+	margin-left: 50px;
+}
+.end_active {
+	margin-left: auto;
+	margin-right: 15px;
 }
 .navitem {
 	padding: 10px;
@@ -299,4 +346,7 @@
 	border-radius: 10px;
 	background: #fff;
 	display: inline-block;
+}
+.NavBar:last-child {
+	background: red;
 }

@@ -10,37 +10,53 @@ import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 
-export default function NavBar({backgroundColor, height}) {
+export default function NavBar({backgroundColor, height, boxShadow}) {
 
 	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
+
+  let draggedover = false;
+
+  const setTrue = (e) => {
+     draggedover = true; 
+    console.log(e.target.id);
+  }
+
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
-
+  
 	return (
 
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
     { selected? <div className={edit.textBorder}> 
-  <div style={{backgroundColor, height}} className={edit.NavBar}>
-      <Element id="somethin" canvas> // Canvas Node of type div
-        <NavItem className={edit.navitem} text="Item"  />
-        <NavItem className={edit.navitem} text="Second Item"/>
-      </Element>
-    </div>
-    </div> : 
+      <div style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
+          <Element className={edit.start_active} id="somethin" canvas> // Canvas Node of type div
+            <NavItem className={edit.navitem} text="Company Logo"  />
+          </Element>
+          <Element className={edit.middle_active} id="somethin1" canvas> // Canvas Node of type div
+            <NavItem className={edit.navitem} text="Item"  />
+          </Element>
+          <Element className={edit.end_active} id="somethin2"  canvas> // Canvas Node of type div
+            <NavItem className={edit.navitem} text="Item"  />
+          </Element>
+        </div>
+        </div> : 
 
-  <div style={{backgroundColor, height}} className={edit.NavBar}>
-      <Element id="somethin" canvas> // Canvas Node of type div
-        <NavItem text="Item">
-        </NavItem>
-        <NavItem text="Second Item"/>
-      </Element>
-    </div>
-		}
-    
+      <div id="somethin" onDragOver={setTrue} style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
+          <Element className={edit.start} onMouseOut={() => draggedover = false} id="somethin" canvas> // Canvas Node of type div
+            <NavItem text="Company Logo" />
+          </Element>
+        <Element className={edit.middle} id="somethin1" canvas> // Canvas Node of type div
+            <NavItem className={edit.navitem} text="Item"  />
+          </Element>
+          <Element className={edit.end} id="somethin2" canvas> // Canvas Node of type div
+            <NavItem className={edit.navitem} text="Item"  />
+          </Element>
+        </div>
+    		}
     </div>
 		
 	)
@@ -189,7 +205,8 @@ export const NavBarSettings = () => {
 NavBar.craft = {
   props: { 
     height: "100px",
-    backgroundColor: "purple"
+    backgroundColor: "#453D91",
+    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.5)"
   },
   related: {
     settings: NavBarSettings
