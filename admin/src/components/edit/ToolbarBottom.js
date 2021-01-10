@@ -39,7 +39,7 @@ export default function ToolbarBottom(props) {
     <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
     <FontAwesomeIcon onClick={() => console.log('yolo')} className={ edit.icon } icon={ faSave } />
 
-    <FontAwesomeIcon className={ edit.icon } icon={ faFileExport } />
+    <FontAwesomeIcon onClick={() => { console.log(query.serialize()) }} className={ edit.icon } icon={ faFileExport } />
     <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
     <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
     </div>
