@@ -4,6 +4,7 @@ import edit from '../edit.module.css';
 import axios from 'axios'
 import { useState, useEffect, useContext } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
+import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  {Button}  from '../components/edit/Button'
 import  Card  from '../components/edit/Card'
 import  NavBar  from '../components/edit/NavBar'
@@ -39,7 +40,22 @@ const PAGE = gql`
 
 export default function Edit(props) {
 
+  const [active, setActive] = useState(true);
+
   let { page_id } = useParams();
+
+  useEffect( () => {
+
+  if(document.getElementById('toolbar_left')) {
+    if (active) {
+     document.getElementById('toolbar_left').style.display = 'flex'
+    }
+    else {
+      document.getElementById('toolbar_left').style.display = 'none'
+    }
+  } 
+    console.log(active)
+  });
 
   const {loading, error, data, refetch} = useQuery(PAGE, {
       variables: { id: page_id }
@@ -50,7 +66,6 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.container}> 
-
       <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem}}> 
       <Frame>
           <Wrapper>
@@ -61,7 +76,8 @@ export default function Edit(props) {
               <Text size="small" text="Hi world!" />
             </Container>
             </Element>
-            <ToolbarLeft user={data.page.owner} />
+            <ToolbarLeft id="ToolbarLeft" user={data.page.owner} />
+            <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
             <SettingsPanel />
            </Wrapper>
         </Frame>
@@ -71,16 +87,7 @@ export default function Edit(props) {
           return comp.name + ', '
         } )}</h1>
 
-        <div className={edit.toolbar_bottom}>
-        <FontAwesomeIcon className={ edit.icon_active } icon={ faDesktop } />
-        <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
-        <FontAwesomeIcon className={ edit.icon } icon={ faSave } />
-
-        <FontAwesomeIcon className={ edit.icon } icon={ faFileExport } />
-        
-        <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
-        <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
-        </div>
     </div>
-  )
+  ) 
+    
 }
