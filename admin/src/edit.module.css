@@ -7,6 +7,7 @@
 	margin-top: 50px;
 	text-align: center;
 }
+
 .toolbar_left {
 	background: #fff;
 	border-radius: 10px;
@@ -114,6 +115,7 @@
 	background: #F5F6FA;
 	cursor: pointer;
 	margin-top: 10px;
+	cursor: pointer;
 }
 
 
@@ -236,10 +238,15 @@
 	color: #7165E3;
 	background: #F5F6FA;
 	border-radius: 5px;
+	cursor: pointer;
+}
+.toolbar_bottom .icon_active:hover {
+	color: #7165E3;
+	cursor: pointer;
+	background: #F5F6FA;
 }
 .toolbar_top {
 }
-
 
 
 .wrapper {
@@ -247,7 +254,8 @@
 .EditableContainer {
 	height: 100%;
 	margin-top: 150px;
-	border: 1px solid red;
+	border: 1px solid #ccc;
+	border-radius: 10px;
 }
 .EditableText {
 	display: inline-block;

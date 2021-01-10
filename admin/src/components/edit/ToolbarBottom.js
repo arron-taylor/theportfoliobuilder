@@ -16,14 +16,26 @@ export default function ToolbarBottom(props) {
     enabled: state.options.enabled
   }));
 
+  let iconName = 'edit.icon_active'
+
   const setActive = (_, value) => {
     actions.setOptions(options => options.enabled = !options.enabled)
-    props.setActive()
-  }
+    props.setActive();
+    if(enabled) {
+      document.getElementById('preview').style.color = '#989898'
+      document.getElementById('preview').style.background = '#FFF'
+
+    }
+    else {
+      document.getElementById('preview').style.color = '#7165E3'
+      document.getElementById('preview').style.background = '#F5F6FA'
+    }
+   }
 
 	return (
 		<div className={edit.toolbar_bottom}>
-    <FontAwesomeIcon onClick={() =>  setActive()  }  className={ edit.icon_active } icon={ faDesktop } />
+
+    <FontAwesomeIcon id="preview" onClick={() =>  setActive()  }  className={ edit.icon_active } icon={ faDesktop } />
     <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
     <FontAwesomeIcon onClick={() => console.log('yolo')} className={ edit.icon } icon={ faSave } />
 

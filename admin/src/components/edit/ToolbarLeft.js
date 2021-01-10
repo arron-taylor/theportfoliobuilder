@@ -24,7 +24,7 @@ export default function ToolbarLeft(props) {
   });
 
 	return (
-		<div className={edit.toolbar_left} id='toolbar_left'>
+		<div className={edit.toolbar_left}  id='toolbar_left'>
       <div className={edit.toolbar_left_items}>
       { barOptions.map( ( label ) => {
           return( 
