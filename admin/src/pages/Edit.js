@@ -8,11 +8,12 @@ import  {Button}  from '../components/edit/Button'
 import  Card  from '../components/edit/Card'
 import  NavBar  from '../components/edit/NavBar'
 import  Container  from '../components/edit/Container'
+import  Wrapper  from '../components/edit/Wrapper'
 import  Text  from '../components/edit/Text'
 import  NavItem  from '../components/edit/NavItem'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { Editor, Frame, Element } from "@craftjs/core";
 
 
@@ -52,17 +53,18 @@ export default function Edit(props) {
 
       <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem}}> 
       <Frame>
-        <Container>
-          <Element id='random' background="blue" canvas>
-          
-          <NavBar />
-            <Button >Click</Button>
-            <Text size="small" text="Hi world!" />
-          </Element>
-          <ToolbarLeft user={data.page.owner} />
-          <SettingsPanel />
-        </Container>
-      </Frame>
+          <Wrapper>
+            <Element id='main' canvas>
+            <Container>
+              <NavBar />
+              <Button >Click</Button>
+              <Text size="small" text="Hi world!" />
+            </Container>
+            </Element>
+            <ToolbarLeft user={data.page.owner} />
+            <SettingsPanel />
+           </Wrapper>
+        </Frame>
       </Editor> 
 
         <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {
@@ -73,6 +75,9 @@ export default function Edit(props) {
         <FontAwesomeIcon className={ edit.icon_active } icon={ faDesktop } />
         <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
         <FontAwesomeIcon className={ edit.icon } icon={ faSave } />
+
+        <FontAwesomeIcon className={ edit.icon } icon={ faFileExport } />
+        
         <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
         <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
         </div>

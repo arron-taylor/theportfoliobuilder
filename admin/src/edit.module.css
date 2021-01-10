@@ -32,7 +32,7 @@
 	background-attachment: initial;
 	background-origin: initial;
 	background-clip: initial;
-	background: rgba(250, 250, 250, 0.9);
+	background: #fff;
 }
 .toolbar_left .content {
 	width: 100%;
@@ -242,10 +242,12 @@
 
 
 
-
+.wrapper {
+}
 .EditableContainer {
 	height: 100%;
-	margin-top: 100px;
+	margin-top: 150px;
+	border: 1px solid red;
 }
 .EditableText {
 	display: inline-block;
@@ -286,14 +288,15 @@
 }
 .NavBar {
 	top: 0;
+	left: 0;
 	width: 100vw;
 	position: fixed;
-	margin-bottom: 100px;
 	flex-direction: row;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	background: red;
+	z-index: 1;
 }
 .NavCanvas {
 	width: 100%;
