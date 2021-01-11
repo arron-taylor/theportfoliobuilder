@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH, faDesktop, faSave, faUndo, faRedo, faFileExport, faHome } from '@fortawesome/free-solid-svg-icons'
 import {Toolbox} from './Toolbox'
 import { useEditor } from "@craftjs/core";
+import lz from "lzutf8";
+import copy from 'copy-to-clipboard';
 
 let pathname = window.location.pathname.substring(1).slice(5);
 let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
@@ -15,6 +17,10 @@ export default function ToolbarBottom(props) {
   const { actions, query, enabled } = useEditor((state) => ({
     enabled: state.options.enabled
   }));
+
+  const deleteprompt = (item) => {
+    document.getElementById("alertbox").style.display = 'block';
+   }
 
   let iconName = 'edit.icon_active'
 
@@ -37,9 +43,9 @@ export default function ToolbarBottom(props) {
 
     <FontAwesomeIcon id="preview" onClick={() =>  setActive()  }  className={ edit.icon_active } icon={ faDesktop } />
     <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
-    <FontAwesomeIcon onClick={() => console.log('yolo')} className={ edit.icon } icon={ faSave } />
+    <FontAwesomeIcon onClick={( () => { deleteprompt({name: "Arron"}) } )} className={ edit.icon } icon={ faSave } />
 
-    <FontAwesomeIcon onClick={() => { console.log(query.serialize()) }} className={ edit.icon } icon={ faFileExport } />
+    <FontAwesomeIcon onClick={() => { const json = query.serialize();copy(lz.encodeBase64(lz.compress(json)))}} className={ edit.icon } icon={ faFileExport } />
     <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
     <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
     </div>

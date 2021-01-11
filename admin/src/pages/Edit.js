@@ -16,6 +16,7 @@ import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { Editor, Frame, Element } from "@craftjs/core";
+import  Alert  from '../components/Alert'
 
 
 const PAGE = gql`
@@ -45,7 +46,6 @@ export default function Edit(props) {
   let { page_id } = useParams();
 
   useEffect( () => {
-
   if(document.getElementById('toolbar_left')) {
     if (active) {
      document.getElementById('toolbar_left').style.display = 'flex'
@@ -54,7 +54,6 @@ export default function Edit(props) {
       document.getElementById('toolbar_left').style.display = 'none'
     }
   } 
-    console.log(active)
   });
 
   const {loading, error, data, refetch} = useQuery(PAGE, {
@@ -66,19 +65,15 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.container}> 
-      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem}}> 
+      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, Wrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert}}> 
       <Frame>
           <Wrapper>
-            <Element id='main' canvas>
             <Container>
-              <NavBar />
-              <Button >Click</Button>
-              <Text size="small" text="Hi world!" />
             </Container>
-            </Element>
             <ToolbarLeft id="ToolbarLeft" user={data.page.owner} />
             <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
             <SettingsPanel />
+            <Alert type="load" />
            </Wrapper>
         </Frame>
       </Editor> 
@@ -86,6 +81,7 @@ export default function Edit(props) {
         <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {
           return comp.name + ', '
         } )}</h1>
+
 
     </div>
   ) 

@@ -186,6 +186,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 3;
 }
 .alertbox {
 	background: #F5F6FA;
@@ -217,6 +218,26 @@
 	min-width: 500px;
 	display: flex;
 	justify-content: space-between;
+}
+.alertbox input {
+	height: 50px;
+	width: 400px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 0px;
+	outline: none;
+	border-bottom: 1px solid #DBDBDB;
+	font-size: 20px;
+	-webkit-transition: all .25s ease-in-out;
+}
+.alertbox input:active {
+	border-bottom: 1px solid #7660EB;
+}
+.alertbox input:hover {
+	border-bottom: 1px solid #989898;
+}
+.alertbox input:focus {
+	border-bottom: 1px solid #7660EB;
 }
 .alertbox button {
 	font-size: 22px;

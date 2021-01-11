@@ -70,7 +70,7 @@ export default function Pages(props) {
         })} 
       </div>
 
-      <Alert refetch={ () => refetch()} page={page} />
+      <Alert type="delete" refetch={ () => refetch()} page={page} />
 
     </div>
   )
