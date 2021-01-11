@@ -9,7 +9,8 @@ import  {Button}  from '../components/edit/Button'
 import  Card  from '../components/edit/Card'
 import  NavBar  from '../components/edit/NavBar'
 import  Container  from '../components/edit/Container'
-import  Wrapper  from '../components/edit/Wrapper'
+import  MainWrapper  from '../components/edit/MainWrapper'
+import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  Text  from '../components/edit/Text'
 import  NavItem  from '../components/edit/NavItem'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
@@ -64,17 +65,21 @@ export default function Edit(props) {
   if (error) return window.location = 'http://localhost:3000/404';
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
-    <div className={edit.container}> 
-      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, Wrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert}}> 
+    <div className={edit.maincontainer}> 
+      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, MainWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert}}> 
       <Frame>
-          <Wrapper>
+          <MainWrapper>
+            <BodyWrapper>
             <Container>
+
             </Container>
+            </BodyWrapper>
             <ToolbarLeft id="ToolbarLeft" user={data.page.owner} />
             <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
             <SettingsPanel />
             <Alert type="load" />
-           </Wrapper>
+           </MainWrapper>
+
         </Frame>
       </Editor> 
 
