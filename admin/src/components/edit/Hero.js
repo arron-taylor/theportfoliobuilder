@@ -1,64 +1,42 @@
 import { useState, useEffect } from 'react';
 import edit from '../../edit.module.css';
-import  NavItem  from "./NavItem";
+import  Text  from "./Text";
+import  {Button}  from "./Button";
+import  Container  from "./Container";
 import {useNode, Element} from "@craftjs/core";
-import { faLock, faPenNib, faFillDrip, faFont, } from '@fortawesome/free-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import settings from '../../settings.module.css';
 
-export default function NavBar({backgroundColor, height, boxShadow}) {
+export default function Hero({background, height, width}) {
 
 	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
-
-  let draggedover = false;
-
-  const setTrue = (e) => {
-     draggedover = true; 
-    console.log(e.target.id);
-  }
-
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
-  
+
 	return (
-
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+    
     { selected? <div className={edit.textBorder}> 
-      <div style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
-          <Element className={edit.start_active} id="somethin" canvas>
-            <NavItem className={edit.navitem} text="Company Logo"  />
-          </Element>
-          <Element className={edit.middle_active} id="somethin1" canvas> 
-            <NavItem className={edit.navitem} text="Item"  />
-          </Element>
-          <Element className={edit.end_active} id="somethin2"  canvas>
-            <NavItem className={edit.navitem} text="Item"  />
-          </Element>
-        </div>
-        </div> : 
-
-      <div id="somethin" onDragOver={setTrue} style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
-          <Element className={edit.start} onMouseOut={() => draggedover = false} id="somethin" canvas> 
-            <NavItem text="Company Logo" />
-          </Element>
-        <Element className={edit.middle} id="somethin1" canvas>
-            <NavItem className={edit.navitem} text="Item"  />
-          </Element>
-          <Element className={edit.end} id="somethin2" canvas> 
-            <NavItem className={edit.navitem} text="Item"  />
-          </Element>
-        </div>
-    		}
+      <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
+     asdf
+    </div>  
+    </div> : 
+    <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
+    asdf
+    </div>
+		}
+    
     </div>
 		
 	)
 }
-
-export const NavBarSettings = () => {
+export const HeroSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -66,10 +44,12 @@ export const NavBarSettings = () => {
     props: node.data.props,
   }));
 
+  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
   const [focused, setFocus] = useState({});
 
   const handleField = (e) => {
-    const { name } = e.target;
+    const { name, value } = e.target;
+    setUser(prevState => ({ ...prevState,[name]: value}));
     setProp(props => { 
       props[name] = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")  
     });
@@ -136,60 +116,79 @@ export const NavBarSettings = () => {
             </td>
           </tr>
           <tr>
-            <td className={settings.label} id="border">
-              Border
+            <td className={settings.label} id="">
+              Align
             </td>
           </tr>
           <tr>
-            <td>
-              <FontAwesomeIcon id="border_icon" className={ settings.icon } icon={ faFillDrip } />
+            
+            <td className={settings.editButtons}>
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignLeft } />
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignCenter } />
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignRight } />
             </td>
-            <td>
-              <input onChange={handleField} value={props.border} onFocus={highLight} onBlur={dehighLight} type="text" name="border" placeholder="#FFFFFF" /> <br />
+          </tr> 
+          <tr>
+            <td className={settings.label} id="">
+              List
             </td>
           </tr>
-          
+          <tr>
+            <td className={settings.editButtonsSmall}>
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faListUl } />
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faListOl } />
+            </td>
+          </tr> 
         </table>
 
 
         <table className={settings.right}>
           <tr>
-            <td className={settings.label} id="height">
-              Height
+            <td className={settings.label} id="fontSize">
+              Size
             </td>
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="height_icon" className={ settings.icon } icon={ faFont } />
+              <FontAwesomeIcon id="fontSize_icon" className={ settings.icon_tiny } icon={ faFont } />
+              <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.height} onFocus={highLight} onBlur={dehighLight} type="text" name="height" placeholder="12px" /> 
+              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="backgroundColor">
-            BG Color
+            <td className={settings.label} id="password">
+             Icons
             </td>
           </tr>
           <tr>
-            <td>
-              <FontAwesomeIcon id="backgroundColor_icon" className={ settings.icon } icon={ faLock } />
+            <td> <br /><br />
             </td>
             <td>
-              <input onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
-            </td>
-          </tr>
-          <tr>
-            <td className={settings.label} id="borderRadius">
-             Radius
+            <br />
             </td>
           </tr>
           <tr>
-            <td>
-              <FontAwesomeIcon id="borderRadius_icon" className={ settings.icon } icon={ faFillDrip } />
+            <td className={settings.label} id="password">
+              Indent
             </td>
-            <td>
-              <input onChange={handleField} value={props.borderRadius} onFocus={highLight} onBlur={dehighLight} type="text" name="borderRadius" placeholder="#FFFFFF" /> <br />
+          </tr>
+          <tr>
+            <td className={settings.editButtonsSmall}>
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faIndent } />
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faOutdent } />
+            </td>
+          </tr>
+          <tr>
+            <td className={settings.label} id="password">
+              Style
+            </td>
+          </tr>
+          <tr>
+            <td className={settings.editButtonsSmall}>
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faCode } />
+              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faHighlighter } />
             </td>
           </tr>
         </table>
@@ -197,14 +196,13 @@ export const NavBarSettings = () => {
   )
 }
 
-
-NavBar.craft = {
+Hero.craft = {
   props: { 
-    height: "100px",
-    backgroundColor: "#453D91",
-    boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.5)"
+    background: "url('https://texashighways.com/wp-content/uploads/2018/11/Q0A2731.jpg')",
+    height: "800px",
+    width: "100vw"
   },
   related: {
-    settings: NavBarSettings
-    }
+    settings: HeroSettings
+  }
 }

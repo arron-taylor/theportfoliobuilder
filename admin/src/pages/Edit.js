@@ -13,6 +13,7 @@ import  MainWrapper  from '../components/edit/MainWrapper'
 import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  Text  from '../components/edit/Text'
 import  NavItem  from '../components/edit/NavItem'
+import  Hero  from '../components/edit/Hero'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
@@ -66,13 +67,10 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.maincontainer}> 
-      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, MainWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert}}> 
+      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert, Hero}}> 
       <Frame>
           <MainWrapper>
             <BodyWrapper>
-            <Container>
-
-            </Container>
             </BodyWrapper>
             <ToolbarLeft id="ToolbarLeft" user={data.page.owner} />
             <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
