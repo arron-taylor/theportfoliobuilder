@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../edit.module.css';
 import axios from 'axios'
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, React, useRef } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  {Button}  from '../components/edit/Button'
@@ -18,7 +18,7 @@ import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { Editor, Frame, Element } from "@craftjs/core";
-import  Alert  from '../components/Alert'
+import  Template  from '../components/Template'
 
 
 const PAGE = gql`
@@ -44,6 +44,7 @@ const PAGE = gql`
 export default function Edit(props) {
 
   const [active, setActive] = useState(true);
+  const ref = useRef();
 
   let { page_id } = useParams();
 
@@ -67,24 +68,20 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.maincontainer}> 
-      <Editor resolver={{Card, Button, Text, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Alert, Hero}}> 
+      <Editor ref={ref} resolver={{Card, Button, Text, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
       <Frame>
           <MainWrapper>
             <BodyWrapper>
+            
             </BodyWrapper>
-            <ToolbarLeft id="ToolbarLeft" user={data.page.owner} />
+            <ToolbarLeft id="toolbar_left" user={data.page.owner} />
             <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
             <SettingsPanel />
-            <Alert type="load" />
+            <Template type="load" />
            </MainWrapper>
 
         </Frame>
       </Editor> 
-
-        <h1 className={edit.title}> Page name: {data.page.name} <br /> My components are: {data.page.components.map( comp => {
-          return comp.name + ', '
-        } )}</h1>
-
 
     </div>
   ) 

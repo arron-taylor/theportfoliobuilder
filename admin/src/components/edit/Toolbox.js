@@ -15,7 +15,7 @@ export const Toolbox = () => {
   const { connectors } = useEditor();
 	return (
 		<div className={edit.Toolbox}>
-     	<div ref={(ref) => connectors.create(ref, <Button> Button Component </Button>)}> Button Component </div>
+     	<button ref={(ref) => connectors.create(ref, <Button> Button Component </Button>)}> Button Component </button>
      	<div ref={(ref) => connectors.create(ref, <Text text='text component' />)}> Text Component </div>
      	<div ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
      	<div ref={(ref) => connectors.create(ref, <NavBar text='Navbar Component' />)}> Navbar Component </div>
