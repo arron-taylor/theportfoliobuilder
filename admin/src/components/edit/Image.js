@@ -1,17 +1,19 @@
+import React, {useCallback} from "react";
+import ContentEditable from 'react-contenteditable'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
-import  Text  from "./Text";
-import  {Button}  from "./Button";
-import  Container  from "./Container";
-import {useNode, Element} from "@craftjs/core";
-
+import { useNode, useEditor } from "@craftjs/core";
+import settings from '../../settings.module.css';
+import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
-import settings from '../../settings.module.css';
 
-export default function Hero({background, height, width}) {
+export default function Image({height, width, src, marginLeft, marginTop}) {
 
-	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
+   
+  const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
     hovered: state.events.hovered
@@ -20,28 +22,19 @@ export default function Hero({background, height, width}) {
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
-		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+    <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginLeft, marginTop}}>
     
     { selected? <div className={edit.textBorder}> 
-      <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
-        <Text fontSize={80} text="Arron Taylor" />
-        <Text fontSize={40} text="Developer" />
-    </div>  
-    </div> : 
+      <img src={src} style={{height, width}} />
 
-    <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
-
-        <Text fontSize={80} text="Arron Taylor" />
-        <Text fontSize={40} text="Developer" />
-    </div>
-
+         </div> : <img src={src} style={{height, width}}style={{height, width}}/>
 		}
     
     </div>
-		
 	)
 }
-export const HeroSettings = () => {
+
+export const ImageSettings = () => {
   const {
     actions: { setProp },
     props,
@@ -95,36 +88,44 @@ export const HeroSettings = () => {
     <div className={settings.container}>
      <table className={settings.left}>
           <tr>
-            <td className={settings.label} id="fontFamily">
-              Font
+            <td className={settings.label} id="src">
+              URL
             </td>
           </tr>
           <tr>
             <td>
-              <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
+              <FontAwesomeIcon id="src_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
+              <input onChange={handleField} value={props.src} onFocus={highLight} onBlur={dehighLight} type="text" name="src" placeholder="URL of image" /> 
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="color">
-              Color
+            <td className={settings.label} id="marginLeft">
+              MarginLeft
             </td>
           </tr>
           <tr>
-            <td>
-              <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
+              <FontAwesomeIcon id="marginLeft_icon" className={ settings.icon_tiny } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
+              <input onChange={handleField} value={props.marginLeft} onFocus={highLight} onBlur={dehighLight} type="text" name="marginLeft" placeholder="12px" /> 
+            </td>
+          </tr> 
+          <tr>
+            <td className={settings.label} id="marginTop">
+              MarginTop
             </td>
           </tr>
           <tr>
-            <td className={settings.label} id="">
-              Align
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
+              <FontAwesomeIcon id="marginTop_icon" className={ settings.icon_tiny } icon={ faFont } />
             </td>
-          </tr>
+            <td>
+              <input onChange={handleField} value={props.marginTop} onFocus={highLight} onBlur={dehighLight} type="text" name="marginTop" placeholder="12px" /> 
+            </td>
+          </tr> 
           <tr>
             
             <td className={settings.editButtons}>
@@ -149,31 +150,33 @@ export const HeroSettings = () => {
 
         <table className={settings.right}>
           <tr>
-            <td className={settings.label} id="fontSize">
-              Size
+            <td className={settings.label} id="height">
+              Height
             </td>
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="fontSize_icon" className={ settings.icon_tiny } icon={ faFont } />
+              <FontAwesomeIcon id="height_icon" className={ settings.icon_tiny } icon={ faFont } />
               <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
+              <input onChange={handleField} value={props.height} onFocus={highLight} onBlur={dehighLight} type="text" name="height" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="password">
-             Icons
+            <td className={settings.label} id="width">
+              Width
             </td>
           </tr>
           <tr>
-            <td> <br /><br />
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
+              <FontAwesomeIcon id="width_icon" className={ settings.icon_tiny } icon={ faFont } />
+              <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-            <br />
+              <input onChange={handleField} value={props.width} onFocus={highLight} onBlur={dehighLight} type="text" name="width" placeholder="12px" /> 
             </td>
-          </tr>
+          </tr> 
           <tr>
             <td className={settings.label} id="password">
               Indent
@@ -200,14 +203,15 @@ export const HeroSettings = () => {
     </div>
   )
 }
-
-Hero.craft = {
+Image.craft = {
   props: { 
-    background: "url('https://texashighways.com/wp-content/uploads/2018/11/Q0A2731.jpg')",
-    height: "800px",
-    width: "100vw"
+    height: "100px",
+    width: "100px",
+    marginLeft: "0px", 
+    marginTop: "0px",
+    src: "https://res.cloudinary.com/css-tricks/image/fetch/w_600,q_auto,f_auto/https://cdn4.buysellads.net/uu/7/78180/1608680187-MCSmart_Engage_Custom_Feature_SmartRecs_GetStarted_1x1-_1_.jpg"
   },
   related: {
-    settings: HeroSettings
+    settings: ImageSettings
   }
 }

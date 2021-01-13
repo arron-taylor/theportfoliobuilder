@@ -39,7 +39,7 @@ export default function ToolbarBottom(props) {
    }
 
 	return (
-		<div className={edit.toolbar_bottom}>
+		<div id="toolbar_bottom" className={edit.toolbar_bottom}>
 
     <FontAwesomeIcon id="preview" onClick={() =>  setActive()  }  className={ edit.icon_active } icon={ faDesktop } />
     <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />

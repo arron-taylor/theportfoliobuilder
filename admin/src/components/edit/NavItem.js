@@ -12,7 +12,7 @@ import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
-export default function NavItem({text, fontSize, textAlign, color, fontFamily}) {
+export default function NavItem({text, fontSize, textAlign, color, fontFamily, backgroundColor}) {
 
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
@@ -24,8 +24,8 @@ export default function NavItem({text, fontSize, textAlign, color, fontFamily}) 
 
 	return (
     <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
-      <div className={edit.navitem}>
-        <Text text={text} />
+      <div style={{backgroundColor, color}} className={edit.navitem}>
+        <Text fontSize={fontSize} fontFamily={fontFamily} text={text} />
       </div>
     </div>
 	)
@@ -153,26 +153,16 @@ export const NavItemSettings = () => {
             </td>
           </tr> 
           <tr>
-            <td className={settings.label} id="password">
-             Icons
+            <td className={settings.label} id="backgroundColor">
+            BG Color
             </td>
           </tr>
           <tr>
-            <td> <br /><br />
+            <td>
+              <FontAwesomeIcon id="backgroundColor_icon" className={ settings.icon } icon={ faLock } />
             </td>
             <td>
-            <br />
-            </td>
-          </tr>
-          <tr>
-            <td className={settings.label} id="password">
-              Indent
-            </td>
-          </tr>
-          <tr>
-            <td className={settings.editButtonsSmall}>
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faIndent } />
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faOutdent } />
+              <input onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
             </td>
           </tr>
           <tr>
@@ -196,7 +186,8 @@ NavItem.craft = {
     fontSize: "12",
     fontFamily: 'comic sans ms',
     text: "Click me",
-    color: "#333333"
+    color: "#333333",
+    backgroundColor: "#fefefe"
   },
   related: {
     settings: NavItemSettings

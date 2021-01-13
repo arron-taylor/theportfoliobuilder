@@ -10,6 +10,7 @@ import  NavBar  from './NavBar'
 import  NavItem  from './NavItem'
 import  Container  from './Container'
 import  Hero  from './Hero'
+import  Image  from './Image'
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
@@ -20,8 +21,9 @@ export const Toolbox = () => {
      	<div ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
      	<div ref={(ref) => connectors.create(ref, <NavBar text='Navbar Component' />)}> Navbar Component </div>
      	<div ref={(ref) => connectors.create(ref, <NavItem text='New Item' />)}> Navbar Item </div>
-     	<div ref={(ref) => connectors.create(ref, <Container text='New Item' />)}> New Container </div>
-     	<div ref={(ref) => connectors.create(ref, <Hero text='New Item' />)}> Hero </div>
+     	<div ref={(ref) => connectors.create(ref, <Container />)}> New Container </div>
+     	<div ref={(ref) => connectors.create(ref, <Hero />)}> Hero Component </div>
+     	<div ref={(ref) => connectors.create(ref, <Image />)}> Image Component </div>
     </div>
 	)
 }

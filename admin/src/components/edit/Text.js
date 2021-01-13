@@ -10,7 +10,7 @@ import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
-export default function Text({text, fontSize, textAlign, color, fontFamily}) {
+export default function Text({text, fontSize, textAlign, color, fontFamily, marginTop, marginLeft}) {
 
    
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
@@ -22,7 +22,7 @@ export default function Text({text, fontSize, textAlign, color, fontFamily}) {
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
-    <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+    <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginTop, marginLeft}} >
     
     { selected? <div className={edit.textBorder}> 
       <ContentEditable disabled={!editable} html={text} 
@@ -144,6 +144,19 @@ export const TextSettings = () => {
               <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faListOl } />
             </td>
           </tr> 
+           <tr>
+            <td className={settings.label} id="marginTop">
+              MarginTop
+            </td>
+          </tr>
+          <tr>
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
+              <FontAwesomeIcon id="marginTop_icon" className={ settings.icon_tiny } icon={ faFont } />
+            </td>
+            <td>
+              <input onChange={handleField} value={props.marginTop} onFocus={highLight} onBlur={dehighLight} type="text" name="marginTop" placeholder="12px" /> 
+            </td>
+          </tr> 
         </table>
 
 
@@ -196,6 +209,19 @@ export const TextSettings = () => {
               <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faHighlighter } />
             </td>
           </tr>
+          <tr>
+            <td className={settings.label} id="marginLeft">
+              MarginLeft
+            </td>
+          </tr>
+          <tr>
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
+              <FontAwesomeIcon id="marginLeft_icon" className={ settings.icon_tiny } icon={ faFont } />
+            </td>
+            <td>
+              <input onChange={handleField} value={props.marginLeft} onFocus={highLight} onBlur={dehighLight} type="text" name="marginLeft" placeholder="12px" /> 
+            </td>
+          </tr> 
         </table>
     </div>
   )
@@ -206,7 +232,9 @@ Text.craft = {
     fontSize: "12",
     fontFamily: 'comic sans ms',
     text: "Click me",
-    color: "#333333"
+    color: "#333333",
+    marginTop: "0px", 
+    marginLeft: "0px"
   },
   related: {
     settings: TextSettings

@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import Admin from './Admin'
 import Signup from './Signup'
 import Login from './Login'
+import User from './pages/User'
 import Edit from './pages/Edit'
 import ErrorPage from './pages/ErrorPage'
 import NoAccess from './pages/NoAccess'
@@ -38,12 +39,17 @@ function App() {
       <Route path='/signup' component={Signup} />
       <Route path='/404' component={ErrorPage} />
       <Route path='/noaccess' component={NoAccess} />
+      
       <Route path="/edit/:page_id"> 
         { user.isLoggedIn? <> <Edit user={user} /> </> : <Login />  }
        </Route> 
+       <Route path='/:username/:page_id'>
+        <User user={user} />
+      </Route>
     <Route path="/">
         { user.isLoggedIn? <> <Admin user={user} /> </> : <Login />  }
     </Route> 
+
     </Switch>
    </Router>
    </>
