@@ -28,6 +28,7 @@ const PAGE = gql`
       page(id:$id) {
         id
         name
+        page_layout
         owner {
           id
           name
@@ -72,18 +73,28 @@ export default function Edit(props) {
   return (
     <div className={edit.maincontainer}> 
       <Editor ref={ref} resolver={{Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
-      <Frame >
+      { data? 
+      <Frame data={lz.decompress(lz.decodeBase64(data.page.page_layout))}>
           <MainWrapper>
             <BodyWrapper>
-            
             </BodyWrapper>
             <ToolbarLeft id="toolbar_left" user={data.page.owner} />
             <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
             <SettingsPanel />
             <Template type="load" />
            </MainWrapper>
-
+        </Frame> :  
+        <Frame>
+          <MainWrapper>
+            <BodyWrapper>
+            </BodyWrapper>
+            <ToolbarLeft id="toolbar_left" user={data.page.owner} />
+            <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
+            <SettingsPanel />
+            <Template type="load" />
+           </MainWrapper>
         </Frame>
+      }
       </Editor> 
 
     </div>
