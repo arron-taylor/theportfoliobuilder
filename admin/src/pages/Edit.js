@@ -10,6 +10,7 @@ import  Card  from '../components/edit/Card'
 import  NavBar  from '../components/edit/NavBar'
 import  Container  from '../components/edit/Container'
 import  MainWrapper  from '../components/edit/MainWrapper'
+import  ToolWrapper  from '../components/edit/ToolWrapper'
 import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  Text  from '../components/edit/Text'
 import  NavItem  from '../components/edit/NavItem'
@@ -20,7 +21,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { Editor, Frame, Element } from "@craftjs/core";
 import  Template  from '../components/Template'
+import  EditFrame  from './EditFrame'
 import lz from "lzutf8";
+
+import  Random  from '../components/edit/Random'
 
 
 const PAGE = gql`
@@ -48,23 +52,11 @@ export default function Edit(props) {
 
   const [active, setActive] = useState(true);
   const [json, setJson] = useState(null);
-  const ref = useRef();
 
   let { page_id } = useParams();
 
-  useEffect( () => {
-  if(document.getElementById('toolbar_left')) {
-    if (active) {
-     document.getElementById('toolbar_left').style.display = 'flex'
-    }
-    else {
-      document.getElementById('toolbar_left').style.display = 'none'
-    }
-  } 
-  });
-
   const {loading, error, data, refetch} = useQuery(PAGE, {
-      variables: { id: page_id }
+      variables: { id: page_id },
     });
 
   if (loading) return <> <div id="toolbar_left" /> </>;
@@ -72,28 +64,9 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div className={edit.maincontainer}> 
-      <Editor ref={ref} resolver={{Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
-      { data? 
-      <Frame data={lz.decompress(lz.decodeBase64(data.page.page_layout))}>
-          <MainWrapper>
-            <BodyWrapper>
-            </BodyWrapper>
-            <ToolbarLeft id="toolbar_left" user={data.page.owner} />
-            <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
-            <SettingsPanel />
-            <Template type="load" />
-           </MainWrapper>
-        </Frame> :  
-        <Frame>
-          <MainWrapper>
-            <BodyWrapper>
-            </BodyWrapper>
-            <ToolbarLeft id="toolbar_left" user={data.page.owner} />
-            <ToolbarBottom setActive={ () => setActive(prev => !prev)} active={active} />
-            <SettingsPanel />
-            <Template type="load" />
-           </MainWrapper>
-        </Frame>
+      <Editor resolver={{Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
+      { data && data.page? 
+      <EditFrame page={data.page} /> : <EditFrame page={data.page} />
       }
       </Editor> 
 

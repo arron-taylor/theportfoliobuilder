@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom'
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
@@ -13,6 +13,7 @@ import  Hero  from './Hero'
 import  Image  from './Image'
 
 export const Toolbox = () => {
+
   const { connectors } = useEditor();
 	return (
 		<div className={edit.Toolbox}>

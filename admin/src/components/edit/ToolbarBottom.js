@@ -1,30 +1,61 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { useState, React } from 'react';
 import edit from '../../edit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH, faDesktop, faSave, faUndo, faRedo, faFileExport, faHome } from '@fortawesome/free-solid-svg-icons'
-import {Toolbox} from './Toolbox'
+import { faDesktop, faSave, faUndo, faRedo, faFileExport, faHome } from '@fortawesome/free-solid-svg-icons'
 import { useEditor } from "@craftjs/core";
 import lz from "lzutf8";
 import copy from 'copy-to-clipboard';
+import axios from 'axios'
 
-let pathname = window.location.pathname.substring(1).slice(5);
-let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
+  export default function ToolbarBottom(props) {
 
-export default function ToolbarBottom(props) {
+  const [statetoload, setstatetoload] = useState(props.page);
 
   const { actions, query, enabled } = useEditor((state) => ({
     enabled: state.options.enabled
   }));
 
+
   const deleteprompt = (item) => {
     document.getElementById("alertbox").style.display = 'block';
    }
+ 
+  const undo = () => {
+    actions.history.undo()
+  } 
+  const redo = () => {
+    actions.history.redo()
+  }
+  const updatePage = () => {
 
-  let iconName = 'edit.icon_active'
+ //   const toolbarbottom = document.getElementById('toolbar_bottom');
+ //   const toolbarleft = document.getElementById('toolbar_left');
 
+    const json = query.serialize();
+  //  console.log(json)
+    const newJson = ( json.substring(0, json.indexOf("ToolWrapper")-39) +  json.substring(json.indexOf("SettingsPanel")+151));
+  //  console.log(newJson)
+    const final = ( newJson.substring(0, newJson.indexOf("nodes")+20)) + newJson.substring(newJson.indexOf("nodes")+33) 
+
+ //  console.log(final)
+ //   copy(lz.encodeBase64(lz.compress(json)));
+  //  setstatetoload(prevState => ({ ...prevState, ['id']: props.page.id }));
+  //  setstatetoload(prevState => ({ ...prevState, ['page_layout']:(lz.encodeBase64(lz.compress(final))) })); 
+
+    let token = localStorage.getItem("token")
+    let data = {page_layout: (lz.encodeBase64(lz.compress(final))), id: props.page.id};
+    axios.post(
+      'http://localhost:3001/editpage', 
+      data, 
+      { 
+        headers: { 
+          Authorization: 'Bearer ' + token 
+        }
+      }).then( () => { props.refetch() } ).catch(error => { console.log(error.response) });
+
+  }
   const setActive = (_, value) => {
+
     actions.setOptions(options => options.enabled = !options.enabled)
     props.setActive();
     if(enabled) {
@@ -38,16 +69,16 @@ export default function ToolbarBottom(props) {
     }
    }
 
-	return (
+	return ( 
 		<div id="toolbar_bottom" className={edit.toolbar_bottom}>
-
     <FontAwesomeIcon id="preview" onClick={() =>  setActive()  }  className={ edit.icon_active } icon={ faDesktop } />
     <FontAwesomeIcon onClick={() => { window.location = 'http://localhost:3000/pages' }} className={ edit.icon } icon={ faHome } />
-    <FontAwesomeIcon onClick={( () => { deleteprompt({name: "Arron"}) } )} className={ edit.icon } icon={ faSave } />
+    <FontAwesomeIcon onClick={updatePage}  className={ edit.icon } icon={ faSave } />
 
-    <FontAwesomeIcon onClick={() => { const json = query.serialize();copy(lz.encodeBase64(lz.compress(json)))}} className={ edit.icon } icon={ faFileExport } />
-    <FontAwesomeIcon className={ edit.icon } icon={ faUndo } />
-    <FontAwesomeIcon className={ edit.icon } icon={ faRedo } />
+    <FontAwesomeIcon onClick={( () => { deleteprompt({name: "Arron"}) } )} className={ edit.icon } icon={ faFileExport } />
+   
+    <FontAwesomeIcon onClick={undo} className={ edit.icon } icon={ faUndo } />
+    <FontAwesomeIcon onClick={redo} className={ edit.icon } icon={ faRedo } />
     </div>
 	)
 }

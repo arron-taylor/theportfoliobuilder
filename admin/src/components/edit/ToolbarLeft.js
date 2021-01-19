@@ -40,18 +40,18 @@ export default function ToolbarLeft(props) {
         {
       		currentTab.current == 'Pages'? <> 
       			{props.user.pages.map((page) => {  
-      				let pageLink = "http://localhost:3000/edit/" +page.id;
+      				let pageLink = "http://localhost:3000/edit/" + page.id;
       				return <div onClick={() => { window.location = pageLink }} className={edit.page}> { page.name } </div> })
       			} 
       		</> 
 
-      		: console.log('no')
+      		: console.log('')
      		 } 
 
      		 {
      		 	currentTab.current == 'Plugin'? 
      		 <Toolbox /> : 
-     		 <>no sir</>
+     		 <>  </>
      			}
      		 </div> 
       </div>

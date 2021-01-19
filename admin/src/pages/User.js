@@ -43,17 +43,6 @@ export default function User(props) {
 
   console.log(username, page_id);
 
-
-  useEffect( () => {
-    if(document.getElementById('toolbar_left')) {
-      document.getElementById('toolbar_left').style.display = "none"
-    } 
-    if(document.getElementById('toolbar_bottom')) {
-      document.getElementById('toolbar_bottom').style.display = "none"
-    }
-  });
-
-
   const {loading, error, data, refetch} = useQuery(PAGE, {
       variables: { id: page_id }
     });

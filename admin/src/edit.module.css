@@ -130,6 +130,8 @@
 .Toolbox {
 	display: flex;
 	flex-wrap: wrap;
+	max-height: 330px;
+	overflow: scroll;
 }
 .Toolbox div {
 	background: #F4F5F9;
