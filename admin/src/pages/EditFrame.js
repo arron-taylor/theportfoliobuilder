@@ -1,11 +1,11 @@
 import edit from '../edit.module.css';
-import { useState, useEffect, React, useRef } from 'react';
+import { useState, useEffect, React } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  MainWrapper  from '../components/edit/MainWrapper'
 import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
-import { useEditor, Frame, Element } from "@craftjs/core";
+import { useEditor, Frame} from "@craftjs/core";
 import  Template  from '../components/Template'
 import  ToolWrapper  from '../components/edit/ToolWrapper'
 import lz from "lzutf8";
@@ -14,7 +14,6 @@ import lz from "lzutf8";
 export default function EditFrame(props) {
 
   const [active, setActive] = useState(true);
-  const [json, setJson] = useState(null);
 
   const { query, actions } = useEditor((state, query) => ({
     hoveredNodeId: state.events.hovered
@@ -29,8 +28,6 @@ export default function EditFrame(props) {
     }
 
   const nodeTree = query.parseReactElement(<ToolWrapper ><Template type="load" /><ToolbarLeft id="toolbar_left" user={props.page.owner} /><ToolbarBottom page={props.page} setActive={ () => setActive(prev => !prev)} active={active}  /><SettingsPanel /></ToolWrapper >).toNodeTree();
-
-  const node = query.parseFreshNode(freshNode).toNode();
 
   useEffect( () => {
 

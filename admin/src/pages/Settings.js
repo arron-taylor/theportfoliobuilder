@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { Link, useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom"; 
 import admin from '../admin.module.css';
 
 const CURRENT_POST = gql`

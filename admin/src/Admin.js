@@ -1,13 +1,12 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect, Link
+  Redirect
 } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import { Dashboard, Analytics, Pages, Edit, Inquiries, Settings } from './pages'
-import axios from 'axios'
+import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
 import style from './styles.module.css';
 import Sidebar from './components/Sidebar'
 import Content from './components/Content'
@@ -27,9 +26,7 @@ function Admin(props) {
   
 
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
-  const reload = () => {
-    setUser(props.user);
-  }
+ 
   const {loading, error, data} = useQuery(CURRENT_USER, {
     variables: { id: props.user.id }
   });

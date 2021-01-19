@@ -1,12 +1,5 @@
-import { Link, useParams } from "react-router-dom"; 
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { Link } from "react-router-dom"; 
 import error from '../error.module.css';
-import axios from 'axios'
-import { useState, useEffect } from 'react';
-import  ToolbarLeft  from '../components/edit/ToolbarLeft'
-import  Alert  from '../components/Alert'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
 
 export default function ErrorPage(props) {
 

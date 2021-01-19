@@ -1,8 +1,6 @@
 import { Link, useParams } from "react-router-dom"; 
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import edit from '../edit.module.css';
-import axios from 'axios'
-import { useState, useEffect, useContext, React, useRef } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  {Button}  from '../components/edit/Button'
@@ -16,9 +14,7 @@ import  NavItem  from '../components/edit/NavItem'
 import  Hero  from '../components/edit/Hero'
 import  Image  from '../components/edit/Image'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faDesktop, faSave, faUndo, faRedo, faFileExport } from '@fortawesome/free-solid-svg-icons'
-import { Editor, Frame, Element } from "@craftjs/core";
+import { Editor, Frame } from "@craftjs/core";
 import  Template  from '../components/Template'
 import lz from "lzutf8";
 
@@ -35,15 +31,13 @@ const PAGE = gql`
 
 export default function User(props) {
 
-  const [active, setActive] = useState(true);
-  const [json, setJson] = useState(null);
 
   let { username } = useParams();
   let { page_id } = useParams();
 
   console.log(username, page_id);
 
-  const {loading, error, data, refetch} = useQuery(PAGE, {
+  const {loading, error, data} = useQuery(PAGE, {
       variables: { id: page_id }
     });
 

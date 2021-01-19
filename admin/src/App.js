@@ -1,8 +1,7 @@
 import { React, useState, useEffect } from "react"
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { Dashboard, Settings } from './pages'
 import axios from 'axios'
-import Sidebar from './components/Sidebar'
 import Admin from './Admin'
 import Signup from './Signup'
 import Login from './Login'
