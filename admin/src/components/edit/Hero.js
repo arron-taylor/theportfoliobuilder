@@ -23,14 +23,13 @@ export default function Hero({background, height, width}) {
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
     
     { selected? <div className={edit.textBorder}> 
-      <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
+      <div className={edit.Hero} style={{background, height, width, "background-position": "00px -500px"}}>
         <Text fontSize={80} text="Arron Taylor" />
         <Text fontSize={40} text="Developer" />
     </div>  
     </div> : 
 
-    <div className={edit.Hero} style={{background, height, width, "background-position": "00px -550px"}}>
-
+    <div className={edit.Hero} style={{background, height, width, "background-position": "00px -500px"}}>
         <Text fontSize={80} text="Arron Taylor" />
         <Text fontSize={40} text="Developer" />
     </div>
@@ -203,7 +202,7 @@ export const HeroSettings = () => {
 
 Hero.craft = {
   props: { 
-    background: "url('https://texashighways.com/wp-content/uploads/2018/11/Q0A2731.jpg')",
+    background: "url('https://wallpaperaccess.com/full/340597.jpg')",
     height: "800px",
     width: "100vw"
   },

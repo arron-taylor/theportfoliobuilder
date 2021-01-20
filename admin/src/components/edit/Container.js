@@ -2,7 +2,7 @@ import edit from '../../edit.module.css';
 import { Element, useNode } from '@craftjs/core';
 import { useState, useEffect } from 'react';
 
-export default function Container({background, children, padding = 50}) {
+export default function Container({background, children, padding = 250}) {
 
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,

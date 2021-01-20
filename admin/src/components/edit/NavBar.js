@@ -26,8 +26,8 @@ export default function NavBar({backgroundColor, height, boxShadow}) {
   
 	return (
 
-		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
-    { selected? <div className={edit.textBorder}> 
+		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} >
+    { selected? 
       <div style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
           <Element className={edit.start_active} id="somethin" canvas>
             <NavItem className={edit.navitem} text="Company Logo"  />
@@ -39,9 +39,9 @@ export default function NavBar({backgroundColor, height, boxShadow}) {
             <NavItem className={edit.navitem} text="Item"  />
           </Element>
         </div>
-        </div> : 
+         : 
 
-      <div id="somethin" onDragOver={setTrue} style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
+      <div onDragOver={setTrue} style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
           <Element className={edit.start} onMouseOut={() => draggedover = false} id="somethin" canvas> 
             <NavItem text="Company Logo" />
           </Element>

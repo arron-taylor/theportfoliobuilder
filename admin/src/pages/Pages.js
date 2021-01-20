@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 import  Toolbar  from '../components/Toolbar'
 import  Alert  from '../components/Alert'
+import  AddPage  from '../components/AddPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -71,6 +72,8 @@ export default function Pages(props) {
       </div>
 
       <Alert type="delete" refetch={ () => refetch()} page={page} />
+
+      <AddPage type="delete" refetch={ () => refetch()} page={page} />
 
     </div>
   )

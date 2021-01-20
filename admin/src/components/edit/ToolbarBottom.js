@@ -1,5 +1,6 @@
 import { useState, React } from 'react';
 import edit from '../../edit.module.css';
+import SnackBarNotification from '../SnackBarNotification'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDesktop, faSave, faUndo, faRedo, faFileExport, faHome } from '@fortawesome/free-solid-svg-icons'
 import { useEditor } from "@craftjs/core";
@@ -51,8 +52,14 @@ import axios from 'axios'
         headers: { 
           Authorization: 'Bearer ' + token 
         }
-      }).then( () => { props.refetch() } ).catch(error => { console.log(error.response) });
+      }).then( () => { notification() } ).catch(error => { console.log(error.response) });
 
+  }
+  const notification = () => {
+    document.getElementById('SnackBarNotification').style.opacity = '1'
+    setTimeout(() => {
+      document.getElementById('SnackBarNotification').style.opacity = '0'
+    }, 2000)
   }
   const setActive = (_, value) => {
 
@@ -79,6 +86,7 @@ import axios from 'axios'
    
     <FontAwesomeIcon onClick={undo} className={ edit.icon } icon={ faUndo } />
     <FontAwesomeIcon onClick={redo} className={ edit.icon } icon={ faRedo } />
+    <SnackBarNotification />
     </div>
 	)
 }
