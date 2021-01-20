@@ -14,21 +14,39 @@ import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter,
 
 export default function NavItem({text, fontSize, textAlign, color, fontFamily, backgroundColor}) {
 
-  const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
+  const { connectors: {connect, drag}, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
-    hovered: state.events.hovered
   }));
+
+  const { ...collected } = useNode((collector) => {
+    return collector
+  });
+  
+  const duplicate = (e) => {
+    console.log(collected);
+  }
+
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
-    <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
-      <div style={{backgroundColor, color}} className={edit.navitem}>
+  <>{  selected? 
+      <div onClick={(e => setEditable(true))} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+      <div style={{backgroundColor, color}} className={edit.navitem}> 
         <Text fontSize={fontSize} fontFamily={fontFamily} text={text} />
+      
+      </div>
+    </div> : 
+    <div onClick={(e => setEditable(true))} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+      <div onClick={duplicate} style={{backgroundColor, color}} className={edit.navitem}> 
+        <Text fontSize={fontSize} fontFamily={fontFamily} text={text} />
+      
       </div>
     </div>
-	)
+    }
+    
+  </>	)
 }
 
 export const NavItemSettings = () => {
@@ -192,4 +210,5 @@ NavItem.craft = {
   related: {
     settings: NavItemSettings
   }
+
 }

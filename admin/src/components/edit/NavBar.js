@@ -8,10 +8,9 @@ import settings from '../../settings.module.css';
 
 export default function NavBar({backgroundColor, height, boxShadow}) {
 
-	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
+	const { connectors: {connect, drag}, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
-    hovered: state.events.hovered
   }));
 
   let draggedover = false;
@@ -29,13 +28,13 @@ export default function NavBar({backgroundColor, height, boxShadow}) {
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} >
     { selected? 
       <div style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
-          <Element className={edit.start_active} id="somethin" canvas>
+          <Element className={edit.start} id="somethin" canvas>
             <NavItem className={edit.navitem} text="Company Logo"  />
           </Element>
-          <Element className={edit.middle_active} id="somethin1" canvas> 
+          <Element className={edit.middle} id="somethin1" canvas> 
             <NavItem className={edit.navitem} text="Item"  />
           </Element>
-          <Element className={edit.end_active} id="somethin2"  canvas>
+          <Element className={edit.end} id="somethin2"  canvas>
             <NavItem className={edit.navitem} text="Item"  />
           </Element>
         </div>

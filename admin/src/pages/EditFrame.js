@@ -5,7 +5,7 @@ import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  MainWrapper  from '../components/edit/MainWrapper'
 import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
-import { useEditor, Frame} from "@craftjs/core";
+import { useEditor, Frame, useNode} from "@craftjs/core";
 import  Template  from '../components/Template'
 import  ToolWrapper  from '../components/edit/ToolWrapper'
 import lz from "lzutf8";
@@ -15,10 +15,9 @@ export default function EditFrame(props) {
 
   const [active, setActive] = useState(true);
 
-  const { query, actions } = useEditor((state, query) => ({
-    hoveredNodeId: state.events.hovered
+  const { query, actions, selectedNodeId, selectedNode } = useEditor((state, query) => ({
+    selectedNodeId: state.events.selected,
   }));
-
 
   const freshNode = {
         data: {
@@ -40,7 +39,6 @@ export default function EditFrame(props) {
     }
   } 
     //lz.decompress(lz.decodeBase64(props.page.page_layout)).substr( 0, ( lz.decompress(lz.decodeBase64(props.page.page_layout)).length - 1) + "}" )     
-
   });
   useEffect(() => {
     
@@ -51,7 +49,6 @@ export default function EditFrame(props) {
     <div id="" className={edit.maincontainer}> 
       {  props.page.page_layout? 
       <Frame id="frame" data={ lz.decompress(lz.decodeBase64(props.page.page_layout) )}>
-      {console.log(  lz.decompress(lz.decodeBase64(props.page.page_layout))  )}
       <MainWrapper>
             <BodyWrapper>
             </BodyWrapper>

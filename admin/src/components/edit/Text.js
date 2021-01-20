@@ -8,16 +8,34 @@ import { useNode, useEditor } from "@craftjs/core";
 import settings from '../../settings.module.css';
 import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
 export default function Text({text, fontSize, textAlign, color, fontFamily, marginTop, marginLeft}) {
 
-   
+   const { query, actions } = useEditor((state, query) => ({
+    }));
+
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
+
+  const { ...collected } = useNode((collector) => {
+    return collector
+  });
+  
+  const duplicate = (e) => {
+    const parent = (collected.data.parent)
+    const node_to_make = {
+      data: collected.data
+    }
+    const node = query.parseFreshNode(node_to_make).toNode();
+    actions.add(node, parent);
+  }
+  const delete_node = () => {
+    actions.delete(collected.id)
+  }
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
@@ -25,6 +43,12 @@ export default function Text({text, fontSize, textAlign, color, fontFamily, marg
     <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginTop, marginLeft}} >
     
     { selected? <div className={edit.textBorder}> 
+
+    <div className={edit.options} >  
+      <FontAwesomeIcon onClick={duplicate} id="color_icon" className={ edit.icon } icon={ faClone } />
+      <FontAwesomeIcon onClick={delete_node} id="color_icon" className={ edit.icon } icon={ faTrash } /> 
+    </div>
+
       <ContentEditable disabled={!editable} html={text} 
         onChange={e => 
           setProp(props => 
