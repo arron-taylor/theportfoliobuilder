@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import settings from '../../settings.module.css';
 
-export default function Hero({background, height, width}) {
+export default function Hero({src, height, width}) {
 
 	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
@@ -23,13 +23,13 @@ export default function Hero({background, height, width}) {
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
     
     { selected? <div className={edit.textBorder}> 
-      <div className={edit.Hero} style={{background, height, width, "background-position": "00px -500px"}}>
+      <div className={edit.Hero} style={{background: "url( " +  src + "  )", height, width, "background-position": "00px -500px"}}>
         <Text fontSize={80} text="Arron Taylor" />
         <Text fontSize={40} text="Developer" />
     </div>  
     </div> : 
 
-    <div className={edit.Hero} style={{background, height, width, "background-position": "00px -500px"}}>
+    <div className={edit.Hero} style={{background: "url( " +  src + "  )", height, width, "background-position": "00px -500px"}}>
         <Text fontSize={80} text="Arron Taylor" />
         <Text fontSize={40} text="Developer" />
     </div>
@@ -94,16 +94,16 @@ export const HeroSettings = () => {
     <div className={settings.container}>
      <table className={settings.left}>
           <tr>
-            <td className={settings.label} id="fontFamily">
-              Font
+            <td className={settings.label} id="src">
+              URL
             </td>
           </tr>
           <tr>
             <td>
-              <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
+              <FontAwesomeIcon id="src_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
+              <input onChange={handleField} value={props.src} onFocus={highLight} onBlur={dehighLight} type="text" name="src" placeholder="URL of image" /> 
             </td>
           </tr> 
           <tr>
@@ -202,7 +202,7 @@ export const HeroSettings = () => {
 
 Hero.craft = {
   props: { 
-    background: "url('https://wallpaperaccess.com/full/340597.jpg')",
+    src: "https://wallpaperaccess.com/full/340597.jpg",
     height: "800px",
     width: "100vw"
   },

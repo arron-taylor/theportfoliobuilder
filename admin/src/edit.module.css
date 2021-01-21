@@ -31,7 +31,7 @@
 	padding-bottom: 12px;
 	overflow: hidden;
 	z-index: 2;
-	-webkit-backdrop-filter: blur(50px);
+	-webkit-backdrop-filter: blur(5px);
 	background-image: initial;
 	background-position-x: initial;
 	background-position-y: initial;
@@ -41,7 +41,7 @@
 	background-attachment: initial;
 	background-origin: initial;
 	background-clip: initial;
-	background: rgba(250, 250, 250, 0.85);
+	background: rgba(250, 250, 250, 0.95);
 }
 .toolbar_left .content {
 	width: 100%;
@@ -260,6 +260,10 @@
 
 
 .wrapper {
+}
+.flexContainer {
+	display: flex;
+	flex-direction: column;
 }
 .EditableContainer {
 	height: 100%;

@@ -12,14 +12,16 @@ import { faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLe
 
 export default function Text({text, fontSize, textAlign, color, fontFamily, marginTop, marginLeft}) {
 
-   const { query, actions } = useEditor((state, query) => ({
-    }));
+   
 
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
+
+  const { query, actions } = useEditor((state, query) => ({
+    }));
 
   const { ...collected } = useNode((collector) => {
     return collector
@@ -252,9 +254,9 @@ export const TextSettings = () => {
 }
 
 Text.craft = {
-  props: { 
-    fontSize: "12",
-    fontFamily: 'comic sans ms',
+  props: {
+    fontSize: "16",
+    fontFamily: 'Helvetica Neue',
     text: "Click me",
     color: "#333333",
     marginTop: "0px", 

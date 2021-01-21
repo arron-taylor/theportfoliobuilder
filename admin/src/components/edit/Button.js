@@ -3,8 +3,8 @@ import ContentEditable from 'react-contenteditable'
 import { Link } from 'react-router-dom'
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
-import { useNode } from "@craftjs/core";
-import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { useNode, useEditor } from "@craftjs/core";
+import { faClone, faTrash, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 
@@ -16,9 +16,32 @@ export const Button = ({size, children, text, fontSize, textAlign, color, fontFa
   }));
   const [editable, setEditable] = useState(false);
 
+   const { query, actions } = useEditor((state, query) => ({
+    }));
+  
+  const { ...collected } = useNode((collector) => {
+    return collector
+  });
+  const duplicate = (e) => {
+    const parent = (collected.data.parent)
+    const node_to_make = {
+      data: collected.data
+    }
+    console.log(node_to_make)
+    const node = query.parseFreshNode(node_to_make).toNode();
+    actions.add(node, parent);
+  }
+  const delete_node = () => {
+    actions.delete(collected.id)
+  }
+
 	return (
 		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
     { selected? <button className={edit.textBorder}> 
+    <div className={edit.options} >  
+      <FontAwesomeIcon onClick={duplicate} id="color_icon" className={ edit.icon } icon={ faClone } />
+      <FontAwesomeIcon onClick={delete_node} id="color_icon" className={ edit.icon } icon={ faTrash } /> 
+    </div>
       <ContentEditable disabled={!editable} html={text} 
         onChange={e => 
           setProp(props => 

@@ -14,7 +14,7 @@ export default function Container({background, children, padding = 250}) {
 
   return (
     <div ref={ref => connect(drag(ref))} style={{background, "display": "block"}} className={edit.EditableContainer}>
-      <Element style={{background: 'rgba(0, 0, 0, 0.25)', "min-height": "200px", padding: `${padding}px`}} id='Container' canvas>
+      <Element className={edit.flexContainer} style={{background: 'rgba(0, 0, 0, 0.25)', minHeight: "200px", padding: `${padding}px`}} id='Container' canvas>
         {children}
      </Element>
     </div>

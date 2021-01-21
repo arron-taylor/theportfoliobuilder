@@ -128,30 +128,7 @@ export const NavItemSettings = () => {
               <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
-          <tr>
-            <td className={settings.label} id="">
-              Align
-            </td>
-          </tr>
-          <tr>
-            
-            <td className={settings.editButtons}>
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignLeft } />
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignCenter } />
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faAlignRight } />
-            </td>
-          </tr> 
-          <tr>
-            <td className={settings.label} id="">
-              List
-            </td>
-          </tr>
-          <tr>
-            <td className={settings.editButtonsSmall}>
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faListUl } />
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faListOl } />
-            </td>
-          </tr> 
+          
         </table>
 
 
@@ -183,17 +160,7 @@ export const NavItemSettings = () => {
               <input onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
             </td>
           </tr>
-          <tr>
-            <td className={settings.label} id="password">
-              Style
-            </td>
-          </tr>
-          <tr>
-            <td className={settings.editButtonsSmall}>
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faCode } />
-              <FontAwesomeIcon id="password_icon" className={ settings.iconbutton } icon={ faHighlighter } />
-            </td>
-          </tr>
+          
         </table>
     </div>
   )

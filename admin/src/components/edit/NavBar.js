@@ -15,11 +15,6 @@ export default function NavBar({backgroundColor, height, boxShadow}) {
 
   let draggedover = false;
 
-  const setTrue = (e) => {
-     draggedover = true; 
-    console.log(e.target.id);
-  }
-
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
   
@@ -40,7 +35,7 @@ export default function NavBar({backgroundColor, height, boxShadow}) {
         </div>
          : 
 
-      <div onDragOver={setTrue} style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
+      <div style={{backgroundColor, height, boxShadow}} className={edit.NavBar}>
           <Element className={edit.start} onMouseOut={() => draggedover = false} id="somethin" canvas> 
             <NavItem text="Company Logo" />
           </Element>
