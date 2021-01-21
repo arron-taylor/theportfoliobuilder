@@ -25,13 +25,49 @@ const { query, actions } = useEditor((state, query) => ({
 
   const duplicate = (e) => {
 //    console.log(collected, e.target.name)
-console.log(e.target.name)
-    var btn = document.createElement(e.target.name);   // Create a <button> element
-    btn.innerHTML = "Component";                   // Insert text
-    btn.style.position = 'absolute';
-    btn.style.zIndex = '25';
-    document.getElementById("root").appendChild(btn);               // Append <button> to <body>
-    setDragging(btn);
+    if (e.target.innerHTML == ' Card Component ') {
+        var element = document.createElement('div');   // Create a <button> element
+        element.innerHTML = e.target.innerHTML;                   // Insert text
+        element.style.position = 'absolute';
+        element.style.height = '200px'
+        element.style.width = '100px'
+        element.style.border = '1px solid #333'
+        element.style.padding = "10px"
+        element.style.borderRadius = "10px"
+    }
+    else if (e.target.innerHTML == ' Navbar ') {
+       var element = document.createElement('div');   // Create a <button> element
+        element.innerHTML = e.target.innerHTML;                   // Insert text
+        element.style.position = 'absolute';
+        element.style.height = '50px'
+        element.style.width = '250px'
+        element.style.border = '1px solid #333'
+        element.style.background = "rgba(0, 0, 0, 0.75)"
+        element.style.color = "#fefefe"
+        element.style.borderRadius = "10px"
+        element.style.padding = "10px"
+        console.log("NAVBAR")
+    } 
+    else if (e.target.innerHTML == ' Bar Item ') {
+        var element = document.createElement('div');   // Create a <button> element
+        element.innerHTML = e.target.innerHTML;                   // Insert text
+        element.style.position = 'absolute';
+        element.style.height = '50px'
+        element.style.width = '100px'
+        element.style.border = '1px solid #ccc'
+        element.style.background = "rgba(250, 250, 250, 0.75)"
+        element.style.color = "#333"
+        element.style.borderRadius = "10px"
+        element.style.padding = "10px"
+    }
+    else {
+        var element = document.createElement(e.target.name);   // Create a <button> element
+        element.innerHTML = "Component";                   // Insert text
+        element.style.position = 'absolute';
+    }
+    element.style.zIndex = '25';
+    document.getElementById("root").appendChild(element);               // Append <button> to <body>
+    setDragging(element);
   }
   const moveItem = (e) => {
     if(dragging) {
@@ -50,9 +86,9 @@ console.log(e.target.name)
 		<div className={edit.Toolbox}>
      	<button name="button" onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <Button> Button Component </Button>)}> Button Component </button>
      	<div name="span" onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <Text text='text component' />)}> Text Component </div>
-     	<div ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
-     	<div ref={(ref) => connectors.create(ref, <NavBar text='Navbar Component' />)}> Navbar Component </div>
-     	<div ref={(ref) => connectors.create(ref, <NavItem text='New Item' />)}> Navbar Item </div>
+     	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
+     	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <NavBar text='Navbar Component' />)}> Navbar </div>
+     	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <NavItem text='New Item' />)}> Bar Item </div>
      	<div ref={(ref) => connectors.create(ref, <Container />)}> New Container </div>
      	<div ref={(ref) => connectors.create(ref, <Hero />)}> Hero Component </div>
      	<div ref={(ref) => connectors.create(ref, <Image />)}> Image Component </div>

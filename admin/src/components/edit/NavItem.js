@@ -167,12 +167,13 @@ export const NavItemSettings = () => {
 }
 
 NavItem.craft = {
+  extensionName: "Image Source",
   props: { 
     fontSize: "12",
     fontFamily: 'comic sans ms',
     text: "Click me",
     color: "#333333",
-    backgroundColor: "#fefefe"
+    backgroundColor: "#fefefe",
   },
   related: {
     settings: NavItemSettings

@@ -41,6 +41,87 @@
 	color: #7660EB;
 	cursor: pointer;
 }
+.sourcetable {
+	width: 95%;
+	margin-left: 2.5%;
+}
+.sourcetable .label {
+	color: #989898;
+	width: 75px;
+	-webkit-transition: all .25s ease-in-out;
+}
+
+.sourcetable label input {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+}
+
+/***** Example custom styling *****/
+.sourcetable label div {
+	display: block;
+	width: 205px;
+	height: 75px;
+	background: #eaeaea;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+	color: #989898;
+	-webkit-transition: all .25s ease-in-out;
+}
+
+.sourcetable label div:hover {
+    background: #ddd;
+    cursor: pointer;
+}
+.sourcetable label div:active {
+    background: #7660EB;
+}
+.sourcetable label :invalid  {
+    color: red;
+}
+.sourcetable label :valid  {
+    color: blue;
+}
+
+.sourcetable button {
+	width: 100%;
+	height: 125px;
+	background-size: cover;
+	border-radius: 10px;
+	border: 1px solid #eee;
+	margin-top: 10px;
+	opacity: .75;
+	-webkit-transition: all .25s ease-in-out;
+}
+.sourcetable button:hover {
+	cursor: pointer;
+	opacity: .5;
+}
+.sourcetable .icon {
+	color: #DBDBDB;
+	height: 20px;
+	margin-right: -5px;
+	-webkit-transition: all .25s ease-in-out;
+}
+.sourcetable input.text {
+	height: 51px;
+	width: 180px;
+	border: 0px;
+	border-bottom: 1px solid #DBDBDB;
+	margin-left: -80px;
+	background: transparent;
+	padding-left: 30px;
+	font-size: 14px;
+	-webkit-transition: all .25s ease-in-out;
+}
+.sourcetable input:focus {
+	outline: none;
+	border-bottom: 1px solid #7660EB;
+}
 .container table .iconbutton {
 	color: #DBDBDB;
 	display: inline-block;
@@ -75,6 +156,17 @@
 .right input {
 	height: 51px;
 	width: 50px;
+	border: 0px;
+	border-bottom: 1px solid #DBDBDB;
+	margin-left: -80px;
+	background: transparent;
+	padding-left: 30px;
+	font-size: 14px;
+	-webkit-transition: all .25s linear;
+}
+.left_even input, .right_even input {
+	height: 51px;
+	width: 87px;
 	border: 0px;
 	border-bottom: 1px solid #DBDBDB;
 	margin-left: -80px;
