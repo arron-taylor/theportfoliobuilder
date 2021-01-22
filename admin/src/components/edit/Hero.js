@@ -103,7 +103,7 @@ export const HeroSettings = () => {
               <FontAwesomeIcon id="src_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.src} onFocus={highLight} onBlur={dehighLight} type="text" name="src" placeholder="URL of image" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.src} onFocus={highLight} onBlur={dehighLight} type="text" name="src" placeholder="URL of image" /> 
             </td>
           </tr> 
           <tr>
@@ -116,7 +116,7 @@ export const HeroSettings = () => {
               <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
           <tr>
@@ -158,7 +158,7 @@ export const HeroSettings = () => {
               <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>

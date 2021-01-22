@@ -117,7 +117,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
             </td>
           </tr> 
           <tr>
@@ -130,7 +130,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
           <tr>
@@ -143,7 +143,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="border_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={props.border} onFocus={highLight} onBlur={dehighLight} type="text" name="border" placeholder="#FFFFFF" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.border} onFocus={highLight} onBlur={dehighLight} type="text" name="border" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
           
@@ -162,7 +162,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
@@ -175,7 +175,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="backgroundColor_icon" className={ settings.icon } icon={ faLock } />
             </td>
             <td>
-              <input onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
             </td>
           </tr>
           <tr>
@@ -188,7 +188,7 @@ export const ButtonSettings = () => {
               <FontAwesomeIcon id="borderRadius_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={props.borderRadius} onFocus={highLight} onBlur={dehighLight} type="text" name="borderRadius" placeholder="#FFFFFF" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.borderRadius} onFocus={highLight} onBlur={dehighLight} type="text" name="borderRadius" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
         </table>

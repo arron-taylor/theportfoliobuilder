@@ -41,12 +41,12 @@
 	border-radius: 5px;
 	width: 12px;
 	cursor: pointer;
-	z-index: 2;
+	z-index: 5;
 }
 .container table .icon:hover {
 	cursor: pointer !important;
 	color: #FEFEFE !important;
-	background: #7660EB;
+	background: #7660EB !important;
 }
 .container .iconbutton:hover {
 	color: #7660EB;
@@ -168,7 +168,7 @@
 	text-align: center;
 	font-family: 'Avenir Next';
 }
-.right input {
+.right input.text {
 	height: 51px;
 	width: 50px;
 	border: 0px;
@@ -192,7 +192,7 @@
 	-webkit-transition: all .15s linear;
 	color: #989898;
 }
-.left  input {
+.left  input.text {
 	height: 51px;
 	width: 125px;
 	border: 0px;
@@ -206,7 +206,7 @@
 .heightSlider {
 	-webkit-transition: all .25s linear;
 	position: absolute;
-	z-index: 3;
+	z-index: 25;
 	left: 40px;
 	height: 25px;
 	width: 275px;
@@ -251,7 +251,7 @@
 .widthSlider {
 	-webkit-transition: all .25s linear;
 	position: absolute;
-	z-index: 3;
+	z-index: 25;
 	left: 10px;
 	height: 25px;
 	width: 275px;
@@ -297,7 +297,8 @@
   background: #7165E3;
   cursor: pointer;
 	border-radius: 15px;
-	border: 1px solid #5D53BE
+	border: 1px solid #5D53BE;
+	background-size: cover;
 }
 
 ::-moz-range-thumb {
@@ -308,6 +309,25 @@
   background: #7660EB;
   cursor: pointer;
 	border-radius: 15px;
+}
+.colorPickerWrapper {
+	position: absolute;
+	margin-left: 125px;
+	width: 125px;
+	-webkit-transition: all .15s linear;
+	font-family: helvetica neue;
+}
+.colorPicker {
+	padding: 0px;
+	width: 25px;
+	height: 25px;
+	opacity: 0;
+	margin-left: -25px;
+	cursor: pointer;
+}
+.colorPicker:active, .colorPicker:focus {
+	outline: none;
+	border: 1px solid transparent;
 }
 .px {
 	border-radius: 5px;

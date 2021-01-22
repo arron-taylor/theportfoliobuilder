@@ -8,7 +8,7 @@ import { useNode, useEditor } from "@craftjs/core";
 import settings from '../../settings.module.css';
 import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faTint, faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 
 export default function Text({text, fontSize, textAlign, color, fontFamily, marginTop, marginLeft}) {
 
@@ -47,8 +47,8 @@ export default function Text({text, fontSize, textAlign, color, fontFamily, marg
     { selected? <div className={edit.textBorder}> 
 
     <div className={edit.options} >  
-      <FontAwesomeIcon onClick={duplicate} id="color_icon" className={ edit.icon } icon={ faClone } />
-      <FontAwesomeIcon onClick={delete_node} id="color_icon" className={ edit.icon } icon={ faTrash } /> 
+      <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } />
+      <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
     </div>
 
       <ContentEditable disabled={!editable} html={text} 
@@ -126,11 +126,11 @@ export const TextSettings = () => {
             </td>
           </tr>
           <tr>
-            <td>
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
               <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
             </td>
           </tr> 
           <tr>
@@ -139,11 +139,17 @@ export const TextSettings = () => {
             </td>
           </tr>
           <tr>
-            <td>
+            <td style={{display: "flex", height: "51px","align-items": "center"}}>
               <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
+              <div className={settings.colorPickerWrapper}> 
+                <FontAwesomeIcon className={ settings.icon } icon={ faTint } />
+                <input className={ settings.colorPicker } onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="color" name="color" placeholder="#FFFFFF" /> 
+              </div>
             </td>
             <td>
-              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
+
+              <input className={ settings.text } onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> 
+                     
             </td>
           </tr>
           <tr>
@@ -180,11 +186,10 @@ export const TextSettings = () => {
               <FontAwesomeIcon id="marginTop_icon" className={ settings.icon_tiny } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.marginTop} onFocus={highLight} onBlur={dehighLight} type="text" name="marginTop" placeholder="12px" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.marginTop} onFocus={highLight} onBlur={dehighLight} type="text" name="marginTop" placeholder="12px" /> 
             </td>
           </tr> 
         </table>
-
 
         <table className={settings.right}>
           <tr>
@@ -198,7 +203,7 @@ export const TextSettings = () => {
               <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
+              <input className={ settings.text } onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
@@ -245,7 +250,7 @@ export const TextSettings = () => {
               <FontAwesomeIcon id="marginLeft_icon" className={ settings.icon_tiny } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.marginLeft} onFocus={highLight} onBlur={dehighLight} type="text" name="marginLeft" placeholder="12px" /> 
+              <input className={ settings.text } onChange={handleField} value={props.marginLeft} onFocus={highLight} onBlur={dehighLight} type="text" name="marginLeft" placeholder="12px" /> 
             </td>
           </tr> 
         </table>

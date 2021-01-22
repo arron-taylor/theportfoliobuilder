@@ -112,7 +112,7 @@ export const NavItemSettings = () => {
               <FontAwesomeIcon id="fontFamily_icon" className={ settings.icon } icon={ faPenNib } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontFamily} onFocus={highLight} onBlur={dehighLight} type="text" name="fontFamily" placeholder="Font-Family" /> 
             </td>
           </tr> 
           <tr>
@@ -125,7 +125,7 @@ export const NavItemSettings = () => {
               <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
             </td>
             <td>
-              <input onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="text" name="color" placeholder="#FFFFFF" /> <br />
             </td>
           </tr>
           
@@ -144,7 +144,7 @@ export const NavItemSettings = () => {
               <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
-              <input onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
+              <input className={ settings.text }  onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 
             </td>
           </tr> 
           <tr>
@@ -157,7 +157,7 @@ export const NavItemSettings = () => {
               <FontAwesomeIcon id="backgroundColor_icon" className={ settings.icon } icon={ faLock } />
             </td>
             <td>
-              <input onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
+              <input className={ settings.text }  onChange={handleField} value={props.backgroundColor} onFocus={highLight} onBlur={dehighLight} type="text" name="backgroundColor" placeholder="password" /> <br />
             </td>
           </tr>
           
@@ -167,7 +167,6 @@ export const NavItemSettings = () => {
 }
 
 NavItem.craft = {
-  extensionName: "Image Source",
   props: { 
     fontSize: "12",
     fontFamily: 'comic sans ms',
