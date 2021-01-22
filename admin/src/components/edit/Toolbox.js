@@ -8,6 +8,8 @@ import  Text  from './Text'
 import  Card  from './Card'
 import  NavBar  from './NavBar'
 import  NavItem  from './NavItem'
+import  ColumnContainer  from './ColumnContainer'
+import  Column  from './Column'
 import  Container  from './Container'
 import  Hero  from './Hero'
 import  Image  from './Image'
@@ -89,9 +91,10 @@ const { query, actions } = useEditor((state, query) => ({
      	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <Card text='text component' />)}> Card Component </div>
      	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <NavBar text='Navbar Component' />)}> Navbar </div>
      	<div onDragStart={duplicate} onDrag={moveItem} onDragEnd={ clear } ref={(ref) => connectors.create(ref, <NavItem text='New Item' />)}> Bar Item </div>
-     	<div ref={(ref) => connectors.create(ref, <Container />)}> New Container </div>
      	<div ref={(ref) => connectors.create(ref, <Hero />)}> Hero Component </div>
      	<div ref={(ref) => connectors.create(ref, <Image />)}> Image Component </div>
+        <div ref={(ref) => connectors.create(ref, <ColumnContainer />)}> ColumnContainer Component </div>
+        <div ref={(ref) => connectors.create(ref, <Column />)}> Column Component </div>
     </div>
 	)
 }

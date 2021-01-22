@@ -114,13 +114,13 @@
 	background: #F5F6FA;
 }
 .toolbar_left_items .toolbar_icon_active {
-	color: #7165E3;
+	color: #F5F6FA;
 	height: 21px;
 	width: 21px;
 	-webkit-transition: all .25s ease-in-out;
 	padding: 15px;
 	border-radius: 5px;
-	background: #F5F6FA;
+	background: #7165E3;
 	cursor: pointer;
 	margin-top: 10px;
 	cursor: pointer;
@@ -287,8 +287,23 @@
 }
 
 
-.wrapper {
+.columnDroppable {
+	width: 29%;
+	background: rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
+.columnContainer {
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	min-height: 450px;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+}
+
 .flexContainer {
 	display: flex;
 	flex-direction: column;
@@ -326,7 +341,29 @@
 .textBorder p {
 	display: inline-block;
 }
+.columnsContainerOptions {
+	margin-top: 0px !important;
+	float: right;
+	margin-left: -125px;
+	margin-bottom: -15px;
+	width: 75px;
+}
+.columnOptions {
+	margin-top: 0px !important;
+	float: right;
+	margin-bottom: -15px;
+	width: 75px;
+	align-self: flex-start !important;
+	margin-left: auto;
+}
 .options {
+	margin-top: -15px;
+	margin-left: 15px;
+	float: right;
+	width: 50px;
+	position: absolute;
+}
+.options, .columnsContainerOptions, .columnOptions {
 	background: rgba(49, 41, 105, 0.25);
 	-webkit-backdrop-filter: blur(6px);
 	background-image: initial;
@@ -341,23 +378,18 @@
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 	border-radius: 5px;
 	padding: 5px;
-	width: 50px;
-	float: right;
-	position: absolute;
 	align-self: flex-end;
-	margin-top: -15px;
-	margin-left: 15px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	color: #fff;
 }
-.options .icon {
+.options .icon, .columnsContainerOptions .icon, .columnOptions .icon {
 	height: 15px;
 	width: 15px;
 	-webkit-transition: all .25s ease-in-out;
 }
-.options .icon:hover {
+.options .icon:hover, .columnsContainerOptions .icon:hover, .columnOptions .icon:hover {
 	color: rgba(250, 250, 250, 0.5);
 	cursor: pointer;
 }

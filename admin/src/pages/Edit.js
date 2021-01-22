@@ -16,6 +16,8 @@ import  NavItem  from '../components/edit/NavItem'
 import  Hero  from '../components/edit/Hero'
 import  Image  from '../components/edit/Image'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
+import  ColumnContainer  from '../components/edit/ColumnContainer'
+import  Column  from '../components/edit/Column'
 import { Editor, Element } from "@craftjs/core";
 import  Template  from '../components/Template'
 import  EditFrame  from './EditFrame'
@@ -56,7 +58,7 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div id="root" className={edit.maincontainer}> 
-      <Editor resolver={{Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
+      <Editor resolver={{Column, ColumnContainer, Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
       { data && data.page? 
       <EditFrame page={data.page} /> : <EditFrame page={data.page} />
       }

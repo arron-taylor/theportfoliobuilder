@@ -2,7 +2,7 @@ import edit from '../../edit.module.css';
 import { Element, useNode } from '@craftjs/core';
 import { useState, useEffect } from 'react';
 
-export default function Container({background, children, padding = 250}) {
+export default function Container({background, children, padding = 0}) {
 
   const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
@@ -13,10 +13,8 @@ export default function Container({background, children, padding = 250}) {
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
   return (
-    <div ref={ref => connect(drag(ref))} style={{background, "display": "block"}} className={edit.EditableContainer}>
-      <Element className={edit.flexContainer} style={{background: 'rgba(0, 0, 0, 0.25)', minHeight: "200px", padding: `${padding}px`}} id='Container' canvas>
+    <div ref={ref => connect(drag(ref))} className={edit.EditableContainer}>
         {children}
-     </Element>
     </div>
   )
 }
