@@ -83,7 +83,7 @@ export const ImageSettings = ({ src }) => {
     )
 
   });
-  const widthSlider = (e) => {
+  const openSlider = (e) => {
     if(e) {
        const element = e.target.id.substring(0, e.target.id.length-5) + '_slider'
        if(document.getElementById(element)) {
@@ -139,7 +139,7 @@ export const ImageSettings = ({ src }) => {
                   <input onChange={handleField} value={props.width} name="width" max="1000" min="1" type="range" />
                 </div>
               </div>
-              <FontAwesomeIcon onMouseOver={ widthSlider } id="width_icon" className={ settings.icon } icon={ faArrowsAltH } />
+              <FontAwesomeIcon onMouseOver={ openSlider } id="width_icon" className={ settings.icon } icon={ faArrowsAltH } />
               <div id="width_px" className={settings.px}>  PX </div>
             </td>
             <td>
@@ -176,7 +176,7 @@ export const ImageSettings = ({ src }) => {
                   <input onChange={handleField} value={props.height} name="height" max="1000" min="1" type="range" />
                 </div>
               </div>
-              <FontAwesomeIcon onMouseOver={ widthSlider } id="height_icon" className={ settings.icon } icon={ faArrowsAltV } />
+              <FontAwesomeIcon onMouseOver={ openSlider } id="height_icon" className={ settings.icon } icon={ faArrowsAltV } />
               <div id="height_px" className={settings.px}>  PX </div>
             </td>
             <td>

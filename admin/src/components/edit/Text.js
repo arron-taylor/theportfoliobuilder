@@ -67,7 +67,7 @@ export default function Text({text, fontSize, textAlign, color, fontFamily, marg
 	)
 }
 
-export const TextSettings = () => {
+export const TextSettings = ({color}) => {
   const {
     actions: { setProp },
     props,
@@ -85,6 +85,7 @@ export const TextSettings = () => {
       props[name] = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")  
     });
   }
+  const [slider, toggleSlider] = useState();
 
    useEffect( () => {
     Object.keys(focused).map(
@@ -116,6 +117,23 @@ export const TextSettings = () => {
     const { name, value } = e.target;
     setFocus(prevState => ({ ...prevState, [name]:false }));
   }
+  const openSlider = (e) => {
+    if(e) {
+       const element = e.target.id.substring(0, e.target.id.length-5) + '_slider'
+       if(document.getElementById(element)) {
+         toggleSlider(element);
+         setTimeout(() => {
+            document.getElementById(element).style.display = 'flex'
+         }, 250);
+       }
+    }
+  }
+  const clearSlider = () => {
+    if(slider) {
+      toggleSlider(null);
+      document.getElementById(slider).style.display = 'none'
+    }
+  }
 
   return ( 
     <div className={settings.container}>
@@ -142,7 +160,7 @@ export const TextSettings = () => {
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
               <FontAwesomeIcon id="color_icon" className={ settings.icon } icon={ faFillDrip } />
               <div className={settings.colorPickerWrapper}> 
-                <FontAwesomeIcon className={ settings.icon } icon={ faTint } />
+                <FontAwesomeIcon style={{ color: props.color }} className={ settings.icon } icon={ faTint } />
                 <input className={ settings.colorPicker } onChange={handleField} value={props.color} onFocus={highLight} onBlur={dehighLight} type="color" name="color" placeholder="#FFFFFF" /> 
               </div>
             </td>
@@ -199,8 +217,12 @@ export const TextSettings = () => {
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="fontSize_icon" className={ settings.icon_tiny } icon={ faFont } />
-              <FontAwesomeIcon id="size_icon" className={ settings.icon } icon={ faFont } />
+            <div id="fontSize_slider" className={settings.fontSlider} onMouseOut={clearSlider} id="fontSize_slider">
+                <div>
+                  <input onChange={handleField} value={props.fontSize} name="fontSize" max="200" min="1" type="range" />
+                </div>
+              </div>
+              <FontAwesomeIcon onMouseOver={openSlider} id="fontSize_icon" className={ settings.icon } icon={ faFont } />
             </td>
             <td>
               <input className={ settings.text } onChange={handleField} value={props.fontSize} onFocus={highLight} onBlur={dehighLight} type="text" name="fontSize" placeholder="12px" /> 

@@ -203,11 +203,16 @@
 	font-size: 14px;
 	-webkit-transition: all .15s linear;
 }
+.fontSlider {
+	left: 75px;
+}
 .heightSlider {
+	left: 40px;
+}
+.heightSlider, .fontSlider {
 	-webkit-transition: all .25s linear;
 	position: absolute;
 	z-index: 25;
-	left: 40px;
 	height: 25px;
 	width: 275px;
 	display: flex;
@@ -232,7 +237,8 @@
   transform: rotate(270deg);
   display: none;
 }
-.heightSlider div {
+
+.heightSlider div, .fontSlider div {
 	height: 5px;
 	border-radius: 10px;
 	width: 250px;
@@ -241,12 +247,13 @@
 	justify-content: center;
 	align-items: center;
 }
-.heightSlider input {
+.heightSlider input, .fontSlider input {
 	width: 250px;
 	padding: 0px;
-	margin-left: 0px;
-	-webkit-appearance: none;
 	border: 0px;
+	margin-left: 0px;
+	background: transparent;
+	-webkit-appearance: none;
 }
 .widthSlider {
 	-webkit-transition: all .25s linear;
@@ -313,17 +320,35 @@
 .colorPickerWrapper {
 	position: absolute;
 	margin-left: 125px;
-	width: 125px;
-	-webkit-transition: all .15s linear;
-	font-family: helvetica neue;
+	
+}
+.colorPickerWrapper .icon {
+	background: rgba(0, 0, 0, 0.15);
+	-webkit-backdrop-filter: blur(3px);
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	border-radius: 100px;
+	margin-right: -4px;
+	margin-bottom: -2px;
+}
+.colorPickerWrapper:hover .icon {
+	cursor: pointer !important;
+	opacity: .5;
 }
 .colorPicker {
 	padding: 0px;
 	width: 25px;
 	height: 25px;
-	opacity: 0;
 	margin-left: -25px;
 	cursor: pointer;
+	opacity: 0;
 }
 .colorPicker:active, .colorPicker:focus {
 	outline: none;
