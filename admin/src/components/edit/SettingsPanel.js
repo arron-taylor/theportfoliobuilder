@@ -25,7 +25,7 @@ export default function SettingsPanel(props) {
     }
   });
 	return selected? ( 
-		<div className={edit.SettingsPanel}>
+		<div id="SettingsPanel" className={edit.SettingsPanel}>
      <div className={edit.header}> 
      	<h1 className={edit.title}> { selected.name } </h1> <FontAwesomeIcon onClick={setNull} className={edit.x} icon={faTimes} />
      </div>

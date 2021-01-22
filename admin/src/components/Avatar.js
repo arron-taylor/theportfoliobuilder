@@ -7,7 +7,7 @@ export default function Avatar(props) {
 	
 	return (
 		<div>
-			<div className={style.avatar} />
+			<div style={{background: "url(./" +  props.user.avatar + ".png)", backgroundSize: "cover"}} className={style.avatar} />
 			<div className={style.fullname}> {props.user.name} </div>
 			<div className={style.accountlevel}> <FontAwesomeIcon className={ style.icon } icon={ faIdBadge } /> Full Access Account </div>
 		</div>

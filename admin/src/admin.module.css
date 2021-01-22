@@ -70,6 +70,7 @@
 .pagebuttons .icon {
 	height: 18px; 
 	width: 18px;
+	-webkit-transition: all .15s ease-in-out;
 }
 .page .trash {
 	background: #FCC6BF;

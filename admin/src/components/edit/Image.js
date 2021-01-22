@@ -26,9 +26,9 @@ export default function Image({height, width, src, marginLeft, marginTop}) {
     <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginLeft, marginTop}}>
     
     { selected? <div className={edit.textBorder}> 
-      <img src={src} style={{height, width}} />
+      <img src={src} style={{height: `${height}px`, width: `${width}px`}} />
 
-         </div> : <img src={src} style={{height, width}}style={{height, width}}/>
+         </div> : <img src={src} style={{height: `${height}px`, width: `${width}px`}} />
 		}
     
     </div>
@@ -44,13 +44,11 @@ export const ImageSettings = ({ src }) => {
   }));
 
   const [extension, toggleExtenion] = useState(false);
-
-  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
   const [focused, setFocus] = useState({});
+  const [slider, toggleSlider] = useState();
 
   const handleField = (e) => {
     const { name, value } = e.target;
-    setUser(prevState => ({ ...prevState,[name]: value}));
     setProp(props => { 
       props[name] = e.target.value.replace(/<\/?[^>]+(>|$)/g, "")  
     });
@@ -62,21 +60,46 @@ export const ImageSettings = ({ src }) => {
         if(focused[i] === true) {
           let element = document.getElementById(i);
           let element_icon = document.getElementById(i + '_icon');
+          let element_px = document.getElementById(i + '_px');
           element.style.color = "#7165E3";
           element.style.fontWeight = 'bold';
           element_icon.style.color = "#7165E3";
+          element_px.style.color = "#fefefe";
+          element_px.style.fontWeight = "bold";
+          element_px.style.background = "#7165E3";
         }
         else {
           let element_icon = document.getElementById(i + '_icon');
+          let element_px = document.getElementById(i + '_px');
           let element = document.getElementById(i);
           element.style.color = "#989898";
           element.style.fontWeight = 'normal';
+          element_px.style.fontWeight = 'normal';
           element_icon.style.color = "#DBDBDB";
+          element_px.style.background = "transparent";
+          element_px.style.color = "#989898";
         }
       }
     )
 
   });
+  const widthSlider = (e) => {
+    if(e) {
+       const element = e.target.id.substring(0, e.target.id.length-5) + '_slider'
+       if(document.getElementById(element)) {
+         toggleSlider(element);
+         setTimeout(() => {
+            document.getElementById(element).style.display = 'flex'
+         }, 250);
+       }
+    }
+  }
+  const clearSlider = () => {
+    if(slider) {
+      toggleSlider(null);
+      document.getElementById(slider).style.display = 'none'
+    }
+  }
   const highLight = (e) => {
     const { name, value } = e.target;
     console.log(name, value)
@@ -111,7 +134,13 @@ export const ImageSettings = ({ src }) => {
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="width_icon" className={ settings.icon } icon={ faArrowsAltH } />
+              <div className={settings.widthSlider} onMouseOut={clearSlider} id="width_slider">
+                <div>
+                  <input onChange={handleField} value={props.width} name="width" max="1000" min="1" type="range" />
+                </div>
+              </div>
+              <FontAwesomeIcon onMouseOver={ widthSlider } id="width_icon" className={ settings.icon } icon={ faArrowsAltH } />
+              <div id="width_px" className={settings.px}>  PX </div>
             </td>
             <td>
               <input onChange={handleField} value={props.width} onFocus={highLight} onBlur={dehighLight} type="text" name="width" placeholder="12px" /> 
@@ -125,6 +154,7 @@ export const ImageSettings = ({ src }) => {
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
               <FontAwesomeIcon id="marginLeft_icon" className={ settings.icon } icon={ faLongArrowAltRight } />
+              <div id="marginLeft_px" className={settings.px}>  PX </div>
             </td>
             <td>
               <input onChange={handleField} value={props.marginLeft} onFocus={highLight} onBlur={dehighLight} type="text" name="marginLeft" placeholder="12px" /> 
@@ -141,7 +171,13 @@ export const ImageSettings = ({ src }) => {
           </tr>
           <tr>
             <td style={{display: "flex", height: "51px","align-items": "center"}}>
-              <FontAwesomeIcon id="height_icon" className={ settings.icon } icon={ faArrowsAltV } />
+              <div id="height_slider" className={settings.heightSlider} onMouseOut={clearSlider} id="height_slider">
+                <div>
+                  <input onChange={handleField} value={props.height} name="height" max="1000" min="1" type="range" />
+                </div>
+              </div>
+              <FontAwesomeIcon onMouseOver={ widthSlider } id="height_icon" className={ settings.icon } icon={ faArrowsAltV } />
+              <div id="height_px" className={settings.px}>  PX </div>
             </td>
             <td>
               <input onChange={handleField} value={props.height} onFocus={highLight} onBlur={dehighLight} type="text" name="height" placeholder="12px" /> 
@@ -255,8 +291,8 @@ export const ImageSettingsExtension = ({ src }) => {
 }
 Image.craft = {
   props: { 
-    height: "100px",
-    width: "100px",
+    height: "100",
+    width: "100",
     marginLeft: "0px", 
     marginTop: "0px",
     settingsExtension: ImageSettingsExtension,

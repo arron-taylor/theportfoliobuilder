@@ -208,7 +208,7 @@
 	top: 70px;
 	width: 305px;
 	flex-direction: column;
-	z-index: 2;
+	z-index: 50;
 }
 .SettingsPanel .header {
 	display: block;

@@ -30,7 +30,7 @@ export default function SettingsPanelExtension(props) {
 
 	return props.extension? ( 
 
-		<div className={edit.SettingsPanelExtension}>
+		<div id="SettingsPanelExtension" className={edit.SettingsPanelExtension}>
      <div className={edit.header}> 
      	<h1 className={edit.title}>  {collected.data.props.settingsExtensionName} </h1> <FontAwesomeIcon onClick={props.toggle} className={edit.x} icon={faTimes} />
      </div>
