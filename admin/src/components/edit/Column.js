@@ -42,10 +42,11 @@ export default function Column({children, padding = 0}) {
         <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } />
         <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
       </div>
-
+      <div className={edit.columnContent}>
        {children} 
+      </div>
        </> : 
-      <>{children}</>
+      <div className={edit.columnContent}> {children}</div>
       
     }
     </div>

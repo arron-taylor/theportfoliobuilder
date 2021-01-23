@@ -114,13 +114,23 @@
 	background: #F5F6FA;
 }
 .toolbar_left_items .toolbar_icon_active {
-	color: #F5F6FA;
+	color: #fff;
 	height: 21px;
 	width: 21px;
 	-webkit-transition: all .25s ease-in-out;
 	padding: 15px;
 	border-radius: 5px;
-	background: #7165E3;
+	-webkit-backdrop-filter: blur(3px);
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background: rgba(114, 101, 225, 0.75);
 	cursor: pointer;
 	margin-top: 10px;
 	cursor: pointer;
@@ -286,22 +296,28 @@
 .toolbar_top {
 }
 
-
+.columnContent {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+}
 .columnDroppable {
 	width: 29%;
+	min-height: 100px;
 	background: rgba(0, 0, 0, 0.05);
 	border: 1px solid rgba(0, 0, 0, 0.15);
-	justify-content: center;
-	align-items: center;
-	display: flex;
 }
 .columnContainer {
-	border: 1px solid rgba(0, 0, 0, 0.125);
-	min-height: 450px;
 	display: flex;
 	justify-content: space-around;
 	padding-top: 0.5%;
 	padding-bottom: 0.5%;
+	width: 100%;
+}
+.columnWrapper {
+	min-height: 150px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	padding: 15px;
 }
 
 .flexContainer {

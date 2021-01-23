@@ -58,7 +58,7 @@ export default function Edit(props) {
   if ( data.page.owner.id != props.user.id  ) return window.location = 'http://localhost:3000/noaccess'
   return (
     <div id="root" className={edit.maincontainer}> 
-      <Editor resolver={{Column, ColumnContainer, Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
+      <Editor resolver={{ Column, ColumnContainer, Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
       { data && data.page? 
       <EditFrame page={data.page} /> : <EditFrame page={data.page} />
       }

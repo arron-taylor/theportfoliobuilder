@@ -24,13 +24,12 @@ export default function ColumnContainer({background, children, padding = 0}) {
   });
 
   const addCol = (e) => {
-    const parent = (collected.id)
-
+    const parent = (collected.data.linkedNodes.ColContainer)
+    const first = query.node(collected.data.linkedNodes.ColContainer).get()
     const node_to_make = {
-      data: query.node(collected.data.linkedNodes.Col1).get().data
+      data: query.node(first.data.nodes[0]).get().data
     }
     const node = query.parseFreshNode(node_to_make).toNode();
-    console.log(node);
     actions.add(node, parent);
   }
   const duplicate = (e) => {
@@ -46,25 +45,21 @@ export default function ColumnContainer({background, children, padding = 0}) {
   }
 
   return (
-    <div onClick={e => setEditable(true)}>
-     {selected? <div > 
+    <div className={edit.columnWrapper} ref={ref => connect(drag(ref))} onClick={e => setEditable(true)} >
+     {selected? <div> 
 
       <div className={edit.columnsContainerOptions} >  
         <FontAwesomeIcon onClick={addCol} className={ edit.icon } icon={ faPlus } />
         <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } />
         <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
       </div>
-
-      <div ref={ref => connect(drag(ref))} className={edit.columnContainer}>
-
-        <Element is={Column} id="Col1" canvas />
-        <Element is={Column} id="Col2" canvas />
-
-      </div> </div> : 
-      <div ref={ref => connect(drag(ref))} className={edit.columnContainer}>
-        <Element is={Column} id="Col1"  canvas />
-        <Element is={Column} id="Col2" canvas />
-      </div>
+      <Element className={edit.columnContainer} id="ColContainer" canvas>
+          <Element is={Column} id="Col1" canvas />
+      </Element>
+       </div> : 
+      <Element className={edit.columnContainer} id="ColContainer" canvas>
+          <Element is={Column} id="Col1" canvas />
+      </Element>
 
       }
     </div>
