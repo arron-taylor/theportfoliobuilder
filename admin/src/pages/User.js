@@ -13,6 +13,9 @@ import  Text  from '../components/edit/Text'
 import  NavItem  from '../components/edit/NavItem'
 import  Hero  from '../components/edit/Hero'
 import  Image  from '../components/edit/Image'
+import  Column  from '../components/edit/Column'
+import  ColumnContainer  from '../components/edit/ColumnContainer'
+import  ToolWrapper  from '../components/edit/ToolWrapper'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
 import { Editor, Frame } from "@craftjs/core";
 import  Template  from '../components/Template'
@@ -47,7 +50,7 @@ export default function User(props) {
   
   return (
     <div className={edit.maincontainer}> 
-      <Editor enabled={false} resolver={{Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
+      <Editor enabled={false} resolver={{ Column, ColumnContainer, Element, ToolWrapper, Card, Button, Text, Image, Container, NavBar, NavItem, MainWrapper, BodyWrapper, ToolbarLeft, ToolbarBottom, SettingsPanel, Template, Hero}}> 
       { data? 
 
         <Frame data={lz.decompress(lz.decodeBase64(data.page.page_layout))}>

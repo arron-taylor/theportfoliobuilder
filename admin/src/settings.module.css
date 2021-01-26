@@ -108,6 +108,10 @@
 	opacity: .75;
 	-webkit-transition: all .15s ease-in-out;
 }
+.sourcetable button .icon {
+	width: 50px !important;
+	color: #989898;
+}
 .sourcetable button:hover {
 	cursor: pointer;
 	opacity: .5;

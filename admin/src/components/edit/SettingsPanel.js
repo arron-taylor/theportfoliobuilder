@@ -32,9 +32,9 @@ export default function SettingsPanel(props) {
      <div className={edit.body}> 
      {	selected.settings && React.createElement(selected.settings, {delete: () => { actions.delete(selected.id)}})  }
 	   </div>
-	   {
+	   {/*
           selected.isDeletable ? (
-            <button
+            <button style={{width: "50px", margin: "0px auto", }}
               onClick={() => {
                 actions.delete(selected.id);
               }}
@@ -42,7 +42,7 @@ export default function SettingsPanel(props) {
               Delete
             </button>
           ) : null
-        }
+        */}
     </div>  
 	) : null
 }

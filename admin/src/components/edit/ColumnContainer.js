@@ -29,7 +29,10 @@ export default function ColumnContainer({background, children, padding = 0}) {
     const node_to_make = {
       data: query.node(first.data.nodes[0]).get().data
     }
+
     const node = query.parseFreshNode(node_to_make).toNode();
+    console.log(node)
+    node.data.nodes = null;
     actions.add(node, parent);
   }
   const duplicate = (e) => {
