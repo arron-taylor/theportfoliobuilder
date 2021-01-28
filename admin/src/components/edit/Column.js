@@ -14,8 +14,8 @@ export default function Column({children, padding, height, width}) {
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
-
-  const { query, actions } = useEditor((state, query) => ({
+  const { query, actions, enabled } = useEditor((state, query) => ({
+      enabled: state.options.enabled
     }));
 
   const { ...collected } = useNode((collector) => {
@@ -33,6 +33,7 @@ export default function Column({children, padding, height, width}) {
   const delete_node = () => {
     actions.delete(collected.id)
   }
+  const [draggable, setDraggable] = useState(true);
   const [editable, setEditable] = useState(false);
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
@@ -40,11 +41,12 @@ export default function Column({children, padding, height, width}) {
 
     <div style={{height: `${height}px`, width: `${width}px`}} className={edit.columnDroppable} ref={ref => connect(drag(ref))} >
     {selected? 
-      <div className={edit.columnBorder}>  <div className={edit.columnOptions} >  
-      {/*   <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faPlus } />
-        <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } /> --> */}
-        <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
-      </div>
+      <div className={edit.columnBorder}>  
+        <div className={edit.columnOptions} >  
+          {/*   <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faPlus } />
+          <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } /> --> */}
+          <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
+        </div>
       <div className={edit.columnContent}>
        {children} 
       </div>
