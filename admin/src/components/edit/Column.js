@@ -6,6 +6,7 @@ import { faPlus, faTint, faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 import SettingsPanelExtension from './SettingsPanelExtension'
+import FocusHandler from '../../modules/FocusHandler'
 
 export default function Column({children, padding, height, width}) {
 
@@ -78,35 +79,10 @@ export const ColumnSettings = ({ src }) => {
     });
   }
 
-   useEffect( () => {
-    Object.keys(focused).map(
-      (i, key) => {
-        if(focused[i] === true) {
-          let element = document.getElementById(i);
-          let element_icon = document.getElementById(i + '_icon');
-          let element_px = document.getElementById(i + '_px');
-          element.style.color = "#7165E3";
-          element.style.fontWeight = 'bold';
-          element_icon.style.color = "#7165E3";
-          element_px.style.color = "#fefefe";
-          element_px.style.fontWeight = "bold";
-          element_px.style.background = "#7165E3";
-        }
-        else {
-          let element_icon = document.getElementById(i + '_icon');
-          let element_px = document.getElementById(i + '_px');
-          let element = document.getElementById(i);
-          element.style.color = "#989898";
-          element.style.fontWeight = 'normal';
-          element_px.style.fontWeight = 'normal';
-          element_icon.style.color = "#DBDBDB";
-          element_px.style.background = "transparent";
-          element_px.style.color = "#989898";
-        }
-      }
-    )
-
+  useEffect( () => {
+    FocusHandler(focused)
   });
+
   const openSlider = (e) => {
     if(e) {
        const element = e.target.id.substring(0, e.target.id.length-5) + '_slider'

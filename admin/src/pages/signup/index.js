@@ -1,8 +1,8 @@
-import { Step_1 } from './Step_1.js'
-import { Step_2 } from './Step_2.js'
-import { Step_3 } from './Step_3.js'
+import { Step1 } from './Step1.js'
+import { Step2 } from './Step2.js'
+import { Step3 } from './Step3.js'
 
 
-export { default as Step_1 }  from './Step_1.js'
-export { default as Step_2 }  from './Step_2.js'
-export { default as Step_3 }  from './Step_3.js'
+export { default as Step1 }  from './Step1.js'
+export { default as Step2 }  from './Step2.js'
+export { default as Step3 }  from './Step3.js'

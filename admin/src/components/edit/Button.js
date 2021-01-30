@@ -7,6 +7,7 @@ import { useNode, useEditor } from "@craftjs/core";
 import { faClone, faTrash, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
+import FocusHandler from '../../modules/FocusHandler'
 
 export const Button = ({size, children, text, fontSize, textAlign, color, fontFamily, backgroundColor, borderRadius,  border}) => {
 
@@ -73,26 +74,8 @@ export const ButtonSettings = () => {
     });
   }
 
-   useEffect( () => {
-    Object.keys(focused).map(
-      (i, key) => {
-        if(focused[i] === true) {
-          let element = document.getElementById(i);
-          let element_icon = document.getElementById(i + '_icon');
-          element.style.color = "#7165E3";
-          element.style.fontWeight = 'bold';
-          element_icon.style.color = "#7165E3";
-        }
-        else {
-          let element_icon = document.getElementById(i + '_icon');
-          let element = document.getElementById(i);
-          element.style.color = "#989898";
-          element.style.fontWeight = 'normal';
-          element_icon.style.color = "#DBDBDB";
-        }
-      }
-    )
-
+  useEffect( () => {
+    FocusHandler(focused)
   });
   const highLight = (e) => {
     const { name, value } = e.target;
