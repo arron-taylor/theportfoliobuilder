@@ -45,7 +45,7 @@ function Admin(props) {
             <Route path="/analytics" component={ Analytics } /> 
             <Route path="/pages"> <Pages user={data.user} /> </Route> 
             <Route path="/inquiries" component={ Inquiries } /> 
-            <Route path="/settings" component={ Settings } /> 
+            <Route path="/settings"> <Settings user={data.user} /> </Route> 
           </Switch>
       </Content>
    </div>

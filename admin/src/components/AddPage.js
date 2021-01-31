@@ -69,12 +69,12 @@ export default function AddPage(props) {
               <table>
               <tr>
                 <td className={admin.label} id="name">
-              Page  Name
+                    Page  Name
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="name_icon" className={ login.icon } icon={ faSignature } />
+                  <FontAwesomeIcon id="name_icon" className={ admin.icon } icon={ faSignature } />
                 </td>
                 <td>
                   <input onChange={handleField} value={page.name} onFocus={highLight} onBlur={dehighLight} type="text" name="name" placeholder="Name of the page" /> 

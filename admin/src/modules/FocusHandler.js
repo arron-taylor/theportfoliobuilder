@@ -1,5 +1,6 @@
 export default function FocusHandler(focused) { 
-  Object.keys(focused).map(
+  if(focused) {
+    Object.keys(focused).map(
       (i, key) => {
         if(focused[i] === true) {
           let element = document.getElementById(i);
@@ -17,4 +18,5 @@ export default function FocusHandler(focused) {
         }
       }
     )
+  }
 }
