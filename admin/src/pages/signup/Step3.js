@@ -17,7 +17,7 @@ import FocusHandler from '../../modules/FocusHandler'
 
 export default function Step3(props) {
 
-  const [user, setUser] = useState(props.user);
+  const [user, setUser] = useState({name: props.user.name, email: props.user.email, password: props.user.password, avatar: './pug.png'});
   const [focused, setFocus] = useState({password:false});
   useEffect( () => {
     FocusHandler(focused);
@@ -27,28 +27,30 @@ export default function Step3(props) {
       let value = e.target.getAttribute('value');
    //   (user.avatar.substr(2)).substr(0,1).toUpperCase() + (user.avatar.substr(2)).substr(0, user.avatar.length-6).substr(1)
       setUser(prevState => ({ ...prevState,[name]: value}));
-      toggledropdown();
+  }
+  const handleClick = (e) => {
+      document.getElementById('avatardropdownmenu').style.display = 'none';
+      document.getElementById('dropdownbutton').style.background = "#fff"
+      document.getElementById('dropdownbutton').style.color = "#989898"
+      document.getElementById('dropdownbutton').style.borderRadius = "5px"
+      document.getElementById('dropdownbutton').style.border = "1px solid #DBDBDB"
+      const name = e.target.getAttribute('name');
+      let value = e.target.getAttribute('value');
+   //   (user.avatar.substr(2)).substr(0,1).toUpperCase() + (user.avatar.substr(2)).substr(0, user.avatar.length-6).substr(1)
+      setUser(prevState => ({ ...prevState,[name]: value}));
   }
   const highLight = (e) => {
-    if(e.target.getAttribute('name') === 'avatar') {
-      document.getElementById('avatardropdownmenu').style.display = 'flex'
-    }
-    else {
+   
       const { name, value } = e.target;
       setFocus(prevState => ({ ...prevState, [name]:true }));
-    }
   }
   const dehighLight = (e) => {
-    if(e.target.getAttribute('name') === 'avatar') {
-      document.getElementById('avatardropdownmenu').style.display = 'none'
-    }
-     else {
+    
       const { name, value } = e.target;
       setFocus(prevState => ({ ...prevState, [name]:false }));
-    }
   }
   const toggledropdown = () => {
-    if(document.getElementById('avatardropdownmenu').style.display == 'none') {
+    if(document.getElementById('avatardropdownmenu').style.display === 'none') {
       document.getElementById('avatardropdownmenu').style.display = 'flex';
       document.getElementById('dropdownbutton').style.background = "#EFEFEF"
       document.getElementById('dropdownbutton').style.color = "#7165E3"
@@ -102,10 +104,10 @@ export default function Step3(props) {
                     <FontAwesomeIcon name="avatar" id="type_icon" className={ signup.icondropdownright } icon={ faChevronDown } />
                     </button>
                   <div id="avatardropdownmenu" className={signup.avatardropdownmenu}>
-                    <div onClick={handleField} value="./whale.png" name="avatar"> <img onClick={handleField} value="./whale.png" name="avatar" src='./whale.png' /> </div>
-                    <div onClick={handleField} value="./deer.png" name="avatar"> <img onClick={handleField} value="./deer.png" name="avatar" src='./deer.png' /> </div>
-                    <div onClick={handleField} value="./pug.png" name="avatar" > <img onClick={handleField} value="./pug.png" name="avatar"  src='./pug.png' /> </div>
-                    <div onClick={handleField} value="./crab.png" name="avatar"> <img onClick={handleField} value="./crab.png" name="avatar" src='./crab.png' /> </div>
+                    <div onClick={handleClick} value="./whale.png" name="avatar"> <img onClick={handleClick} value="./whale.png" name="avatar" src='./whale.png' /> </div>
+                    <div onClick={handleClick} value="./deer.png" name="avatar"> <img onClick={handleClick} value="./deer.png" name="avatar" src='./deer.png' /> </div>
+                    <div onClick={handleClick} value="./pug.png" name="avatar" > <img onClick={handleClick} value="./pug.png" name="avatar"  src='./pug.png' /> </div>
+                    <div onClick={handleClick} value="./crab.png" name="avatar"> <img onClick={handleClick} value="./crab.png" name="avatar" src='./crab.png' /> </div>
                   </div> 
                 </td>
               </tr> 
@@ -168,7 +170,7 @@ export default function Step3(props) {
                   <FontAwesomeIcon id="confirmpassword_icon" className={ signup.icon } icon={ faUserSecret } />
                 </td>
                 <td>
-                  <input onChange={handleField} value={user.confirmpassword} onFocus={highLight} onBlur={dehighLight} type="password" name="confirmpassword" placeholder="authorization code" /> <br />
+                  <input onChange={handleField} value={user.confirmationcode} onFocus={highLight} onBlur={dehighLight} type="password" name="confirmpassword" placeholder="authorization code" /> <br />
                 </td>
               </tr>
             </table>

@@ -33,20 +33,6 @@ export default function Pages(props) {
   const edit = (e) => {
     window.location = 'http://localhost:3000/edit/' + e;
   }
-  const createPage = (e) => {
-    e.preventDefault();
-    let data = page
-    let token = localStorage.getItem("token")
-    axios.post(
-      'http://localhost:3001/makepage', 
-      data, 
-      { 
-        headers: { 
-          Authorization: 'Bearer ' + token 
-        }
-      }).then(() => { refetch() }).catch(error => { console.log(error.response) });
-    }
-
    const deleteprompt = (item) => {
     document.getElementById("alertbox").style.display = 'block';
     setPage(prevState => ({ ...prevState, ['id']:item.id }));
@@ -56,10 +42,6 @@ export default function Pages(props) {
   return (
     <div className={admin.container}>
       <Toolbar />
-      <form onSubmit={createPage}>
-            <input type="text" name='name' onChange={handleField} value={page.name} placeholder="name..." />
-            <button color='info'> Create New Page </button>
-        </form>
       <div className={admin.pageContainer}>
         {data.userspages.map((page) => {
         return <div className={admin.page} key={page.name}> <div className={admin.label}> {page.name} </div> 

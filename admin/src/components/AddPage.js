@@ -10,41 +10,45 @@ import login from '../login.module.css';
 import axios from 'axios';
 import lz from "lzutf8";
 import copy from 'copy-to-clipboard';
+import FocusHandler from '../modules/FocusHandler'
 
 export default function AddPage(props) {
 
-	const [type, setType] = useState(props.type);
   const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
  	const [statetoload, sethestatetoload] = useState(null);
+  const [page, setPage] = useState({page_type: '', page_kind: '', page_layout: '', name: '', id: ''});
+  const [focused, setFocus] = useState({name:false});
 
-	const deletepage = () => {
-    let token = localStorage.getItem("token")
-  	let data = props.page;
-  	axios.post(
-      'http://localhost:3001/deletepage', 
-      data, 
-      { 
-        headers: { 
-          Authorization: 'Bearer ' + token 
-        }
-      }).then( () => { closeprompt() } ).then( () => { props.refetch() } ).catch(error => { console.log(error.response) });
-  }
+  useEffect( () => {
+    FocusHandler(focused)
+  });
 	const closeprompt = () => {
    	console.log(props.page);
    	const alert_type = 'addBox';
    	alert = document.getElementById(alert_type);
    	alert.style.display = 'none';
    }
-
+   const createPage = (e) => {
+    e.preventDefault();
+    let data = page;
+    let token = localStorage.getItem("token")
+    axios.post(
+      'http://localhost:3001/makepage', 
+      data, 
+      { 
+        headers: { 
+          Authorization: 'Bearer ' + token 
+        }
+      }).then((data) => { window.location = '/edit/' + data.data.page.id }).catch(error => { console.log(error.response) });
+    }
   const setstatetoload = (e) => {
     sethestatetoload(e.target.value)
     console.log(statetoload)
   }
-  const [focused, setFocus] = useState({email:false, password:false});
 
   const handleField = (e) => {
     const { name, value } = e.target;
-    setUser(prevState => ({ ...prevState,[name]: value}));
+    setPage(prevState => ({ ...prevState,[name]: value}));
   }
   const highLight = (e) => {
     const { name, value } = e.target;
@@ -54,26 +58,7 @@ export default function AddPage(props) {
     const { name, value } = e.target;
     setFocus(prevState => ({ ...prevState, [name]:false }));
   }
-  useEffect( () => {
-    Object.keys(focused).map(
-      (i, key) => {
-        if(focused[i] === true) {
-          let element = document.getElementById(i);
-          let element_icon = document.getElementById(i + '_icon');
-          element.style.color = "#7165E3";
-          element.style.fontWeight = 'bold';
-          element_icon.style.color = "#7165E3";
-        }
-        else {
-          let element_icon = document.getElementById(i + '_icon');
-          let element = document.getElementById(i);
-          element.style.color = "#989898";
-          element.style.fontWeight = 'normal';
-          element_icon.style.color = "#DBDBDB";
-        }
-      }
-    )
-  });
+ 
 
    	return (
 		<div id="addBox" style={{display: 'none'}}>
@@ -83,36 +68,23 @@ export default function AddPage(props) {
 						<div className={admin.addcontent}> 
               <table>
               <tr>
-                <td className={admin.label} id="email">
+                <td className={admin.label} id="name">
               Page  Name
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="email_icon" className={ login.icon } icon={ faSignature } />
+                  <FontAwesomeIcon id="name_icon" className={ login.icon } icon={ faSignature } />
                 </td>
                 <td>
-                  <input onChange={handleField} value={user.email} onFocus={highLight} onBlur={dehighLight} type="text" name="email" placeholder="Name of the page" /> 
+                  <input onChange={handleField} value={page.name} onFocus={highLight} onBlur={dehighLight} type="text" name="name" placeholder="Name of the page" /> 
                 </td>
               </tr> 
-              <tr>
-                <td className={admin.label} id="password">
-                  Page Kind
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon id="password_icon" className={ login.icon } icon={ faLock } />
-                </td>
-                <td>
-                  <input onChange={handleField} value={user.password} onFocus={highLight} onBlur={dehighLight} type="password" name="password" placeholder="password" /> <br />
-                </td>
-              </tr>
             </table>
             </div>
 						<div className={admin.actionbuttons}> 
 							<button onClick={closeprompt} className={admin.solid}> Cancel </button>
-							<button onClick={deletepage} className={admin.invert}> Delete </button>
+							<button onClick={createPage} className={admin.invert}> Create </button>
 						</div>
 					</div>
 				</div>
