@@ -42,7 +42,7 @@ export default function Step1(props) {
       props.next(user)
     }
     else {
-      FormValidate(user)
+      FormValidate(user, 'step1')
     }
   }
   return(

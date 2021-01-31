@@ -18,9 +18,8 @@ import FormValidate from '../../modules/FormValidate'
 
 export default function Step2(props) {
 
-  const [user, setUser] = useState(props.user);
+  const [user, setUser] = useState({name: props.user.name, email: props.user.email, password: props.user.password, confirmemail: '', confirmpassword: ''});
   const [focused, setFocus] = useState({email:false, password:false});
-  console.log(props.user)
   useEffect( () => {
     FocusHandler(focused)
   });
@@ -75,10 +74,18 @@ export default function Step2(props) {
   }
   const nextStep = () => {
     if( user.name && user.confirmemail && user.confirmpassword) {
-      props.next(user)
+      if(user.confirmemail !== user.email)  {
+        FormValidate(user, 'step2')
+      }
+      else if(user.confirmpassword !== user.password)  {
+        FormValidate(user, 'step2')
+      }
+      else {
+        props.next(user)
+      }
     }
     else {
-      FormValidate(user)
+      FormValidate(user, 'step2')
     }
   }
   return(
@@ -148,7 +155,7 @@ export default function Step2(props) {
                 </td>
                 <td>
                   <button name="type" id="dropdownbutton" onClick={toggledropdown} className={signup.dropdown} onChange={handleField} placeholder="your full name"> 
-                    <FontAwesomeIcon id="type_icon" className={ signup.icondropdown } icon={ faLayerGroup } />
+                    <FontAwesomeIcon name="type" id="type_icon" className={ signup.icondropdown } icon={ faLayerGroup } />
                       <span name="type"> {user.type? user.type : 'Account Type' } </span>
                     <FontAwesomeIcon name="type" id="type_icon" className={ signup.icondropdownright } icon={ faChevronDown } />
                     </button>
