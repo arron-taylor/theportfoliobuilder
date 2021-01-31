@@ -1,15 +1,7 @@
 import { React, useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect, Link
-} from "react-router-dom";
+
 import axios from 'axios'
 import signup from '../../signup.module.css';
-import style from '../../styles.module.css';
-import Sidebar from '../../components/Sidebar'
-import Content from '../../components/Content'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserAstronaut, faChevronDown, faUserSecret, faAt, faLock, faUser, faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import FocusHandler from '../../modules/FocusHandler'

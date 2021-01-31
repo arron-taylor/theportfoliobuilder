@@ -10,7 +10,6 @@ export default function Sidebar(props) {
 		localStorage.removeItem('token');
 		window.location = 'http://localhost:3000';
 	}
-  const [user, setUser] = useState({name:props.user.name, email:props.user.email, password:props.user.password,user_type:props.user.type, avatar:'../../whale.png', avatarname: 'Avatar'}); 
 	
 	return (
 		<div className={style.SideBar}>

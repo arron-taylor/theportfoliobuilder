@@ -1,8 +1,7 @@
 import style from '../styles.module.css';
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTachometerAlt, faChartBar, faColumns, faEnvelope, faCog } from '@fortawesome/free-solid-svg-icons'
-import { useParams, Link } from "react-router-dom"; 
+import { Link } from "react-router-dom"; 
 
 export default function BarLabels(props) {
 
@@ -15,7 +14,7 @@ export default function BarLabels(props) {
 				<div>
 					{ barOptions.map( ( label ) => {
 						return( 
-							label.name == current? 
+							label.name === current? 
 							<div className={ style.labelActive }> <FontAwesomeIcon className={ style.icon } icon={ label.icon } /> { label.name }  </div> :
 						 	<Link key={label.name} onClick={ () => props.tab( pathname ) } to={label.name.toLowerCase()}> <div key={label.name} className={ style.label }> <FontAwesomeIcon className={ style.icon } icon={ label.icon } /> { label.name } </div> </Link>) 
 					}) }

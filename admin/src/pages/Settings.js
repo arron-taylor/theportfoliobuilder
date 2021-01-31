@@ -1,22 +1,9 @@
-import { gql, useQuery } from "@apollo/client"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import admin from '../admin.module.css'
 import  Toolbar  from '../components/Toolbar'
-import Greeting from '../components/dashboard/Greeting'
-import signup from '../signup.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserAstronaut, faChevronDown, faUserSecret, faAt, faLock, faUser, faLayerGroup, faBuilding, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import { faUserAstronaut, faChevronDown, faLock, faUser, faLayerGroup, faBuilding, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 import FocusHandler from '../modules/FocusHandler'
-
-const CURRENT_POST = gql`
-	  query Post($id: ID!) {
-	  post(id: $id) {
-	    title
-	    body
-	  }
-	}
-	`;
 
 export default function Settings(props) {
 	const [user, setUser] = useState({name: props.user.name, email: props.user.email, password: props.user.password, avatar: './pug.png'});

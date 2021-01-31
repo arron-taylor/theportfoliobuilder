@@ -5,7 +5,7 @@ import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  MainWrapper  from '../components/edit/MainWrapper'
 import  BodyWrapper  from '../components/edit/BodyWrapper'
 import  SettingsPanel  from '../components/edit/SettingsPanel'
-import { useEditor, Frame, useNode} from "@craftjs/core";
+import { useEditor, Frame } from "@craftjs/core";
 import  Template  from '../components/Template'
 import  ToolWrapper  from '../components/edit/ToolWrapper'
 import lz from "lzutf8";
@@ -18,13 +18,6 @@ export default function EditFrame(props) {
   const { query, actions, selectedNodeId, selectedNode } = useEditor((state, query) => ({
     selectedNodeId: state.events.selected,
   }));
-
-  const freshNode = {
-        data: {
-            type: 'text',
-            text: 'lalalala'
-        }
-    }
 
   const nodeTree = query.parseReactElement(<ToolWrapper ><Template type="load" /><ToolbarLeft id="toolbar_left" user={props.page.owner} /><ToolbarBottom page={props.page} setActive={ () => setActive(prev => !prev)} active={active}  /><SettingsPanel /></ToolWrapper >).toNodeTree();
 

@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import edit from '../../edit.module.css';
 import  Text  from "./Text";
-import  {Button}  from "./Button";
-import  Container  from "./Container";
 import {useNode, Element} from "@craftjs/core";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import {faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import settings from '../../settings.module.css';
 
 export default function Hero({src, height, width}) {

@@ -1,21 +1,14 @@
-import style from '../styles.module.css';
 import { useState, useEffect } from 'react';
-import Avatar from './Avatar'
-import BarLabels from './BarLabels'
 import admin from '../admin.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisH} from '@fortawesome/free-solid-svg-icons'
-import { faAt, faLock, faSignature } from '@fortawesome/free-solid-svg-icons'
+import { faSignature } from '@fortawesome/free-solid-svg-icons'
 import login from '../login.module.css';
 import axios from 'axios';
 import lz from "lzutf8";
-import copy from 'copy-to-clipboard';
 import FocusHandler from '../modules/FocusHandler'
 
 export default function AddPage(props) {
 
-  const [user, setUser] = useState({name: '', email: '', isLoggedIn: false});
- 	const [statetoload, sethestatetoload] = useState(null);
   const [page, setPage] = useState({page_type: '', page_kind: '', page_layout: '', name: '', id: ''});
   const [focused, setFocus] = useState({name:false});
 
@@ -41,11 +34,6 @@ export default function AddPage(props) {
         }
       }).then((data) => { window.location = '/edit/' + data.data.page.id }).catch(error => { console.log(error.response) });
     }
-  const setstatetoload = (e) => {
-    sethestatetoload(e.target.value)
-    console.log(statetoload)
-  }
-
   const handleField = (e) => {
     const { name, value } = e.target;
     setPage(prevState => ({ ...prevState,[name]: value}));

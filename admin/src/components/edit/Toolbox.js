@@ -1,6 +1,4 @@
 import { useState} from 'react';
-import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
 import { useEditor, useNode } from "@craftjs/core";
 import { Button } from './Button'
@@ -10,7 +8,6 @@ import  NavBar  from './NavBar'
 import  NavItem  from './NavItem'
 import  ColumnContainer  from './ColumnContainer'
 import  Column  from './Column'
-import  Container  from './Container'
 import  Hero  from './Hero'
 import  Image  from './Image'
 

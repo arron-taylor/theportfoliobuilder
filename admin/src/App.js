@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import { Dashboard, Settings } from './pages'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import axios from 'axios'
 import Admin from './Admin'
 import Signup from './Signup'

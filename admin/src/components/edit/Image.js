@@ -1,15 +1,12 @@
-import React, {useCallback} from "react";
-import ContentEditable from 'react-contenteditable'
+import React  from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
-import { useNode, useEditor } from "@craftjs/core";
+import { useNode } from "@craftjs/core";
 import settings from '../../settings.module.css';
-import style from '../../styles.module.css';
 import SettingsPanelExtension from './SettingsPanelExtension'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV } from '@fortawesome/free-solid-svg-icons'
 
 export default function Image({height, width, src, marginLeft, marginTop}) {
 
@@ -19,11 +16,9 @@ export default function Image({height, width, src, marginLeft, marginTop}) {
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
-  const [editable, setEditable] = useState(false);
-  useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
-    <div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginLeft, marginTop}}>
+    <div ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginLeft, marginTop}}>
     
     { selected? <div className={edit.textBorder}> 
       <img src={src} style={{height: `${height}px`, width: `${width}px`}} />

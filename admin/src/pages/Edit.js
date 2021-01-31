@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"; 
 import { gql, useQuery } from "@apollo/client";
 import edit from '../edit.module.css';
-import { useState, React } from 'react';
+import { React } from 'react';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'
 import  ToolbarBottom  from '../components/edit/ToolbarBottom'
 import  {Button}  from '../components/edit/Button'

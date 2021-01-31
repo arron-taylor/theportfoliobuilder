@@ -1,8 +1,6 @@
-import { Link, useParams } from "react-router-dom"; 
 import { gql, useQuery } from "@apollo/client";
 import admin from '../admin.module.css';
-import axios from 'axios'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import  Toolbar  from '../components/Toolbar'
 import  Alert  from '../components/Alert'
 import  AddPage  from '../components/AddPage'
@@ -26,10 +24,6 @@ export default function Pages(props) {
   if (loading) return <> loading... Please wait. </>;
   if (error) return <p> error... </p>;
 
-  const handleField = (e) => {
-    const { name, value } = e.target;
-    setPage(prevState => ({ ...prevState,[name]: value}));
-  }
   const edit = (e) => {
     window.location = 'http://localhost:3000/edit/' + e;
   }

@@ -1,16 +1,13 @@
-import React, {useCallback} from "react";
-import ContentEditable from 'react-contenteditable'
+import React from "react";
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
-import { useNode, useEditor } from "@craftjs/core";
+import { useNode } from "@craftjs/core";
 import  Text  from "./Text";
 
 import settings from '../../settings.module.css';
 import style from '../../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faPenNib, faFont, faFillDrip, faLock } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavItem({text, fontSize, textAlign, color, fontFamily, backgroundColor}) {
 
@@ -27,18 +24,15 @@ export default function NavItem({text, fontSize, textAlign, color, fontFamily, b
     console.log(collected);
   }
 
-  const [editable, setEditable] = useState(false);
-  useEffect(() => {!selected && setEditable(false)}, [selected]);
-
 	return (
   <>{  selected? 
-      <div onClick={(e => setEditable(true))} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+      <div ref={ref => connect(drag(ref))} className={edit.EditableText}>
       <div style={{backgroundColor, color}} className={edit.navitem}> 
         <Text fontSize={fontSize} fontFamily={fontFamily} text={text} />
       
       </div>
     </div> : 
-    <div onClick={(e => setEditable(true))} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+    <div ref={ref => connect(drag(ref))} className={edit.EditableText}>
       <div onClick={duplicate} style={{backgroundColor, color}} className={edit.navitem}> 
         <Text fontSize={fontSize} fontFamily={fontFamily} text={text} />
       

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom"; 
 import { gql, useQuery } from "@apollo/client";
 import edit from '../edit.module.css';
 import  ToolbarLeft  from '../components/edit/ToolbarLeft'

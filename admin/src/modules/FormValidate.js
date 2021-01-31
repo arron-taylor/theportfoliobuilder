@@ -3,7 +3,7 @@ export default function FormValidate(invalid, type) {
   if(type === 'step1') {
     Object.keys(invalid).map(
       (i, key) => {
-        if(invalid[i] == '') {
+        if(invalid[i] === '') {
           let element = document.getElementById(i);
           let element_icon = document.getElementById(i + '_icon');
           element.style.color = "#e36565";
@@ -21,10 +21,10 @@ export default function FormValidate(invalid, type) {
     )
   }
   else if(type === 'step2') {
-    console.log(invalid.confirmpassword == invalid.password)
+    console.log(invalid.confirmpassword === invalid.password)
     Object.keys(invalid).map(
       (i, key) => {
-        if(invalid[i] == '') {
+        if(invalid[i] === '') {
           let element = document.getElementById(i);
           let element_icon = document.getElementById(i + '_icon');
           element.style.color = "#e36565";

@@ -1,11 +1,7 @@
 import { React, useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect, Link
+  Link
 } from "react-router-dom";
-import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
 import axios from 'axios'
 import login from './login.module.css';
 import style from './styles.module.css';

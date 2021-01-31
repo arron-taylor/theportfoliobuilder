@@ -1,10 +1,5 @@
-import style from '../styles.module.css';
 import { useState } from 'react';
-import Avatar from './Avatar'
-import BarLabels from './BarLabels'
 import admin from '../admin.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisH} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import lz from "lzutf8";
 import copy from 'copy-to-clipboard';
@@ -12,7 +7,6 @@ import { useEditor } from "@craftjs/core";
 
 export default function Template(props) {
 
-	const [type, setType] = useState(props.type);
  	const [statetoload, sethestatetoload] = useState(null);
 
  	const { actions, query, enabled } = useEditor((state) => ({

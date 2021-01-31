@@ -1,10 +1,7 @@
 import style from '../styles.module.css';
-import { useState } from 'react';
-import Avatar from './Avatar'
-import BarLabels from './BarLabels'
 import admin from '../admin.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisH, faPlus, faChevronDown, faLayerGroup, faUser, faLock, faAt } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisH, faPlus, faUser, faLock, faAt } from '@fortawesome/free-solid-svg-icons'
 import  AddPage  from './AddPage'
 
 export default function Toolbar(props) {

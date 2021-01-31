@@ -1,8 +1,7 @@
 import edit from '../../edit.module.css';
-import { Element, useNode, useEditor } from '@craftjs/core';
+import { useNode, useEditor } from '@craftjs/core';
 import { useState, useEffect } from 'react';
-import { faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV } from '@fortawesome/free-solid-svg-icons'
-import { faPlus, faTint, faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 import SettingsPanelExtension from './SettingsPanelExtension'

@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import ContentEditable from 'react-contenteditable'
-import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
 import { useNode, useEditor } from "@craftjs/core";
-import { faClone, faTrash, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faClone, faTrash, faLock, faPenNib, faFillDrip, faFont} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 import FocusHandler from '../../modules/FocusHandler'

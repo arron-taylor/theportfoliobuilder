@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import edit from '../../edit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH, faDesktop, faSave, faUndo, faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faThLarge, faCube, faPlug, faFileImage, faPalette, faSwatchbook, faSlidersH} from '@fortawesome/free-solid-svg-icons'
 import {Toolbox} from './Toolbox'
 
 const barOptions = [{name: 'Pages', icon:  faThLarge  }, {name: 'Container', icon: faCube}, {name: 'Plugin', icon: faPlug}, {name: 'Media', icon: faFileImage}, {name: 'Palette', icon: faPalette}, {name: 'Templates', icon: faSwatchbook}, {name: 'Settings', icon: faSlidersH}];
@@ -15,7 +14,7 @@ export default function ToolbarLeft(props) {
   const [currentTab, setTab] = useState({current: 'closed'});
   
 	useEffect( () => {
-    if(currentTab.current != 'closed') {
+    if(currentTab.current !== 'closed') {
       document.getElementById('toolbar_left').style.width = '450px'
     }
     else {
@@ -28,7 +27,7 @@ export default function ToolbarLeft(props) {
       <div className={edit.toolbar_left_items}>
       { barOptions.map( ( label ) => {
           return( 
-            label.name == currentTab.current? 
+            label.name === currentTab.current? 
             <FontAwesomeIcon onClick={() => setTab({'current':'closed'})} className={ edit.toolbar_icon_active } icon={ label.icon } /> :
             <Link onClick={() => setTab({'current':label.name})}> <FontAwesomeIcon className={ edit.toolbar_icon } icon={ label.icon } /></Link> ) 
         }) }
@@ -38,7 +37,7 @@ export default function ToolbarLeft(props) {
         <h1> { currentTab.current } <FontAwesomeIcon onClick={() => setTab({'current':'closed'})} className={edit.icon} icon={faChevronLeft} /> </h1>
         <div className={edit.body}> 
         {
-      		currentTab.current == 'Pages'? <> 
+      		currentTab.current === 'Pages'? <> 
       			{props.user.pages.map((page) => {  
       				let pageLink = "http://localhost:3000/edit/" + page.id;
       				return <div onClick={() => { window.location = pageLink }} className={edit.page}> { page.name } </div> })
@@ -49,7 +48,7 @@ export default function ToolbarLeft(props) {
      		 } 
 
      		 {
-     		 	currentTab.current == 'Plugin'? 
+     		 	currentTab.current === 'Plugin'? 
      		 <Toolbox /> : 
      		 <>  </>
      			}

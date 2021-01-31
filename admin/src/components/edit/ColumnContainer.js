@@ -2,7 +2,7 @@ import edit from '../../edit.module.css';
 import { Element, useNode, useEditor } from '@craftjs/core';
 import { useState, useEffect } from 'react';
 import Column from './Column'
-import { faPlus, faTint, faTrash, faClone, faAt, faLock, faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrash, faClone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function ColumnContainer({background, children, padding = 0}) {
@@ -15,9 +15,6 @@ export default function ColumnContainer({background, children, padding = 0}) {
 
   const { query, actions } = useEditor((state, query) => ({
     }));
-
-  const [editable, setEditable] = useState(false);
-  useEffect(() => {!selected && setEditable(false)}, [selected]);
 
   const { ...collected } = useNode((collector) => {
     return collector
@@ -48,7 +45,7 @@ export default function ColumnContainer({background, children, padding = 0}) {
   }
 
   return (
-    <div className={edit.columnWrapper} ref={ref => connect(drag(ref))} onClick={e => setEditable(true)} >
+    <div className={edit.columnWrapper} ref={ref => connect(drag(ref))} >
      {selected? <div> 
 
       <div className={edit.columnsContainerOptions} >  

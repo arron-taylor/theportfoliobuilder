@@ -1,18 +1,8 @@
-import style from '../styles.module.css';
 import { useState } from 'react';
-import Avatar from './Avatar'
-import BarLabels from './BarLabels'
 import admin from '../admin.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisH} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import lz from "lzutf8";
-import copy from 'copy-to-clipboard';
 
 export default function Alert(props) {
-
-	const [type, setType] = useState(props.type);
- 	const [statetoload, sethestatetoload] = useState(null);
 
 	const deletepage = () => {
     let token = localStorage.getItem("token")
@@ -32,12 +22,6 @@ export default function Alert(props) {
    	alert = document.getElementById(alert_type);
    	alert.style.display = 'none';
    }
-
-  const setstatetoload = (e) => {
-    sethestatetoload(e.target.value)
-    console.log(statetoload)
-  }
-
    	return (
 		<div id="alertbox" style={{display: 'none'}}>
 				<div className={admin.overlay}>

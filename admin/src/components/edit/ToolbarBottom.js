@@ -5,12 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDesktop, faSave, faUndo, faRedo, faFileExport, faHome } from '@fortawesome/free-solid-svg-icons'
 import { useEditor } from "@craftjs/core";
 import lz from "lzutf8";
-import copy from 'copy-to-clipboard';
 import axios from 'axios'
 
   export default function ToolbarBottom(props) {
 
-  const [statetoload, setstatetoload] = useState(props.page);
 
   const { actions, query, enabled } = useEditor((state) => ({
     enabled: state.options.enabled

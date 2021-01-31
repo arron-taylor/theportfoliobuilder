@@ -22,9 +22,6 @@ const CURRENT_USER = gql`
     }`;
 
 function Admin(props) { 
-  const [user, setUser] = useState(props.user);
-  
-
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
  
   const {loading, error, data} = useQuery(CURRENT_USER, {

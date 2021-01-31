@@ -1,20 +1,9 @@
 import { React, useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect, Link
-} from "react-router-dom";
-import { Dashboard, Analytics, Pages, Inquiries, Settings } from './pages'
+
 import axios from 'axios'
 import signup from './signup.module.css';
-import style from './styles.module.css';
-import Sidebar from './components/Sidebar'
-import Content from './components/Content'
 import FocusHandler from './modules/FocusHandler'
 import { Step1, Step2, Step3 } from './pages/signup'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
 
 function Signup() { 
 
@@ -45,18 +34,6 @@ function Signup() {
   }
   const [step, setStep] = useState(<Step1 setUser={setUser} user={user} next={toSecond} />);
 
-  const handleField = (e) => {
-    const { name, value } = e.target;
-    setUser(prevState => ({ ...prevState,[name]: value}));
-  }
-  const highLight = (e) => {
-    const { name, value } = e.target;
-    setFocus(prevState => ({ ...prevState, [name]:true }));
-  }
-  const dehighLight = (e) => {
-    const { name, value } = e.target;
-    setFocus(prevState => ({ ...prevState, [name]:false }));
-  }
   useEffect( () => {
     FocusHandler(focused)
   });
@@ -68,15 +45,7 @@ function Signup() {
       signupform.style.opacity = 1
     }, 250)
   }
-  const HandleSubmit = (e) => {
-    e.preventDefault();
-    // fetch('http://localhost:3001/users').then(response => response.json()).then(data => console.log(data));
-    let data = user;
-    axios.post('http://localhost:3001/login', data).then( (response) => { 
-      localStorage.setItem("token", response.data.jwt);console.log(response.data.jwt); if(response.status == 200) { window.location = 'http://localhost:3000/dashboard' } }).catch((error) => { 
-        console.log(error.response) 
-      });
-  }
+  
 
   return (
     <div className={signup.wrapper}>
