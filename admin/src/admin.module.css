@@ -178,16 +178,33 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
+.settingscontainer .invert {
+	display: inline-block;
+	align-self: flex-start;
+	background: #fff;
+	color: #7165E3;
+	border: 0px;
+	width: 234px;
+	height: 51px;
+	font-size: 16px;
+	font-family: 'Avenir Next';
+	-webkit-transition: all .15s ease-in-out;
+	border-radius: 10px;
+}
+.settingscontainer .invert:hover {
+	cursor: pointer;
+	background: #eee;
+}
 .settingscontainer .button {
-	display: block;
-	margin-left: auto;
+	display: inline-block;
+	align-self: flex-end;
+	margin-top: -41px;
 	background: #7165E3;
 	color: #F4F5F9;
 	border: 0px;
-	width: 362px;
-	height: 73px;
-	margin: 0px auto;
-	font-size: 26px;
+	width: 234px;
+	height: 51px;
+	font-size: 16px;
 	font-family: 'Avenir Next';
 	-webkit-transition: all .15s ease-in-out;
 	border-radius: 10px;
@@ -304,6 +321,7 @@
 .dropdownmenu {
 	display: none;
 	margin-left: -80px;
+	margin-top: -40px;
 	position: absolute;
 	width: 248px;
 	border: 1px solid #DBDBDB;
@@ -384,7 +402,15 @@
 	-webkit-transition: all .25s ease-in-out;
 	width: 80px;
 }
-
+.settingscontainer .lastchange {
+	color: #989898;
+	font-weight: 400;
+	font-size: 12px;
+	display: block;
+	margin-right: -250px;
+	width: 250px;
+	margin-top: -40px !important;
+}
 
 
 /* DASHBOARD */

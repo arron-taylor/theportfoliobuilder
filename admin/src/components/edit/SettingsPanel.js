@@ -8,7 +8,7 @@ export default function SettingsPanel(props) {
   const setNull = () => {
     actions.selectNode(null)
   }
-  const { actions, selected } = useEditor((state, query) => {
+  const { actions, selected, query } = useEditor((state, query) => {
     const currentNodeId = state.events.selected;
 
     let selected;
@@ -25,6 +25,8 @@ export default function SettingsPanel(props) {
     }
   });
 	return selected? ( 
+    <> { query.node(selected.id).get().related.resizer? 
+     React.createElement(query.node(selected.id).get().related.resizer) :  null }
 		<div id="SettingsPanel" className={edit.SettingsPanel}>
      <div className={edit.header}> 
      	<h1 className={edit.title}> { selected.name } </h1> <FontAwesomeIcon onClick={setNull} className={edit.x} icon={faTimes} />
@@ -43,6 +45,6 @@ export default function SettingsPanel(props) {
             </button>
           ) : null
         */}
-    </div>  
+    </div>  </>
 	) : null
 }

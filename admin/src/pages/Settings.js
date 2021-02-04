@@ -2,24 +2,33 @@ import { useEffect, useState } from "react"
 import admin from '../admin.module.css'
 import  Toolbar  from '../components/Toolbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserAstronaut, faChevronDown, faLock, faUser, faLayerGroup, faBuilding, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import { faUserAstronaut, faChevronDown, faLock, faUser, faLayerGroup, faUserTag, faAt } from '@fortawesome/free-solid-svg-icons'
 import FocusHandler from '../modules/FocusHandler'
-
+import axios from 'axios'
 export default function Settings(props) {
-	const [user, setUser] = useState({name: props.user.name, email: props.user.email, password: props.user.password, avatar: './pug.png'});
+	const [user, setUser] = useState({id: props.user.id, type: props.user.usertype, name: props.user.name, email: props.user.email, password: props.user.password, avatar: './pug.png', username: props.user.username});
   const [focused, setFocus] = useState();
 	const handleField = (e) => {
     const { name, value } = e.target;
     setUser(prevState => ({ ...prevState,[name]: value}));
   }
   const handleClick = (e) => {
-      document.getElementById('avatardropdownmenu').style.display = 'none';
-      document.getElementById('dropdownbutton').style.background = "#fff"
-      document.getElementById('dropdownbutton').style.color = "#989898"
-      document.getElementById('dropdownbutton').style.borderRadius = "5px"
-      document.getElementById('dropdownbutton').style.border = "1px solid #DBDBDB"
-      const name = e.target.getAttribute('name');
+    const name = e.target.getAttribute('name');
       let value = e.target.getAttribute('value');
+      if(name === 'avatar') {
+         document.getElementById('avatardropdownmenu').style.display = 'none';
+        document.getElementById('avatardropdownbutton').style.background = "#fff"
+        document.getElementById('avatardropdownbutton').style.color = "#989898"
+        document.getElementById('avatardropdownbutton').style.borderRadius = "5px"
+        document.getElementById('avatardropdownbutton').style.border = "1px solid #DBDBDB"
+      }
+     else if(name === 'type') {
+         document.getElementById('dropdownmenu').style.display = 'none';
+        document.getElementById('dropdownbutton').style.background = "#fff"
+        document.getElementById('dropdownbutton').style.color = "#989898"
+        document.getElementById('dropdownbutton').style.borderRadius = "5px"
+        document.getElementById('dropdownbutton').style.border = "1px solid #DBDBDB"
+     }
    //   (user.avatar.substr(2)).substr(0,1).toUpperCase() + (user.avatar.substr(2)).substr(0, user.avatar.length-6).substr(1)
       setUser(prevState => ({ ...prevState,[name]: value}));
   }
@@ -32,25 +41,54 @@ export default function Settings(props) {
       const { name, value } = e.target;
       setFocus(prevState => ({ ...prevState, [name]:false }));
   }
-  const toggledropdown = () => {
-    if(document.getElementById('avatardropdownmenu').style.display === 'none') {
-      document.getElementById('avatardropdownmenu').style.display = 'flex';
-      document.getElementById('dropdownbutton').style.background = "#EFEFEF"
-      document.getElementById('dropdownbutton').style.color = "#7165E3"
-      document.getElementById('dropdownbutton').style.borderRadius = "5px 5px 0px 0px"
-      document.getElementById('dropdownbutton').style.border = "1px solid #CCC"
-    }
-    else {
-      document.getElementById('avatardropdownmenu').style.display = 'none';
-      document.getElementById('dropdownbutton').style.background = "#fff"
-      document.getElementById('dropdownbutton').style.color = "#989898"
-      document.getElementById('dropdownbutton').style.borderRadius = "5px"
-      document.getElementById('dropdownbutton').style.border = "1px solid #DBDBDB"
-    }
+  const toggledropdown = (e) => {
+     const name = e.target.getAttribute('name');
+      let value = e.target.getAttribute('value');
+      if(name == 'avatar') {
+        if(document.getElementById('avatardropdownmenu').style.display === 'none') {
+          document.getElementById('avatardropdownmenu').style.display = 'flex';
+          document.getElementById('avatardropdownbutton').style.background = "#EFEFEF"
+          document.getElementById('avatardropdownbutton').style.color = "#7165E3"
+          document.getElementById('avatardropdownbutton').style.borderRadius = "5px 5px 0px 0px"
+          document.getElementById('avatardropdownbutton').style.border = "1px solid #CCC"
+        }
+        else {
+          document.getElementById('avatardropdownmenu').style.display = 'none';
+          document.getElementById('avatardropdownbutton').style.background = "#fff"
+          document.getElementById('avatardropdownbutton').style.color = "#989898"
+          document.getElementById('avatardropdownbutton').style.borderRadius = "5px"
+          document.getElementById('avatardropdownbutton').style.border = "1px solid #DBDBDB"
+        }
+      }
+      else {
+        if(document.getElementById('dropdownmenu').style.display === 'none') {
+          document.getElementById('dropdownmenu').style.display = 'flex';
+          document.getElementById('dropdownbutton').style.background = "#EFEFEF"
+          document.getElementById('dropdownbutton').style.color = "#7165E3"
+          document.getElementById('dropdownbutton').style.borderRadius = "5px 5px 0px 0px"
+          document.getElementById('dropdownbutton').style.border = "1px solid #CCC"
+        }
+        else {
+          document.getElementById('dropdownmenu').style.display = 'none';
+          document.getElementById('dropdownbutton').style.background = "#fff"
+          document.getElementById('dropdownbutton').style.color = "#989898"
+          document.getElementById('dropdownbutton').style.borderRadius = "5px"
+          document.getElementById('dropdownbutton').style.border = "1px solid #DBDBDB"
+        }
+      }
   }
   useEffect( () => {
     FocusHandler(focused)
   });
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    let token = localStorage.getItem("token")
+  //  fetch('http://localhost:3001/users').then(response => response.json()).then(data => console.log(data));
+    let data = user;
+    data.avatar = (user.avatar.substr(2)).substr(0,1).toUpperCase() + (user.avatar.substr(2)).substr(0, user.avatar.length-6).substr(1);
+    data.usertype = user.type;
+    axios.post('http://localhost:3001/edituser', data, {headers: {Authorization: 'Bearer ' + token }}).then((response) => { console.log(response);if(response.status == 204) { window.location = 'http://localhost:3000/settings' } }).catch(error => { console.log(error.response) });
+  }
 	return (
 		<div className={admin.container}>
 		<Toolbar type='settings' />
@@ -59,7 +97,7 @@ export default function Settings(props) {
 					<h1> Your Avatar </h1>
 					<div style={{display: "flex"}} >
 		           <img className={admin.avatar} src={user.avatar} />
-		           <button style={{marginLeft: "-20px"}} name="avatar" id="dropdownbutton" onClick={toggledropdown} className={admin.dropdown} > 
+		           <button style={{marginLeft: "-20px"}} name="avatar" id="avatardropdownbutton" onClick={toggledropdown} className={admin.dropdown} > 
 		            <FontAwesomeIcon id="avatar_icon" className={ admin.icondropdown } icon={ faUserAstronaut } />
 		              <span name="avatar"> {user.avatar? (user.avatar.substr(2)).substr(0,1).toUpperCase() + (user.avatar.substr(2)).substr(0, user.avatar.length-6).substr(1)   : 'Select Avatar' } </span>
 		            <FontAwesomeIcon name="avatar" id="type_icon" className={ admin.icondropdownright } icon={ faChevronDown } />
@@ -88,21 +126,21 @@ export default function Settings(props) {
                 </td>
               </tr> 
               <tr>
-                <td className={admin.label} id="location">
-                  Location
+                <td className={admin.label} id="email">
+                  Email
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="location_icon" className={ admin.icon } icon={ faLocationArrow } />
+                  <FontAwesomeIcon id="email_icon" className={ admin.icon } icon={ faAt } />
                 </td>
                 <td>
-                  <input onChange={handleField} value={user.location} onFocus={highLight} onBlur={dehighLight} type="text" name="location" placeholder="your location" /> 
+                  <input onChange={handleField} value={user.email} onFocus={highLight} onBlur={dehighLight} type="text" name="email" placeholder="your email" /> 
                 </td>
               </tr> 
               <tr>
                 <td className={admin.label} id="password">
-                  Biography
+                  Password
                 </td>
               </tr>
               <tr>
@@ -112,6 +150,11 @@ export default function Settings(props) {
                 <td>
                   <input onChange={handleField} value={user.password} onFocus={highLight} onBlur={dehighLight} type="password" name="password" placeholder="password" /> <br />
                 </td>
+                </tr>
+                <tr>
+                  <td>
+                  <span className={admin.lastchange}>  Last Changed: At account creation</span>
+                  </td>
               </tr>
             </table>
             <table>
@@ -130,29 +173,30 @@ export default function Settings(props) {
                     <FontAwesomeIcon name="type" id="type_icon" className={ admin.icondropdownright } icon={ faChevronDown } />
                     </button>
                   <div id="dropdownmenu" className={admin.dropdownmenu}>
-                    <div onClick={handleField} value="Developer" name="type"> Developer </div>
-                    <div onClick={handleField} value="Illustrator" name="type"> Illustrator </div>
-                    <div onClick={handleField} value="Musical Artist" name="type"> Musical Artist </div>
-                    <div onClick={handleField} value="Photographer" name="type"> Photographer </div>
+                    <div onClick={handleClick} value="Developer" name="type"> Developer </div>
+                    <div onClick={handleClick} value="Illustrator" name="type"> Illustrator </div>
+                    <div onClick={handleClick} value="Musical Artist" name="type"> Musical Artist </div>
+                    <div onClick={handleClick} value="Photographer" name="type"> Photographer </div>
                   </div> 
                 </td>
               </tr>
               <tr>
-                <td className={admin.label} id="company">
-                  Company
+                <td className={admin.label} id="username">
+                  Username
                 </td>
               </tr>
               <tr>
                 <td>
-                  <FontAwesomeIcon id="company_icon" className={ admin.icon } icon={ faBuilding } />
+                  <FontAwesomeIcon id="username_icon" className={ admin.icon } icon={ faUserTag } />
                 </td>
                 <td>
-                  <input onChange={handleField} value={user.company} onFocus={highLight} onBlur={dehighLight} type="text" name="company" placeholder="your company name" /> 
+                  <input onChange={handleField} value={user.username} onFocus={highLight} onBlur={dehighLight} type="text" name="username" placeholder="your username" /> 
                 </td>
               </tr>  
             </table>
             </div>
-            <button className={admin.button} > Save Changes </button> 
+            <button className={admin.invert} > Deactivate Account </button> 
+            <button className={admin.button} onClick={HandleSubmit}> Save Changes </button> 
 			</div>
 		</div>
 	)

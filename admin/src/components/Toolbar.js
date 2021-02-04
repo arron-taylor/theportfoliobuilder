@@ -1,7 +1,7 @@
 import style from '../styles.module.css';
 import admin from '../admin.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisH, faPlus, faUser, faLock, faAt } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisH, faPlus, faIdCard, faBell, faAt, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import  AddPage  from './AddPage'
 
 export default function Toolbar(props) {
@@ -19,18 +19,16 @@ export default function Toolbar(props) {
 		{props.type? <>
 			<h1> Account Settings </h1>
 			<button onClick={addPrompt} className={admin.tabbutton}> 
-			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faUser } />
+			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faIdCard } />
 		    <span name="type"> Profile </span>
 		  </button>
-
 		  <button onClick={addPrompt} className={admin.tabbutton_inactive}> 
-			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faAt } />
-		    <span name="type"> Email </span>
+			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faBell } />
+		    <span name="type"> Notifications and Privacy </span>
 		  </button>
-
 		  <button onClick={addPrompt} className={admin.tabbutton_inactive}> 
-			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faLock } />
-		    <span name="type"> Password </span>
+			  <FontAwesomeIcon name="type" id="type_icon" className={ admin.iconleft } icon={ faPowerOff } />
+		    <span name="type"> Advanced </span>
 		  </button>
 			<button className={admin.add}> <FontAwesomeIcon className={ style.icon } icon={ faEllipsisH } /> </button>
 			</>

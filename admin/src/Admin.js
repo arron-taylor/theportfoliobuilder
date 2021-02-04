@@ -17,13 +17,14 @@ const CURRENT_USER = gql`
         id
         name
         email
+        username
+        usertype
         avatar
       }
     }`;
 
 function Admin(props) { 
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
- 
   const {loading, error, data} = useQuery(CURRENT_USER, {
     variables: { id: props.user.id }
   });
@@ -32,7 +33,6 @@ function Admin(props) {
   return ( 
    
     <Router>
-
     <div className={style.wrapper}>
       <Sidebar tab={ setCurrentTab } user={data.user} />
       <Content tab={ currentTab }>

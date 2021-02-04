@@ -2,11 +2,12 @@ import React  from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import edit from '../../edit.module.css';
-import { useNode } from "@craftjs/core";
+import { useNode, useEditor } from "@craftjs/core";
 import settings from '../../settings.module.css';
 import SettingsPanelExtension from './SettingsPanelExtension'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV } from '@fortawesome/free-solid-svg-icons'
+import { faClone, faTrash, faFileUpload, faLongArrowAltRight, faLongArrowAltDown, faLink, faArrowsAltH, faArrowsAltV } from '@fortawesome/free-solid-svg-icons'
+import  Resizer  from '../../components/Resizer'
 
 export default function Image({height, width, src, marginLeft, marginTop}) {
 
@@ -16,11 +17,31 @@ export default function Image({height, width, src, marginLeft, marginTop}) {
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
+  const { query, actions } = useEditor((state, query) => ({
+    }));
 
+  const { ...collected } = useNode((collector) => {
+    return collector
+  });
+  const delete_node = () => {
+    actions.delete(collected.id)
+  }
+  const duplicate = (e) => {
+    const parent = (collected.data.parent)
+    const node_to_make = {
+      data: collected.data
+    }
+    const node = query.parseFreshNode(node_to_make).toNode();
+    actions.add(node, parent);
+  }
 	return (
     <div ref={ref => connect(drag(ref))} className={edit.EditableText} style={{marginLeft, marginTop}}>
     
     { selected? <div className={edit.textBorder}> 
+    <div className={edit.options} >  
+      <FontAwesomeIcon onClick={duplicate} className={ edit.icon } icon={ faClone } />
+      <FontAwesomeIcon onClick={delete_node} className={ edit.icon } icon={ faTrash } /> 
+    </div>
       <img src={src} style={{height: `${height}px`, width: `${width}px`}} />
 
          </div> : <img src={src} style={{height: `${height}px`, width: `${width}px`}} />
@@ -29,7 +50,14 @@ export default function Image({height, width, src, marginLeft, marginTop}) {
     </div>
 	)
 }
-
+export const ImageResizer = ({height, width}) => {
+  const { actions: { setProp }, props } = useNode((node) => ({
+    props: node.data.props,
+  }));
+  return (
+    <Resizer change={(e) => setProp(props => { props['width'] = e.width; props['height'] = e.height })} height={props.height} width={props.width} />
+  )
+}
 export const ImageSettings = ({ src }) => {
   const {
     actions: { setProp },
@@ -286,8 +314,8 @@ export const ImageSettingsExtension = ({ src }) => {
 }
 Image.craft = {
   props: { 
-    height: "100",
-    width: "100",
+    height: "250",
+    width: "250",
     marginLeft: "0px", 
     marginTop: "0px",
     settingsExtension: ImageSettingsExtension,
@@ -296,5 +324,6 @@ Image.craft = {
   },
   related: {
     settings: ImageSettings,
+    resizer: ImageResizer
   }
 }

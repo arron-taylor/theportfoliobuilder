@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import settings from '../../settings.module.css';
 import SettingsPanelExtension from './SettingsPanelExtension'
 import FocusHandler from '../../modules/FocusHandler'
+import  Resizer  from '../../components/Resizer'
 
 export default function Column({children, padding, height, width}) {
 
@@ -14,6 +15,7 @@ export default function Column({children, padding, height, width}) {
     dragged: state.events.dragged,
     hovered: state.events.hovered
   }));
+
   const { query, actions, enabled } = useEditor((state, query) => ({
       enabled: state.options.enabled
     }));
@@ -57,8 +59,14 @@ export default function Column({children, padding, height, width}) {
     </div>
   )
 }
-
-
+export const ColumnResizer = ({height, width}) => {
+  const { actions: { setProp }, props } = useNode((node) => ({
+    props: node.data.props,
+  }));
+  return (
+    <Resizer change={(e) => setProp(props => { props['width'] = e.width; props['height'] = e.height })} height={props.height} width={props.width} />
+  )
+}
 export const ColumnSettings = ({ src }) => {
   const {
     actions: { setProp },
@@ -303,6 +311,9 @@ export const ImageSettingsExtension = ({ src }) => {
   )
 }
 Column.craft = {
+  custom: {
+    blah: 'blah'
+  },
   props: { 
     height: "100",
     width: "100",
@@ -314,5 +325,6 @@ Column.craft = {
   },
   related: {
     settings: ColumnSettings,
+    resizer: ColumnResizer
   }
 }
