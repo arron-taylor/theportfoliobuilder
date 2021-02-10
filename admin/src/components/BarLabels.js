@@ -1,11 +1,11 @@
 import style from '../styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTachometerAlt, faChartBar, faColumns, faEnvelope, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faTachometerAlt, faChartBar, faThLarge, faEnvelope, faCog } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"; 
 
 export default function BarLabels(props) {
 
-	const barOptions = [{name: 'Dashboard', icon:  faTachometerAlt  }, {name: 'Analytics', icon: faChartBar}, {name: 'Pages', icon: faColumns}, {name: 'Inquiries', icon: faEnvelope}, {name: 'Settings', icon: faCog}];
+	const barOptions = [{name: 'Dashboard', icon:  faTachometerAlt  }, {name: 'Analytics', icon: faChartBar}, {name: 'Pages', icon: faThLarge}, {name: 'Inquiries', icon: faEnvelope}, {name: 'Settings', icon: faCog}];
 	let pathname = window.location.pathname.substring(1);
 	let current = pathname.charAt(0).toUpperCase() + pathname.slice(1);
 
