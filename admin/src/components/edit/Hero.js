@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPenNib, faFillDrip, faFont, faAlignLeft, faAlignCenter, faAlignRight, faIndent, faOutdent, faListUl, faListOl, faHighlighter, faCode } from '@fortawesome/free-solid-svg-icons'
 import settings from '../../settings.module.css';
 
-export default function Hero({src, height, width}) {
+export default function Hero({src, height, width, text}) {
 
 	const { connectors: {connect, drag}, hovered, selected, dragged, actions: {setProp} } = useNode((state) => ({
     selected: state.events.selected,
@@ -22,14 +22,12 @@ export default function Hero({src, height, width}) {
     
     { selected? <div className={edit.textBorder}> 
       <div className={edit.Hero} style={{background: "url( " +  src + "  )", height, width, "background-position": "00px -500px"}}>
-        <Text fontSize={80} text="Arron Taylor" />
-        <Text fontSize={40} text="Developer" />
+        <Text fontSize={80} text={text} />
     </div>  
     </div> : 
 
     <div className={edit.Hero} style={{background: "url( " +  src + "  )", height, width, "background-position": "00px -500px"}}>
-        <Text fontSize={80} text="Arron Taylor" />
-        <Text fontSize={40} text="Developer" />
+        <Text fontSize={80} text={text} />
     </div>
 
 		}

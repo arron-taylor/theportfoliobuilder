@@ -28,6 +28,10 @@ const PAGE = gql`
         id
         name
         page_layout
+        owner {
+          id
+          username
+        }
       }
     }`;
 
@@ -38,8 +42,6 @@ export default function User(props) {
   let { username } = useParams();
   let { page_id } = useParams();
 
-  console.log(username, page_id);
-
   const {loading, error, data} = useQuery(PAGE, {
       variables: { id: page_id }
     });
@@ -47,6 +49,11 @@ export default function User(props) {
   if (loading)  console.log("LOADING");
   if (error)  console.log("ERROR!");
 
+  if( username && data) {
+    if(data.page.owner.username !== username) {
+      window.location = 'http://localhost:3000/404'
+    }
+  }
   
   return (
     <div className={edit.maincontainer}> 
