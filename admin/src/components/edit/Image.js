@@ -324,6 +324,5 @@ Image.craft = {
   },
   related: {
     settings: ImageSettings,
-    resizer: ImageResizer
   }
 }

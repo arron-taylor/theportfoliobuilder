@@ -38,10 +38,10 @@ function App() {
       <Route path='/404' component={ErrorPage} />
       <Route path='/noaccess' component={NoAccess} />
       
-      <Route path="/edit/:page_id"> 
-        { user.isLoggedIn? <> <Edit user={user} /> </> : <Login />  }
-       </Route> 
-       <Route path='/:username/:page_id'>
+    <Route path="/edit/:page_id"> 
+      { user.isLoggedIn? <> <Edit user={user} /> </> : <Login />  }
+     </Route>
+      <Route path='/:username/:page_id'>
         <User user={user} />
       </Route>
     <Route path="/">

@@ -325,6 +325,5 @@ Column.craft = {
   },
   related: {
     settings: ColumnSettings,
-    resizer: ColumnResizer
   }
 }

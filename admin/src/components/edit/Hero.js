@@ -18,7 +18,7 @@ export default function Hero({src, height, width}) {
   useEffect(() => {!selected && setEditable(false)}, [selected]);
 
 	return (
-		<div onClick={e => setEditable(true)} ref={ref => connect(drag(ref))} className={edit.EditableText}>
+		<div ref={ref => connect(drag(ref))} className={edit.EditableText}>
     
     { selected? <div className={edit.textBorder}> 
       <div className={edit.Hero} style={{background: "url( " +  src + "  )", height, width, "background-position": "00px -500px"}}>
