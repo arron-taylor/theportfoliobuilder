@@ -1,0 +1,3 @@
+[submodule "myapi.git"]
+	path = myapi
+	url = https://github.com/arron-taylor/myapi.git
