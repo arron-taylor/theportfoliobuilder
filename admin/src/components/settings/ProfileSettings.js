@@ -109,8 +109,10 @@ export default function ProfileSettings(props) {
 		            <div onClick={handleClick} value="./rhino.png" name="avatar"> <img onClick={handleClick} value="./rhino.png" name="avatar" src='./rhino.png' /> </div>
 		            <div onClick={handleClick} value="./pug.png" name="avatar" > <img onClick={handleClick} value="./pug.png" name="avatar"  src='./pug.png' /> </div>
 		            <div onClick={handleClick} value="./crab.png" name="avatar"> <img onClick={handleClick} value="./crab.png" name="avatar" src='./crab.png' /> </div>
-		            <div onClick={handleClick} value="./dino.png" name="avatar"> <img onClick={handleClick} value="./dino.png" name="avatar" src='./dino.png' /> </div>
+		            <div onClick={handleClick} value="./velociraptor.png" name="avatar"> <img onClick={handleClick} value="./velociraptor.png" name="avatar" src='./velociraptor.png' /> </div>
 		            <div onClick={handleClick} value="./alien.png" name="avatar"> <img onClick={handleClick} value="./alien.png" name="avatar" src='./alien.png' /> </div>
+		            <div onClick={handleClick} value="./bunny.png" name="avatar"> <img onClick={handleClick} value="./bunny.png" name="avatar" src='./bunny.png' /> </div>
+		            <div onClick={handleClick} value="./pterodactyl.png" name="avatar"> <img onClick={handleClick} value="./pterodactyl.png" name="avatar" src='./pterodactyl.png' /> </div>
 		          </div> 
 		       </div>
 		    </div>

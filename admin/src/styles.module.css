@@ -37,13 +37,14 @@ body {
 	font-style: none;
 	font-size: 16px;
 	font-weight: 400;
-	line-height: 61px;
+	line-height: 66px;
 	color: #989898;
 	border-right: 10px solid transparent;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	-webkit-transition: all .25s linear;
+	margin-left: 25px;
 }
 .label:hover {
 	cursor: pointer;
@@ -52,8 +53,8 @@ body {
 }
 .label .icon {
 	color: #989898;
-	height: 14px; 
-	width: 18px;
+	height: 18px; 
+	width: 21px;
 	margin-right: 25px;
 	margin-left: 75px;
 }
@@ -61,7 +62,9 @@ body {
 	font-family: 'Helvetica Neue';
 	font-style: none;
 	font-size: 16px;
-	line-height: 61px;
+	line-height: 66px;
+	margin-left: 25px;
+	border-radius: 10px 0px 0px 10px;
 	font-weight: 800;
 	color: #989898;
 	border-right: 10px solid #453d91;
@@ -73,8 +76,8 @@ body {
 	-webkit-transition: all .25s ease;
 }
 .labelActive .icon {
-	height: 14px; 
-	width: 18px;
+	height: 18px; 
+	width: 21px;
 	margin-right: 25px;
 	margin-left: 75px;
 }
