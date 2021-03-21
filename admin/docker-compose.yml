@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  sample:
+    container_name: admin
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000

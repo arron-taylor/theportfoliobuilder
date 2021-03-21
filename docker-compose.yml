@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    volumes:
+      - ./api:/app
+  admin:
+    build:
+      context: admin
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./admin:/app
+  graph:
+    build:
+      context: graph
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+   

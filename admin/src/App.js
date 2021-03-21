@@ -14,7 +14,9 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-  //  console.log(token)
+
+    console.log(token)
+
     if(token) {
       axios.get('http://localhost:3001/auto_login', {
         headers: {

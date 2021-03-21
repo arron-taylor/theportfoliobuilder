@@ -6,21 +6,13 @@ import login from '../login.module.css';
 import axios from 'axios';
 import lz from "lzutf8";
 import FocusHandler from '../modules/FocusHandler'
+import AddDialog from './AddDialog/index.js'
 
 export default function AddPage(props) {
 
   const [page, setPage] = useState({page_type: '', page_kind: '', page_layout: '', name: '', id: ''});
   const [focused, setFocus] = useState({name:false});
 
-  useEffect( () => {
-    FocusHandler(focused)
-  });
-	const closeprompt = () => {
-   	console.log(props.page);
-   	const alert_type = 'addBox';
-   	alert = document.getElementById(alert_type);
-   	alert.style.display = 'none';
-   }
    const createPage = (e) => {
     e.preventDefault();
     let data = page;
@@ -51,31 +43,12 @@ export default function AddPage(props) {
    	return (
 		<div id="addBox" style={{display: 'none'}}>
 				<div className={admin.overlay}>
-					<div className={admin.alertbox}> 
-						<h1> Create New Page </h1>
-						<div className={admin.addcontent}> 
-              <table>
-              <tr>
-                <td className={admin.label} id="name">
-                    Page  Name
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon id="name_icon" className={ admin.icon } icon={ faSignature } />
-                </td>
-                <td>
-                  <input onChange={handleField} value={page.name} onFocus={highLight} onBlur={dehighLight} type="text" name="name" placeholder="Name of the page" /> 
-                </td>
-              </tr> 
-            </table>
-            </div>
-						<div className={admin.actionbuttons}> 
-							<button onClick={closeprompt} className={admin.solid}> Cancel </button>
-							<button onClick={createPage} className={admin.invert}> Create </button>
+					<div id="alertbox"  className={admin.alertbox}> 
+						<div id="alertbox_inner" className={admin.alertboxInner}>
+										<AddDialog create={createPage} />
+							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 		)
    

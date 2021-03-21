@@ -11,12 +11,69 @@ body {
 	background: #fff;
 	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 	text-align: center;
-	padding-top: 73px;
 	position: fixed;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.SideBarClosed {
+	width: 73px;
+	background: #fff;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	position: fixed;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.SideBar button.toggle {
+	margin-right: auto;
+	background: #7165e3;
+	margin-bottom: 50px;
+	margin-left: 15px;
+	font-size: 16px;
+	width: 37px;
+	color: #fff;
+	height: 37px;
+	text-align: center;
+	margin-top: 23px;
+	-webkit-transition: all .25s linear;
+	border-radius: 50px;
+	border: 1px solid transparent;
+}
+.SideBarClosed button.toggle {
+		margin: 0px auto;	
+		border: 2px solid transparent;
+		font-size: 16px;
+		margin-top: 23px;
+		-webkit-transition: all .25s linear;
+		color: #fff;
+		margin-bottom: 50px;
+		border-radius: 50px;
+		width: 37px;
+		height: 37px;
+		background: #7165e3; 
+}
+.SideBarClosed button.toggle:hover, .SideBar button.toggle:hover {
+		cursor: pointer;
+		background: #452d91;
+		color: #fff;
+}	
+.SideBarClosed .logout {
+	font-size: 16px;
+	background: #F4F5F9;
+	height: 37px;
+	width:37px;
+	margin: 0px auto;
+	border-radius: 50px;
+	margin-top: auto;
+	margin-bottom: 25px;
 }
 .logout {
-	margin-top: 200px;
+	margin-top: auto;
+	margin-bottom: 25px;
 	font-size: 14px;
 	border: 0px;
 	background: transparent;
@@ -26,13 +83,47 @@ body {
 	cursor: pointer;
 	color: #453d91;
 }
-.BarLabels {
-	margin-top: 53px;
+.SideBarClosed .BarLabels {
+	margin-top: 153px;
 }
-.BarLabels a {
+.SideBarClosed .BarLabels a {
 	text-decoration: none;
 }
-.label {
+.SideBarClosed .label {
+	font-family: 'Helvetica Neue';
+	font-style: none;
+	font-size: 16px;
+	height: 66px;
+	color: #989898;
+	border-right: 10px solid transparent;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	-webkit-transition: all .25s linear;
+}
+.SideBarClosed .label:hover {
+	cursor:pointer;
+	background: #F8F8F8;
+	border-right: 10px solid #989898;
+}
+.SideBarClosed .label .icon {
+	margin-left: 25px;
+}
+.SideBarClosed .labelActive {
+	color: #FFFFFF;
+	background: #7165E3;
+	line-height: 66px;
+	border-right: 10px solid #453d91;
+}
+.SideBarClosed .labelActive .icon {
+}
+.SideBar .BarLabels {
+	margin-top: 53px;
+}
+.SideBar .BarLabels a {
+	text-decoration: none;
+}
+.SideBar .label {
 	font-family: 'Helvetica Neue';
 	font-style: none;
 	font-size: 16px;
@@ -46,19 +137,19 @@ body {
 	-webkit-transition: all .25s linear;
 	margin-left: 25px;
 }
-.label:hover {
+.SideBar .label:hover {
 	cursor: pointer;
 	background: #F8F8F8;
 	border-right: 10px solid #989898;
 }
-.label .icon {
+.SideBar .label .icon {
 	color: #989898;
 	height: 18px; 
 	width: 21px;
 	margin-right: 25px;
 	margin-left: 75px;
 }
-.labelActive {
+.SideBar .labelActive {
 	font-family: 'Helvetica Neue';
 	font-style: none;
 	font-size: 16px;
@@ -75,15 +166,15 @@ body {
 	color: #FFFFFF;
 	-webkit-transition: all .25s ease;
 }
-.labelActive .icon {
+.SideBar .labelActive .icon {
 	height: 18px; 
 	width: 21px;
 	margin-right: 25px;
 	margin-left: 75px;
 }
 .content {
+	-webkit-transition: all .25s linear;
 	height: 100%;
-	margin-left: 343px;
 }
 .avatar {
 	margin: 0px auto;
@@ -92,6 +183,11 @@ body {
 	border: 1px solid #eee;
 	border-radius: 10px;
 	background: #ccc;
+}
+.SideBarClosed .avatar {
+	margin-bottom: 160px;
+	width: 51px;
+	height: 51px;
 }
 .fullname {
 	font-size: 35px;

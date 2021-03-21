@@ -25,7 +25,9 @@ const CURRENT_USER = gql`
 
 function Admin(props) { 
   const [currentTab, setCurrentTab] = useState(window.location.pathname);
-  const {loading, error, data} = useQuery(CURRENT_USER, {
+
+	const [open, setOpen] = useState(false);
+	const {loading, error, data} = useQuery(CURRENT_USER, {
     variables: { id: props.user.id }
   });
   if (loading) return <> loading... Please wait. </>;
@@ -34,8 +36,8 @@ function Admin(props) {
    
     <Router>
     <div className={style.wrapper}>
-      <Sidebar tab={ setCurrentTab } user={data.user} />
-      <Content tab={ currentTab }>
+			<Sidebar setOpen={() => setOpen(!open)}  open={open} tab={ setCurrentTab } user={data.user} />
+      <Content open={open} tab={ currentTab }>
           <Switch>
             <Route exact path="/"> <Redirect to='/dashboard' /> </Route>
             <Route path="/dashboard"> <Dashboard user={data.user} /> </Route>
