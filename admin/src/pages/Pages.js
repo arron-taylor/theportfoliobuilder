@@ -28,7 +28,7 @@ export default function Pages(props) {
     window.location = 'http://localhost:3000/edit/' + e;
   }
    const deleteprompt = (item) => {
-    document.getElementById("alertbox").style.display = 'block';
+    document.getElementById("deletebox").style.display = 'block';
     setPage(prevState => ({ ...prevState, ['id']:item.id }));
     setPage(prevState => ({ ...prevState, ['name']:item.name }));
    }

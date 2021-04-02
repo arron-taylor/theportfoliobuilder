@@ -21,7 +21,7 @@ export default function Sidebar(props) {
 	<>
 		{props.open? 
 		<div className={style.SideBar}>
-			<button onClick={props.setOpen} className={style.toggle}> <FontAwesomeIcon icon={faChevronLeft} /> </button>
+			<button onClick={props.setOpen} className={style.toggle}><FontAwesomeIcon icon={faChevronLeft} /></button>
 			<Avatar user={props.user} />
 			<BarLabels tab={ props.tab } />
 			<button onClick={logout} className={style.logout}> Logout <FontAwesomeIcon icon={faSignOutAlt} /> </button>

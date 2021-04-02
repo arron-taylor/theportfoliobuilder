@@ -6,7 +6,7 @@ import { ApolloClient , ApolloProvider, InMemoryCache} from "@apollo/client";
 
 const client = new ApolloClient({
 	  cache: new InMemoryCache(),
- 		uri: "http://localhost:4000"
+    uri: process.env.NEXT_PUBLIC_GQL_URL
 });
 
 

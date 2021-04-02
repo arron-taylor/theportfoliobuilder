@@ -18,14 +18,14 @@ export default function Alert(props) {
   }
 	const closeprompt = () => {
    	console.log(props.page);
-   	const alert_type = 'alertbox';
+   	const alert_type = 'deletebox';
    	alert = document.getElementById(alert_type);
    	alert.style.display = 'none';
    }
    	return (
-		<div id="alertbox" style={{display: 'none'}}>
+		<div id="deletebox" style={{display: 'none'}}>
 				<div className={admin.overlay}>
-					<div className={admin.alertbox}> 
+								<div className={admin.alertbox} style={{height: "250px"}}> 
 						<h1> Delete {props.page.name}? </h1>
 						<div className={admin.content}> 
 							<p> Are you sure you want to delete this page? Once you press delete there is no way to recover your page.</p>

@@ -20,27 +20,28 @@
 	margin-top: 0px;
 }
 .addbutton {
-	margin-right: 50px;
 	padding-right: 25px;
 	padding-left: 25px;
 	border: 1px solid #DBDBDB;
-	background: #fff;
-	color: #7165E3;
+	background: #7165e3;
+	color: #fff;
+	border-radius: 10px;
 }
 .tabbutton {
-	margin-right: 50px;
 	padding-left: 25px;
-	border: 1px solid #DBDBDB;
-	background: #fff;
+	color: #fff;
+	margin: 0px;
+	border: 0px;
+	background: #7165e3;
 }
 .tabbutton_inactive {
 	border: 1px solid #dfdfdf;
-	margin-right: 50px;
+	color: #888;
+	margin: 0px;
 	padding-left: 25px;
 	background: transparent;
 }
 .addbutton, .tabbutton, .tabbutton_inactive {
-	border-radius: 5px;
 	font-weight: 500;
 	cursor: pointer;
 	height: 51px;
@@ -48,11 +49,9 @@
 	display: flex ;
 	align-items: center;
 	justify-content: center;
-	color: #7165E3;
 }
 .addbutton:hover, .tabbutton:hover, .tabbutton_inactive:hover {
-	border: 1px solid #CCC !important;
-	background: #FAFAFA;
+	background: #453d91;
 	cursor: pointer;
 }
 .addbutton span, .tabbutton span, .tabbutton_inactive span {
@@ -68,6 +67,7 @@
 	height: 51px;
 	width: 51px;
 	border: 0px;
+	margin-left: 50px;
 	border-radius: 51px;
 	background: #7165E3;
 	color: #fff;
