@@ -1,5 +1,5 @@
 #!/bin/sh
 
-yarn
+npm install
 
 npm start

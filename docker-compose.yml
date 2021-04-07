@@ -9,6 +9,9 @@ services:
       - 3001:3001
     volumes:
       - ./api:/app
+    command:
+      - /app/boot.sh
+    
   admin:
     build:
       context: admin
@@ -17,10 +20,15 @@ services:
       - 3000:3000
     volumes:
       - ./admin:/app
+    command:
+      - /app/boot.sh
+      
   graph:
     build:
       context: graph
       dockerfile: Dockerfile
     ports:
       - 4000:4000
-   
+    command:
+      - /app/.docker/canopy/boot.sh
+    
