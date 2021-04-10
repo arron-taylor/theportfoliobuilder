@@ -1,0 +1,9 @@
+[submodule "theportfoliobuilder-api"]
+	path = theportfoliobuilder-api
+	url = https://github.com/arron-taylor/theportfoliobuilder-api.git
+[submodule "theportfoliobuilder-graph"]
+	path = theportfoliobuilder-graph
+	url = https://github.com/arron-taylor/theportfoliobuilder-graph.git
+[submodule "theportfoliobuilder-admin"]
+	path = theportfoliobuilder-admin
+	url = https://github.com/arron-taylor/theportfoliobuilder-admin.git
